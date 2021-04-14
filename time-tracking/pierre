@@ -5,6 +5,6 @@ Datum; Geplante Aufgabe; Zeit geschaetzt; Zeit gebraucht; Erledigte Aufgabe ; Pr
 08.04.2021;weekly ip meeting;1h30min;1h30min;weekly ip meeting;;
 08.04.2021;besprechung jakub pierre magic-tiles;1h 30min;1h 30min;Prioritisierung der ersten Spielidee (magic tiles oder subway surfer). Austausch über aktuellen Kenntnisstand und mögliche Vorgehensweise;;
 14.04.2021;Eva git erklären;1h;1h 45min;Eva git etwas erklärt. Kleinen git guide für Eva und Theresa erstellt. Readme.md im hauptrepo andgepasst und unsere spiele verlinkt.;ssh-key ging bei mir für git nicht. Hatte in meiner ssh-config fh-aachen.de, aber musste git.fh-aachen.de einfügen.
-14.04.2021;weekly team meeting, todos aus slack besprechen;30min;TODO;TODO;TODO
+14.04.2021;weekly team meeting, todos aus slack besprechen;15;30min;auf frontend framework geeinigt. Prototypendesign tool figma geeinigt. Backend Postgresql geeinigt;TODO
 14.04.2021;Prototypenerstellung für Magic Tiles;2h;1h30min;Prototypenerstellung mit Figma;Einlernen in Figma
 14.04.2021;Readme.md updaten, Figma exportieren und einbinden in readme;15min;20min;Readme updated, Figma exportiert und als png eingebunden;;
