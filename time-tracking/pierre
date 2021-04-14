@@ -1,0 +1,8 @@
+Datum; Geplante Aufgabe; Zeit geschaetzt; Zeit gebraucht; Erledigte Aufgabe ; Probleme
+
+01.04.2021;Entry Meeting ip;1h;2h 30min;Vorstellung Alexander Samsz. Vorstellung Andreas. Vermittlung der Grundidee des ips.;;
+07.04.2021;Team Meeting, Vorbereitung für ip weekly;15min;40min;Klärung Repo Struktur,Spielezuordnung,Repo Struktur, siehe protokoll zum Datum;;
+08.04.2021;weekly ip meeting;1h30min;1h30min;weekly ip meeting;;
+08.04.2021;besprechung jakub pierre magic-tiles;1h 30min;1h 30min;Prioritisierung der ersten Spielidee (magic tiles oder subway surfer). Austausch über aktuellen Kenntnisstand und mögliche Vorgehensweise;;
+14.04.2021;Eva git erklären;1h;1h 45min;Eva git etwas erklärt. Kleinen git guide für Eva und Theresa erstellt. Readme.md im hauptrepo andgepasst und unsere spiele verlinkt.;ssh-key ging bei mir für git nicht. Hatte in meiner ssh-config fh-aachen.de, aber musste git.fh-aachen.de einfügen.
+14.04.2021;weekly team meeting, todos aus slack besprechen;15min;TODO;TODO;TODO
