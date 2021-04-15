@@ -8,3 +8,5 @@ Datum; Geplante Aufgabe; Zeit geschaetzt; Zeit gebraucht; Erledigte Aufgabe ; Pr
 14.04.2021;weekly team meeting, todos aus slack besprechen;15;30min;auf frontend framework geeinigt. Prototypendesign tool figma geeinigt. Backend Postgresql geeinigt;TODO
 14.04.2021;Prototypenerstellung für Magic Tiles;2h;1h30min;Prototypenerstellung mit Figma;Einlernen in Figma
 14.04.2021;Readme.md updaten, Figma exportieren und einbinden in readme;15min;20min;Readme updated, Figma exportiert und als png eingebunden;;
+15.04.2021;weekly review meeting.aktuelle probleme besprechen, absichern, dass unsere Spiele so okay sind durch Mockups.;1h;1h;probleme geklaert, Spiele wurden akzeptiert.;;
+15.04.2021;Vorschlag für api im main backend erstellt, weil bisher noch nichts gemacht wurde und jedes Spiel darauf aufbauen wird.;30min;45min;wie vorgenommen.;;
