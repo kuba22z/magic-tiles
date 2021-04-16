@@ -16,7 +16,7 @@
             </div>
         </div>
         <!-- random button -->
-        <magicTilesButton :button-caption="`click me!`" />
+        <magicTilesButtonTest :button-caption="`click me!`" />
     </div>
 </template>
 

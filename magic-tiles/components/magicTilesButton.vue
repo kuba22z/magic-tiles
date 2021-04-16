@@ -1,39 +1,81 @@
+<!-- Component serves a generic styling template for all buttons -->
 <template>
-    <div>
-        <div class="button-wrapper w-full flex justify-center items-center">
-            <div
-                class="button bg-red-300 hover:bg-red-500 py-5 px-10 rounded-xl flex justify-center items-center"
-                @click="changeCaption"
-            >
-                {{ buttonCaption }}
-            </div>
+    <NuxtLink
+        v-if="isNuxtLink"
+        :to="linkTo"
+        :class="[
+            `${color}-bg-button-text-color`,
+            `hover:${color}-bg-button-text-hover-color`,
+            `${color}-bg-button-bg-color`,
+            `hover:${color}-bg-button-bg-hover-color`,
+            width,
+        ]"
+        class="rounded-2xl shadow-md h-16 items-center justify-center text-lg ni-button"
+    >
+        <div class="mx-9 mt-4 mb-2 text-center font-bold">
+            {{ text }}
         </div>
-    </div>
+    </NuxtLink>
+    <!-- TODO(pierre): add case for linking to back to street.
+    ALL ON SAME PAGE -> nuxtlink (no refresh of page)
+    ALL TO OTHER PAGES/main page -> a href
+    -->
+    <!-- MAYBE(pierre): leave or remove error case -->
+    <div v-else>no type was given to ni button</div>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-
-@Component
-export default class extends Vue {
-    /**
-     * NOTE(pierre):
-     * Example can be found here: https://github.com/kaorun343/vue-property-decorator#Prop
-     * readonly -> value that we get passed may not be overwritten/changed inside
-     * this component.
-     * buttonCaption! -> prop/variable will be named buttonCaption.
-     * The postfix '!' is the non-null assertion operator.
-     * src: https://stackoverflow.com/questions/42273853/in-typescript-what-is-the-exclamation-mark-bang-operator-when-dereferenci
-     * Meaning it will throw an error if we don't pass it to this component.
-     */
-    @Prop(String) buttonCaption!: String;
-
-    changeCaption() {
-        this.buttonCaption === "click me"
-            ? (this.buttonCaption = "CLICK ME")
-            : (this.buttonCaption = "click me");
-    }
-}
+<script>
+export default {
+    // dynamic classes need to be passed as fulltext classes. E.g: ni-light-green-bg
+    props: {
+        linkTo: {
+            type: String,
+            default: "/",
+        },
+        color: {
+            type: String,
+        },
+        text: {
+            type: String,
+        },
+        buttonType: {
+            type: String,
+            default: "nuxtlink",
+        },
+        fixedWidth: {
+            type: Number,
+            default: 0,
+        },
+    },
+    computed: {
+        isNuxtLink() {
+            return this.buttonType == "nuxtlink";
+        },
+        isDownload() {
+            return this.buttonType == "download";
+        },
+        isMailto() {
+            return this.buttonType == "mailto";
+        },
+        /**
+         * returns width that the button will have in px based on prop
+         * fixedWidth. given px in tailwindcss jit compatible notation
+         */
+        width() {
+            // does not work without creating string first, idk why.
+            // return this.fixedWidth != 0 ? `w-[${this.fixedWidth}px]` : "";
+            const widthString = `w-[${this.fixedWidth}px]`;
+            return this.fixedWidth != 0 ? widthString : "";
+        },
+        pdf() {
+            return `/pdfs/${this.linkTo}`;
+        },
+    },
+};
 </script>
 
-<style scoped></style>
+<style scoped>
+.ni-button {
+    border-bottom-left-radius: 0px;
+}
+</style>
