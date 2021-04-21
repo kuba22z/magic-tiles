@@ -12,3 +12,4 @@ Datum, Geplante Aufgabe, Zeit geschaetzt, Zeit gebraucht, Erledigte Aufgabe , Pr
 16.04.2021,Aufsetzen des Projekts mit Pierre,2h,1h30min,Projekt aufgesetzt,technologien besprochen,npm installation gab error beim Setup,,
 16.04.2021,Einarbeiten in typescript class components,2h,2h,test page erstellt mit class based component,vue-decorater für props syntax bei props unklar.,,,
 16.04.2021,Zusammen mit Pierre die Aufgaben in issues für diesen Sprint aufgeteilt. Pair Programming mit Pierre,3h,3h,aufgaben aufgeteilt, über entwicklungsideen gesprochen und angefangen,,,
+20.04.2021,einige Aufgaben dieses Sprints erledigen,3h,4h,Gaming-screen und gameBoard mit jeweils einem vuexModule erstellt  ,Verbindung zwischen den pages und modulen herstellen,neue Syntax bei dem store,,
