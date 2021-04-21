@@ -26,7 +26,9 @@
             </div>
             <div
                 class="game-board border border-red-300 flex justify-center items-center"
-            ></div>
+            >
+                <GameBoard />
+            </div>
         </div>
     </div>
 </template>
