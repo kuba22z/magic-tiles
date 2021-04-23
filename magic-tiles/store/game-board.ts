@@ -1,4 +1,4 @@
-import { Module, VuexModule } from "vuex-module-decorators";
+import { Module, VuexModule, Mutation } from "vuex-module-decorators";
 import { Rect } from "types/gaming-screen";
 
 @Module({
@@ -14,5 +14,12 @@ export default class gamingBoard extends VuexModule {
 
     get getRectangle(): Rect {
         return this.rect;
+    }
+    @Mutation
+    moveRectDown(c: number) {
+        this.rect = {
+            x: this.rect.x,
+            y: c,
+        };
     }
 }
