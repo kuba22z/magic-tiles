@@ -11,6 +11,11 @@ export default class gamingBoard extends VuexModule {
         x: 25,
         y: 0,
     };
+
+    /**
+     * @describe moves a rectangle down
+     * @param c determines how far a rectangle is moved down
+     */
     @Mutation
     moveRectDown(c: number) {
         this.rect = {
