@@ -42,6 +42,6 @@ docker-development-test:
 
   # command that will decide whether pipeline did fail or succeed
   script:
-    - docker-compose run nuxt-client ./nuxt-client/test.sh
+    - docker-compose run nuxt-client /nuxt-client/test.sh
 
 
