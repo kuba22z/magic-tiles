@@ -40,6 +40,6 @@ docker-development-test:
     - docker-compose build --no-cache
 
   script:
-    - docker-compose run nuxt-client ./test/test.sh
+    - docker-compose run nuxt-client ./nuxt-client/test.sh
 
 
