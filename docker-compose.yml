@@ -11,5 +11,5 @@ services:
         # mounts the magic-tiles folder in our repo to the folder /nuxt-client
         # inside our container.
         # looks like we cant mount stuff with docker inside docker
-        # volumes:
-        #     - ./:/nuxt-client
+        volumes:
+            - ./:/nuxt-client
