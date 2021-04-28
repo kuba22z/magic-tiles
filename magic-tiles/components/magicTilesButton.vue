@@ -1,14 +1,14 @@
 <!-- Component serves a generic styling template for all buttons -->
 <template>
     <NuxtLink
-        v-if="isNuxtLink"
+        v-if="buttonType === 'nuxtlink'"
         :to="linkTo"
         :class="[
-            `${color}-bg-button-text-color`,
+            /* `${color}-bg-button-text-color`,
             `hover:${color}-bg-button-text-hover-color`,
             `${color}-bg-button-bg-color`,
             `hover:${color}-bg-button-bg-hover-color`,
-            width,
+            'w-' + fixedWidth,*/
         ]"
         class="rounded-2xl shadow-md h-16 items-center justify-center text-lg ni-button"
     >
@@ -16,17 +16,43 @@
             {{ text }}
         </div>
     </NuxtLink>
-    <!-- TODO(pierre): add case for linking to back to street.
-    ALL ON SAME PAGE -> nuxtlink (no refresh of page)
-    ALL TO OTHER PAGES/main page -> a href
-    -->
+
+    <button
+        v-else
+        class="rounded-2xl shadow-md h-16 items-center justify-center text-lg ni-button"
+    >
+        <a :href="linkTo">
+            <div class="mx-9 mt-4 mb-2 text-center font-bold">
+                {{ text }}
+            </div>
+        </a>
+    </button>
+    <!--    TODO(pierre): add case for linking to back to street. ALL ON SAME PAGE ->
+    nuxtlink (no refresh of page) ALL TO OTHER PAGES/main page -> a href &ndash;&gt;-->
     <!-- MAYBE(pierre): leave or remove error case -->
-    <div v-else>no type was given to ni button</div>
 </template>
 
-<script>
-export default {
-    // dynamic classes need to be passed as fulltext classes. E.g: ni-light-green-bg
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
+
+@Component
+export default class magicTilesButton extends Vue {
+    @Prop({ default: "/" }) linkTo!: string;
+    @Prop(String) color!: string;
+    @Prop(String) text!: string;
+
+    @Prop({ default: 0 }) fixedWidth!: number;
+    @Prop({ default: "nuxtlink" }) buttonType!: string;
+}
+
+/* changeCaption() {
+    this.buttonCaption === "click me"
+      ? (this.buttonCaption = "CLICK ME")
+      : (this.buttonCaption = "click me");
+  }
+*/
+
+/*  // dynamic classes need to be passed as fulltext classes. E.g: ni-light-green-bg
     props: {
         linkTo: {
             type: String,
@@ -57,10 +83,10 @@ export default {
         isMailto() {
             return this.buttonType == "mailto";
         },
-        /**
+        /!**
          * returns width that the button will have in px based on prop
          * fixedWidth. given px in tailwindcss jit compatible notation
-         */
+         *!/
         width() {
             // does not work without creating string first, idk why.
             // return this.fixedWidth != 0 ? `w-[${this.fixedWidth}px]` : "";
@@ -71,11 +97,11 @@ export default {
             return `/pdfs/${this.linkTo}`;
         },
     },
-};
+};*/
 </script>
 
 <style scoped>
-.ni-button {
+/*.ni-button {
     border-bottom-left-radius: 0px;
-}
+}*/
 </style>

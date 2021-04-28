@@ -25,12 +25,19 @@
                 <div
                     class="next-button border border-red-300 h-12 w-24 flex justify-center items-center text-center"
                 >
-                    weiter
+                    <magic-tiles-button
+                        text="Weiter"
+                        link-to="/gaming-screen"
+                    />
                 </div>
                 <div
                     class="back-button mt-6 border border-red-300 h-12 w-24 flex justify-center items-center text-center"
                 >
-                    back to street!
+                    <magic-tiles-button
+                        text="back to street!"
+                        button-type="href"
+                        link-to="/"
+                    />
                 </div>
             </div>
         </div>
