@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+    nuxt-client:
+        # name of our resulting image
+        image: nuxt-client
+        # how to build if image non existant
+        build:
+            context: .
+            dockerfile: nuxt-client-dockerfile
+        # mounts the magic-tiles folder in our repo to the folder /nuxt-client
+        # inside our container.
+        volumes:
+            - './magic-tiles:/nuxt-client'
