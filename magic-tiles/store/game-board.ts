@@ -11,10 +11,6 @@ export default class gamingBoard extends VuexModule {
         x: 25,
         y: 0,
     };
-
-    get getRectangle(): Rect {
-        return this.rect;
-    }
     @Mutation
     moveRectDown(c: number) {
         this.rect = {
