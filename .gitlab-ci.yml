@@ -42,9 +42,8 @@ docker-development-test:
 
   # command that will decide whether pipeline did fail or succeed
   script:
-      - echo "all env variables inside container: $ENV"
-      - echo "current directory: " && ls -lah
-      - echo "where our git repo was cloned to: " && ls -lah /builds/backtostreet/magic-tiles-back-to-street/.git/
+      - echo "where repo gets cloned to:" && ls -lah /builds/backtostreet/magic-tiles-back-to-street/.git/ && echo "current dir:" && ls -lah
       # - docker-compose run nuxt-client /nuxt-client/test.sh
+
 
 
