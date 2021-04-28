@@ -11,4 +11,5 @@ services:
         # mounts the magic-tiles folder in our repo to the folder /nuxt-client
         # inside our container.
         volumes:
-            - ./magic-tiles:/nuxt-client
+            # - ./magic-tiles:/nuxt-client
+            - /builds/backtostreet/magic-tiles-back-to-street:/nuxt-client
