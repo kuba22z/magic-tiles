@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+    nuxt-client:
+        # name of our resulting image
+        image: nuxt-client
+        # how to build if image non existant
+        build:
+            context: .
+            dockerfile: nuxt-client-dockerfile
+        # mounts root dir from our repo to /nuxt-client in our container.
+        volumes:
+            - './:/nuxt-client'
