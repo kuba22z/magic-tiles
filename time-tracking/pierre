@@ -13,3 +13,8 @@ Datum; Geplante Aufgabe; Zeit geschaetzt; Zeit gebraucht; Erledigte Aufgabe ; Pr
 16.04.2021;Aufsetzen des Projekts mit Jakub;2h;1h30min;Projekt aufgesetzt,technologien besprochen;npm installation gab error beim Setup
 16.04.2021;Einarbeiten in typescript class components;2h;2h;test page erstellt mit class based component;vue-decorater für props syntax bei props unklar.
 16.04.2021;Zusammen mit Jakub den Aufgaben in issues für diesen Sprint aufgeteilt. Pair Programming mit Jakub;3h;3h;aufgaben aufgeteilt, über entwicklungsideen gesprochen und angefangen;;
+23.04.2021;Meeting mit Jakub, Besprechung, Probleme, Aufgaben, aktueller Stand;1h;2h;über workflow diskutiert und für reviews und feature branch workflow entschieden. merge requests besprochen und ausgetestet
+28.04.2021;gitlab cicd einarbeiten;1h;1h;basics anhand von docu und yt video angeschaut;;
+28.04.2021;weekly meeting;30min;1h10min;probleme diskutiert. coupons anzahl,
+corporate design, benotung;;
+28.08.2021;gitlab ci-cid einrichten;3h;7h;falsche flag bei der installation des gitlab runners gesetzt, wodurch ich DooD(docker out of docker) anstatt DiD(docker in docker) hatte und im inneren compose nichts mehr mounten konnte. habe das natürlich erst nach einigen Stunden debugging bemerkt... Habe dann an einem Testprojekt eine erste Pipeline aufgesetzt, bei der es Funktioniert hat. Als nächstes muss man sich um das deployment des nuxt-clients kümmern im zusammenhang mit cicd.
