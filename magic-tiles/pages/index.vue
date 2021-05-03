@@ -25,18 +25,20 @@
                 <div
                     class="next-button border border-red-300 h-12 w-24 flex justify-center items-center text-center"
                 >
-                    <magic-tiles-button
+                    <MagicTilesButton
                         text="Weiter"
-                        link-to="/gaming-screen"
+                        link-to="/explanation-coupons"
+                        button-type="nuxtlink"
+                        color="green"
                     />
                 </div>
                 <div
-                    class="back-button mt-6 border border-red-300 h-12 w-24 flex justify-center items-center text-center"
+                    class="back-button mt-6 border border-red-300 h-12 w-39 flex justify-center items-center text-center"
                 >
-                    <magic-tiles-button
+                    <MagicTilesButton
                         text="back to street!"
                         button-type="href"
-                        link-to="/"
+                        color="green"
                     />
                 </div>
             </div>
@@ -46,8 +48,11 @@
 
 <script lang="ts">
 import Vue from "vue";
+import MagicTilesButton from "~/components/magicTilesButton.vue";
 
-export default Vue.extend({});
+export default Vue.extend({
+    components: { MagicTilesButton },
+});
 </script>
 
 <style scoped></style>
