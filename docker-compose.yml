@@ -2,14 +2,17 @@ version: "3.8"
 
 services:
     nuxt-client:
-        # name of our resulting image
-        image: nuxt-client
-        # how to build if image non existant
+        # names the resulting image
+        image: ${CI_REGISTRY_IMAGE}:latest
+        # builds image if it's not existant in our registry
         build:
             context: .
             dockerfile: nuxt-client-dockerfile
-        # mounts the magic-tiles folder in our repo to the folder /nuxt-client
-        # inside our container.
-        # looks like we cant mount stuff with docker inside docker
+        # makes nuxt-client folder available in container
         volumes:
-            - ./:/nuxt-client
+            # used to build the client
+            - ./nuxt-client:/nuxt-client
+            - ./.pipeline-scripts:/pipeline-scripts
+            # mounted directory where pm2 will listen on file changes and auto
+            # reload the deployment :]
+            - /deploy:/deploy
