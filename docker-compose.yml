@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+    nuxt-client:
+        # names the resulting image
+        image: ${CI_REGISTRY_IMAGE}:latest
+        # builds image if it's not existant in our registry
+        build:
+            context: .
+            dockerfile: nuxt-client-dockerfile
+        # makes nuxt-client folder available in container
+        volumes:
+            # used to build the client
+            - ./nuxt-client:/nuxt-client
+            - ./.pipeline-scripts:/pipeline-scripts
+            # mounted directory where pm2 will listen on file changes and auto
+            # reload the deployment :]
+            - /deploy:/deploy
