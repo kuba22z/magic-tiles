@@ -16,6 +16,9 @@
                 fill="red"
             />
         </svg>
+        <button @click="startGame" class="test-btn border border-black w-40">
+            Test
+        </button>
     </div>
 </template>
 
@@ -31,7 +34,18 @@ export default class gamingBoard extends Vue {
     @board.State
     public rect!: Rect;
 
-    @board.Getter("getRectangle")
-    public getRectangle!: Rect;
+    @board.Mutation
+    public moveRectDown!: (c: number) => void;
+
+    /**
+     *@describe Endless loop which moves a Rectangle to the bottom.
+     */
+    public startGame() {
+        let c: number = 0;
+        setInterval(() => {
+            this.moveRectDown(c);
+            c += 1;
+        }, 30);
+    }
 }
 </script>
