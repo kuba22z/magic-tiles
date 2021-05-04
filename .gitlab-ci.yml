@@ -1,0 +1,139 @@
+#
+# Author: Pierre Dahmani
+# Created: 28.04.2021
+#
+# Description: creates pipelines for the magic-tiles repository.
+#
+# base file copied and adapted from:
+# https://gitlab.com/SystemSlayerOfficial/gitlab-ci-series/-/blob/Gitlab_CI_Series_EP03/.gitlab-ci.yml
+#
+# Environment variable readme
+# https://docs.gitlab.com/ee/ci/variables/
+#
+# Predefined environment variables
+# https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
+#
+# Using docker images
+# https://docs.gitlab.com/ee/ci/docker/using_docker_images.html
+#
+# .gitlab-ci.yml reference
+# https://docs.gitlab.com/ee/ci/yaml/
+#
+# Container registry reference (authenticating, etc.)
+# https://gitlab.com/help/user/packages/container_registry/index
+
+
+# stages in the order we are going through them
+stages:
+  - build
+  - test
+  - deploy
+
+
+# builds the client
+build:
+
+  image: tmaier/docker-compose
+
+  services:
+    - docker:dind
+
+  stage: build
+
+  # logs into the gitlab docker registry
+  # https://forum.gitlab.com/t/how-to-use-the-deploy-token-correctly/21154
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+
+  # builds image and pushes the image to the gitlab docker registry
+  # https://docs.gitlab.com/ee/user/packages/container_registry/
+  script:
+    - echo "CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE" >> .env
+    - docker-compose build --no-cache
+    - docker-compose run nuxt-client /pipeline-scripts/build.sh
+      # - docker commit $(docker ps -aq --filter ancestor="$CI_REGISTRY_IMAGE:latest") "$CI_REGISTRY_IMAGE:latest"
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+      # rather use 'latest' tag since we can't auto delete registry images
+      # easily and have no need for recovery images.
+      #- docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
+
+  after_script:
+      - docker logout "$CI_REGISTRY_USER"
+
+
+# runs e2e tests with cypress.io
+test:e2e:
+
+  image: tmaier/docker-compose
+
+  services:
+      - docker:dind
+
+  stage: test
+
+
+  before_script:
+    - echo "$CI_BUILD_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - docker pull "$CI_REGISTRY_IMAGE:latest"
+    # TODO(pierre): for e2e testing probably locally host it here before
+    # invoking tests.
+
+  script:
+      # invokes a mocked test script. TODO(pierre): create tests and run them
+      # here
+      - docker-compose run nuxt-client /pipeline-scripts/test.sh
+
+  after_script:
+      - docker logout "$CI_REGISTRY_USER"
+
+
+# runs bdd unit tests with moccha && chai
+test:unit:
+
+  image: tmaier/docker-compose
+
+  services:
+      - docker:dind
+
+  stage: test
+
+  before_script:
+    - echo "$CI_BUILD_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - docker pull "$CI_REGISTRY_IMAGE:latest"
+
+  script:
+      # invokes a mocked test script. TODO(pierre): create tests and run them
+      # here
+      - docker-compose run nuxt-client /pipeline-scripts/test.sh
+
+  after_script:
+      - docker logout "$CI_REGISTRY_USER"
+
+
+# copies/deploys files to the deploy dir
+deploy:
+
+  image: tmaier/docker-compose
+
+  services:
+      - docker:dind
+
+  stage: deploy
+
+  rules:
+    # runs job if on master or develop branch.
+    - if: $CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "development"
+    # runs job if "CI_STAGING_1" or "CI_STAGING_2" is written in commit.
+    - if: $CI_COMMIT_MESSAGE =~ /CI_STAGING_1/ || $CI_COMMIT_MESSAGE =~ /CI_STAGING_2/
+
+  # builds image before running 'script'
+  before_script:
+      - echo "$CI_BUILD_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+      - docker pull "$CI_REGISTRY_IMAGE:latest"
+
+  script:
+      - docker-compose run nuxt-client /pipeline-scripts/build.sh
+      - docker-compose run nuxt-client /pipeline-scripts/copy-deployment.sh "$DOCKER_ENV_CI_COMMIT_BRANCH" "$DOCKER_ENV_CI_COMMIT_MESSAGE" "$DOCKER_ENV_CI_PROJECT_NAME"
+
+  after_script:
+      - docker logout "$CI_REGISTRY_USER"
