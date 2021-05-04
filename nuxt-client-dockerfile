@@ -4,7 +4,6 @@ LABEL maintainer="Pierre Dahmani <all@pierrefhapp.dev>"
 
 ENV TZ=Europe/Berlin
 
-# installs patches and package to get correct tz(timezone)
 RUN apt-get update && apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y -qq tzdata cron curl && \
     # install instructions from:
