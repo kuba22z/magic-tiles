@@ -10,6 +10,7 @@
 # Still better practice in my opinion.
 
 
+DOMAIN_NAME="back2street.de"
 BRANCH_NAME="$1"
 COMMIT_MESSAGE="$2"
 # using repo name for game name :] This name will only be displayed by pm2 and
@@ -49,27 +50,17 @@ fi
 
 echo "TARGET DIR: $TARGET_DIR"
 
-echo "deploying files to $GAME-$TARGET_DIR.domainHere.tldHere"
+echo "deploying files to $GAME-$TARGET_DIR.$DOMAIN_NAME"
 
 sed -i "s/changeThisNameWithSed/$GAME-$TARGET_DIR/g" \
     /nuxt-client/ecosystem.config.js
 sed -i "s/changeThisPortWithSed/$TARGET_PORT/g" \
     /nuxt-client/ecosystem.config.js
 
-echo "DEBUG"
-
-echo "files inside /deploy/$TARGET_DIR:"
-ls -lah "/deploy/$TARGET_DIR"
-echo "files inside /nuxt-client:"
-ls -lah "/nuxt-client"
-
 echo "copying from /nuxt-client to /deploy/$TARGET_DIR.."
 cp -RT /nuxt-client "/deploy/$TARGET_DIR"
 echo "finished copying!"
 
-echo "files inside /deploy/$TARGET_DIR:"
-ls -lah "/deploy/$TARGET_DIR"
-echo "files inside /nuxt-client:"
-ls -lah "/nuxt-client"
+echo "check the results at $GAME-$TARGET_DIR.$DOMAIN_NAME"
 
 exit 0
