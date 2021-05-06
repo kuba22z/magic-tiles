@@ -13,7 +13,7 @@ export class RectImpl implements Rect {
 }
 
 export class RectRowImpl implements RectArray<Rect> {
-    public array: [Rect?, Rect?, Rect?, Rect?] = [];
+    public array: Rect[] = [];
     constructor(y: number = 0) {
         const random: number = Math.floor(Math.random() * 4);
 
@@ -31,15 +31,10 @@ export class RectRowImpl implements RectArray<Rect> {
     }
 }
 export class RectBoardImpl implements RectArray<RectArray<Rect>> {
-    public array: [
-        RectArray<Rect>?,
-        RectArray<Rect>?,
-        RectArray<Rect>?,
-        RectArray<Rect>?
-    ] = [];
+    public array: RectArray<Rect>[]=[];
 
     constructor(NumOfRow: number = 0) {
-        for (let y = 0; y < 100; y += 25) {
+        for (let y = -25; y < 100; y += 25) {
             this.array.push(new RectRowImpl(y));
         }
     }

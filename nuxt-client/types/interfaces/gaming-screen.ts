@@ -4,7 +4,7 @@ export interface Rect {
     image: string;
 }
 export interface RectArray<T> {
-    array: [T?, T?, T?, T?];
+    array: T[] ;
 }
 
 export interface ScoreBoard {
