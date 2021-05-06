@@ -27,7 +27,7 @@ export default class gamingBoard extends Vue {
     public rectBoard!: RectArray<RectArray<Rect>>;
 
     @board.Mutation
-    public moveRectDown!: (c: number) => void;
+    public moveRectRowDown!: (c: number) => void;
 
     /**
      *@describe Endless loop which moves a Rectangle to the bottom.
@@ -35,9 +35,9 @@ export default class gamingBoard extends Vue {
     public startGame() {
         let c: number = 0;
         setInterval(() => {
-            this.moveRectDown(c);
-            c += 1;
-        }, 30);
+            this.moveRectRowDown(c);
+            c += 0.01;
+        }, 10);
     }
 }
 </script>

@@ -16,16 +16,20 @@ export default class gamingBoard extends VuexModule {
 
     public rectBoard: RectArray<RectArray<Rect>> = new RectBoardImpl();
 
-    /**
-     * @describe moves a rectangle down
-     * @param c determines how far a rectangle is moved down
-     */
+
+  /**
+   * @describe moves all rectangle rows to the bottom
+   * @param c determines how far all rectangle rows are moved down
+   */
     @Mutation
-    moveRectDown(c: number) {
-        this.rect = {
-            x: this.rect.x,
-            y: c,
-            image: this.rect.image,
-        };
+    moveRectRowDown(c :number){
+      for (let rectRow  of this.rectBoard.array) {
+        if (rectRow != undefined) {
+          for (let a of rectRow.array) {
+          if(a!=undefined)
+            a.y = a.y+ c;
+          }
+        }
+      }
     }
 }
