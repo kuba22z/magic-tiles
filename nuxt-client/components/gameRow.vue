@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { RectRow } from "types/gaming-screen";
+import { RectRow } from "~/types/interfaces/gaming-screen";
 import GameRectangle from "~/components/gameRectangle.vue";
 @Component({
     components: { GameRectangle },

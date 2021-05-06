@@ -12,9 +12,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
-import { Rect, RectRow } from "types/gaming-screen";
+import { Rect, RectRow } from "~/types/interfaces/gaming-screen";
 import GameRectangle from "~/components/gameRectangle.vue";
 import Test from "~/pages/testing/test.vue";
 import GameRow from "~/components/gameRow.vue";

@@ -1,5 +1,7 @@
 import { Module, VuexModule, Mutation } from "vuex-module-decorators";
-import { Rect, RectRow } from "types/gaming-screen";
+import { Rect, RectRow } from "~/types/interfaces/gaming-screen";
+import {RectImpl, RectRowImpl} from "~/types/classes/gaming-srceen";
+
 
 @Module({
     name: "gamingBoard",
@@ -7,36 +9,9 @@ import { Rect, RectRow } from "types/gaming-screen";
     namespaced: true,
 })
 export default class gamingBoard extends VuexModule {
-    public rect: Rect = {
-        x: 25,
-        y: 0,
-        image:
-            "https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png",
-    };
-    public rectRow: RectRow = {
-        row: [
-            {
-                x: 0,
-                y: 75,
-                image: "",
-            },
-            {
-                x: 25,
-                y: 75,
-                image: "",
-            },
-            {
-                x: 50,
-                y: 75,
-                image: "",
-            },
-            {
-                x: 75,
-                y: 75,
-                image: "",
-            },
-        ],
-    };
+    public rect: Rect=new RectImpl(25,0,"https://media.prod.mdn.mozit.cloud/attachments/2013/11/15/6457/5e0f6aa96fb8e4593f143aa803576698/mdn_logo_only_color.png");
+
+    public rectRow: RectRow = new RectRowImpl(75);
 
     /**
      * @describe moves a rectangle down
