@@ -18,8 +18,9 @@ import GameRectangle from "~/components/gameRectangle.vue";
 import Test from "~/pages/testing/test.vue";
 import GameRow from "~/components/gameRow.vue";
 var i=0;
-var stepSize =2.5,bigStep=25/stepSize;
-var fpsInterval, startTime, now, then, elapsed;
+var stepSize =2.5,bigStep=25/stepSize ;
+var fpsInterval :number ,startTime :number, now :number, then :number, elapsed :number;
+
 
 const board = namespace("game-board");
 @Component({
@@ -84,7 +85,7 @@ export default class gamingBoard extends Vue {
         }
       }
     }
-  public initStart(fps) {
+  public initStart(fps :number) {
     fpsInterval = 1000 / fps;
     then = Date.now();
     startTime = then;
