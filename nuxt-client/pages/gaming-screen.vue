@@ -36,7 +36,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
-import { ScoreBoard } from "~/types/interfaces/gaming-screen";
+import { ScoreBoard } from "~/types/scoreBoard";
 
 const gaming = namespace("gaming-screen");
 @Component
