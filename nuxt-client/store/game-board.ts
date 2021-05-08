@@ -1,6 +1,5 @@
 import { Module, VuexModule, Mutation } from "vuex-module-decorators";
-import { Rect, RectArray } from "~/types/interfaces/gaming-screen";
-import {RectBoardImpl, RectImpl, RectRowImpl} from "~/types/classes/gaming-srceen";
+import { RectBoard, RectRow } from "~/types/game-board";
 
 @Module({
     name: "gamingBoard",
@@ -8,29 +7,28 @@ import {RectBoardImpl, RectImpl, RectRowImpl} from "~/types/classes/gaming-srcee
     namespaced: true,
 })
 export default class gamingBoard extends VuexModule {
-  public rectBoard: RectArray<RectArray<Rect>> = new RectBoardImpl();
+    public rectBoard: RectBoard = new RectBoard(5);
 
-  /**
-   * @describe moves all rectangle rows to the bottom
-   * @param stepSize determines how far all rectangle rows are moved down
-   */
-  @Mutation
-  moveRectRowDown(stepSize: number) {
-    for (let rectRow of this.rectBoard.array) {
-      for (let a of rectRow.array) {
-        a.y = a.y + stepSize;
-      }
-    }
-  }
-
-  /**
-   * @describe creates a new RectRow at the top and removes a RectRow at the bottom
-   */
-  @Mutation
-  pushFrontAndPop(){
-      //adds one Row to the beginning of the array
-      this.rectBoard.array.unshift(new RectRowImpl(-25));
-      this.rectBoard.array.pop();
+    /**
+     * @describe moves all rectangle rows to the bottom
+     * @param stepSize determines how far all rectangle rows are moved down
+     */
+    @Mutation
+    moveRectRowDown(stepSize: number) {
+        for (const rectRow of this.rectBoard.board) {
+            for (const rect of rectRow.row) {
+                rect.y = rect.y + stepSize;
+            }
+        }
     }
 
+    /**
+     * @describe creates a new RectRow at the top and removes a RectRow at the bottom
+     */
+    @Mutation
+    pushFrontAndPop() {
+        // adds one Row to the beginning of the array
+        this.rectBoard.board.unshift(new RectRow(-25));
+        this.rectBoard.board.pop();
+    }
 }

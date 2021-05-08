@@ -1,18 +1,23 @@
 <template>
     <g>
-        <GameRectangle v-for="rect in rectRow.array" :rect="rect" />
+        <GameRectangle
+            v-for="(rect, index) in rectRow.row"
+            :key="index"
+            :rect="rect"
+        />
     </g>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Rect, RectArray } from "~/types/interfaces/gaming-screen";
 import GameRectangle from "~/components/gameRectangle.vue";
+import { RectRow } from "~/types/game-board";
+
 @Component({
     components: { GameRectangle },
 })
 export default class gamingRectangle extends Vue {
-    @Prop() public rectRow!: RectArray<Rect>;
+    @Prop(RectRow) public rectRow!: RectRow;
 }
 </script>
 
