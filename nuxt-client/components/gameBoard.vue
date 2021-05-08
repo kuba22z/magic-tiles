@@ -9,7 +9,7 @@
         </svg>
 
         <button class="test-btn border border-black w-40" @click="startGame">
-            Test
+            Speed Up
         </button>
         <button class="test-btn border border-black w-20" @click="stopGame">
             Stop
@@ -40,18 +40,19 @@ export default class gamingBoard extends Vue {
     public pushFrontAndPop!: () => void;
 
     i: number = 0;
-    readonly stepSize: number = 2.5;
+    readonly stepSize: number = 1;
     readonly bigStep: number = 25 / this.stepSize;
     startRef: number = 0;
-    timer: any;
+    timerRef: any;
 
     /**
      *@describe Endless loop which move all RectRow to the bottom
      * and creates new rectRows at the top
      */
     public startGame() {
-        this.startRef = requestAnimationFrame(this.startGame);
-
+        this.timerRef = setTimeout(() => {
+            this.startRef = requestAnimationFrame(this.startGame);
+        }, 25);
         this.moveRectRowDown(this.stepSize);
         this.i++;
         if (this.i === this.bigStep) {
@@ -65,7 +66,7 @@ export default class gamingBoard extends Vue {
      */
     public stopGame() {
         cancelAnimationFrame(this.startRef);
-        clearTimeout(this.timer);
+        clearTimeout(this.timerRef);
     }
 }
 </script>

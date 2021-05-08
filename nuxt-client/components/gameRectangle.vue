@@ -8,6 +8,12 @@
             height="25%"
             width="25%"
         />
+        <image
+            v-if="rect.image === 'cook-book.svg'"
+            href="~/assets/cook-book.svg"
+            height="25%"
+            width="25%"
+        />
     </svg>
 </template>
 
@@ -17,7 +23,7 @@ import { Rect } from "~/types/game-board";
 
 @Component
 export default class gamingRectangle extends Vue {
-    @Prop(Rect) public rect!: Rect;
+    @Prop() public rect!: Rect;
 }
 </script>
 

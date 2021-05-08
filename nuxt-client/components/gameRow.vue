@@ -17,7 +17,7 @@ import { RectRow } from "~/types/game-board";
     components: { GameRectangle },
 })
 export default class gamingRectangle extends Vue {
-    @Prop(RectRow) public rectRow!: RectRow;
+    @Prop() public rectRow!: RectRow;
 }
 </script>
 
