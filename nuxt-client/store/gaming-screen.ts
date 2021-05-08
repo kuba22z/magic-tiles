@@ -1,5 +1,5 @@
 import { Module, VuexModule } from "vuex-module-decorators";
-import { ScoreBoard } from "../types/gaming-screen";
+import { ScoreBoard } from "~/types/scoreBoard";
 
 @Module({
     name: "gamingScreen",
@@ -7,15 +7,5 @@ import { ScoreBoard } from "../types/gaming-screen";
     namespaced: true,
 })
 export default class gamingScreen extends VuexModule {
-    public scoreBoard: ScoreBoard = {
-        score: 0,
-        highscore: 0,
-    };
-
-    get getHighscore(): number {
-        return this.scoreBoard.highscore;
-    }
-    get getScore(): number {
-        return this.scoreBoard.score;
-    }
+    public scoreBoard: ScoreBoard = new ScoreBoard();
 }

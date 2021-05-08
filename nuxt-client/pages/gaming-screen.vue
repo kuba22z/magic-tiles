@@ -10,7 +10,7 @@
                     Highscore:
                 </div>
                 <div class="highscore-result border border-red-300 w-6/12 flex">
-                    {{ getHighscore }}
+                    {{ scoreBoard.highscore }}
                 </div>
             </div>
 
@@ -21,7 +21,7 @@
                     Punktestand:
                 </div>
                 <div class="score-result border border-red-300 w-6/12 flex">
-                    {{ getScore }}
+                    {{ scoreBoard.score }}
                 </div>
             </div>
             <div
@@ -36,23 +36,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
-import { ScoreBoard } from "~/types/gaming-screen";
+import { ScoreBoard } from "~/types/scoreBoard";
 
 const gaming = namespace("gaming-screen");
 @Component
 export default class gamingScreen extends Vue {
-    public localData: object = {};
     @gaming.State
     public scoreBoard!: ScoreBoard;
-
-    @gaming.Getter("getScoreBoard")
-    public getScoreBoard!: ScoreBoard;
-
-    @gaming.Getter("getHighscore")
-    public getHighscore!: number;
-
-    @gaming.Getter("getScore")
-    public getScore!: number;
 }
 </script>
 

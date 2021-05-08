@@ -12,6 +12,7 @@
             'text-lg',
             /*MAYBE(jakub)  'bg-'+color+'-600',*/
             'ring-2',
+            //TODO(jakub) -> BUG: setting the color doesnt work
             'ring-' + color + '-600',
             'hover:bg-' + color + '-600',
         ]"
