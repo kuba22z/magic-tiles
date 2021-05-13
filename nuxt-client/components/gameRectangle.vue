@@ -1,18 +1,51 @@
 <template>
-    <svg :x="rect.x + '%'" :y="rect.y + '%'">
+    <svg :x="rect.x + '%'" :y="rect.y + '%'" @click.stop="checkCorrectRect">
         <rect fill="black" height="25%" width="25%" />
         <!--    TODO(jakub) BUG: on firefox some images flicker between cook-book.svg and book.svg -->
-        <image :href="'_nuxt/assets/' + rect.image" height="25%" width="25%" />
+        <!--    BUG: :href="rect.images" doesnt work properly same bug as with magic tiles button   -->
+        <image
+            v-if="rect.image === 'book.svg'"
+            href="~/assets/book.svg"
+            height="25%"
+            width="25%"
+        />
+        <image
+            v-else-if="rect.image === 'cook-book.svg'"
+            href="~/assets/cook-book.svg"
+            height="25%"
+            width="25%"
+        />
     </svg>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { namespace } from "vuex-class";
 import { Rect } from "~/types/game-board";
+const gaming = namespace("gaming-screen");
+const board = namespace("game-board");
 
 @Component
 export default class gamingRectangle extends Vue {
     @Prop() public rect!: Rect;
+
+    @Prop() public index!: number;
+
+    @Prop() public rowIndex!: number;
+
+    @Prop() public stopGame!: any;
+
+    @gaming.Mutation
+    public incrementScore!: () => void;
+
+    @board.Mutation
+    public setIsClicked!: (rectIndexes: [number, number]) => void;
+
+    checkCorrectRect() {
+        this.setIsClicked([this.rowIndex, this.index]);
+        if (this.rect.image === "book.svg") this.incrementScore();
+        else this.stopGame();
+    }
 }
 </script>
 

@@ -2,11 +2,18 @@ export class Rect {
     image: string;
     x: number;
     y: number;
+    isClicked: boolean;
 
-    constructor(x: number = 0, y: number = 0, image: string = "") {
+    constructor(
+        x: number = 0,
+        y: number = 0,
+        image: string = "",
+        isClicked: boolean = false
+    ) {
         this.x = x;
         this.y = y;
         this.image = image;
+        this.isClicked = isClicked;
     }
 }
 

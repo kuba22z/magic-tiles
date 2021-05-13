@@ -31,4 +31,12 @@ export default class gamingBoard extends VuexModule {
         this.rectBoard.board.unshift(new RectRow(-25));
         this.rectBoard.board.pop();
     }
+
+    /**
+     * @describe creates a new RectRow at the top and removes a RectRow at the bottom
+     */
+    @Mutation
+    setIsClicked(indexes: [number, number]) {
+        this.rectBoard.board[indexes[0]].row[indexes[1]].isClicked = true;
+    }
 }

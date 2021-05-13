@@ -3,7 +3,10 @@
         <GameRectangle
             v-for="(rect, index) in rectRow.row"
             :key="index"
+            :index="index"
             :rect="rect"
+            :row-index="rowIndex"
+            :stop-game="stopGame"
         />
     </g>
 </template>
@@ -18,6 +21,8 @@ import { RectRow } from "~/types/game-board";
 })
 export default class gamingRectangle extends Vue {
     @Prop() public rectRow!: RectRow;
+    @Prop() public stopGame!: any;
+    @Prop() public rowIndex!: number;
 }
 </script>
 
