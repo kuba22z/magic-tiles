@@ -22,4 +22,6 @@ Datum, Geplante Aufgabe, Zeit geschaetzt, Zeit gebraucht, Erledigte Aufgabe , Pr
 05.05.2021,weekly ip meeting,15min,15min,über den Server diskutiert,,,,
 06.05.2021,alle interfaces implementieren,1h,1.30h,ein neues Interface erstellt und alle interfaces implementiert. GameBoard component aktualisiert mit neuem Interface ,probleme mit dem Konstruktor,,,
 06.05.2021,implement function moveRectRowDown(),10min,10min,funktion implementiert die alle Rechtecke nach unten verschiebt,,,,
-06.05.2021,neue RectRows sollen von oben erscheinen,1h,1.30h,"daten strukur der Klasen etwas verändert, die funktion pushFrontAndPop(), setIntervall mit requestAnimationFrame() ausgetauscht",setIntervall() eignet sich nicht so gut für eine game loop,,,
+06.05.2021,neue RectRows sollen von oben erscheinen,1h,1.30h,"datenstrukur der Klassen etwas verändert, die funktion pushFrontAndPop(), setIntervall mit requestAnimationFrame() ausgetauscht",setIntervall() eignet sich nicht so gut für eine game loop,,,
+11.05.2021,das Spielende implementieren,2h,2h,checkGameEnd() und checkCorrectRect() implementiert. Das Attribut isClicked zu der Rect Klasse hinzugefügt,das klicken auf die Rechtecke ist nicht ganz zuverlässig,,,
+12.05.2021,weekly ip meeting,15min,30min,aktuelle Probleme innerhalb der Spiele besprochen,probleme beim Spiel move furniture mit dem verschieben von autos,,,
