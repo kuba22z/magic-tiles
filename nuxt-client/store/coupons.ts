@@ -34,7 +34,7 @@ export default class CouponStore extends VuexModule {
         return this.coupons;
     }
 
-    @VuexAction({ commit: "initializeCoupons" })
+    @VuexAction({ commit: "initializeCoupons", rawError: true })
     /**
      * @description calls the main server to get all the game infos that we need.
      */
@@ -47,15 +47,15 @@ export default class CouponStore extends VuexModule {
         // TODO(pierre): Ask karbush and rias if we will have
         // one route for gameInfo? Or one for coupons and one for the game info?
         try {
-            const response: AxiosResponse = await $axios.post(
-                "127.0.0.1:3001/gameInfo"
+            const response: AxiosResponse = await $axios.get(
+                "http://localhost:3001/gameInfo"
             );
             const gameInfo: GameInfo = response.data;
             // TODO(pierre): remove console.log after debugging.
             // eslint-disable-next-line no-console
             console.log("Fetching the api was successful.");
-            console.log("we got response:");
-            console.log(response);
+            console.log("we got data:");
+            console.log(gameInfo);
             return gameInfo;
         } catch (e) {
             // TODO(pierre): remove console.log after debugging.
