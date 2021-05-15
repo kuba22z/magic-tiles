@@ -18,8 +18,8 @@ export interface magicTilesInfo {
  * TODO(pierre): Ask Karbush and Rias how this data will look?
  * @description Contains all the infos we get by querying the main server.
  */
-export interface MainServerInfo {
-    remainingTime: Date;
+export interface GameInfo {
+    validUntil: Date;
     availableCoupons: number;
     coupons: Coupons;
     magicTiles: magicTilesInfo;
