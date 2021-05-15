@@ -8,6 +8,7 @@
  */
 export interface Coupon {
     description: string;
+    image: string;
     level: number;
 }
 
