@@ -9,7 +9,7 @@ import { Coupons } from "~/types/coupons";
  * tiles game. We get one link to the correct image, that the user has to
  * click on and three links to bad images, that should not be clicked.
  */
-export interface magicTilesInfo {
+export interface MagicTilesInfo {
     correctImage: string;
     falseImages: string[];
 }
@@ -22,5 +22,5 @@ export interface GameInfo {
     validUntil: Date;
     availableCoupons: number;
     coupons: Coupons;
-    magicTiles: magicTilesInfo;
+    magicTiles: MagicTilesInfo;
 }
