@@ -19,7 +19,6 @@
                     </div>
                 </div>
             </template>
-            we have: {{ availableCouponsCount }} available coupons.
         </div>
     </div>
 </template>
@@ -43,10 +42,7 @@ export default class CouponsExplanation extends Vue {
     }
 
     get coupons(): Coupons {
-        if (this.couponsFetched) {
-            return couponStore.getAllCoupons;
-        }
-        return [];
+        return couponStore.getAllCoupons;
     }
 
     get couponsFetched(): boolean {

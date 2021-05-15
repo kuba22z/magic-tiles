@@ -34,10 +34,11 @@ export default class CouponStore extends VuexModule {
         return this.coupons;
     }
 
-    @VuexAction
+    @VuexAction({ commit: "initializeCoupons" })
     /**
      * @description calls the main server to get all the game infos that we need.
      */
+    // TODO(pierre): debug here?
     async fetchCoupons() {
         // TODO(pierre): include api token in request once the main server api
         // is implemented.
@@ -45,20 +46,31 @@ export default class CouponStore extends VuexModule {
         // one route for gameInfo? Or one for coupons and one for the game info?
         try {
             const response: AxiosResponse = await $axios.post(
-                "127.0.0.1:3000/gameInfo"
+                "127.0.0.1:3001/gameInfo"
             );
             const gameInfo: GameInfo = response.data;
-            this.setAmountAvailableCoupons(gameInfo.availableCoupons);
-            this.setCoupons(gameInfo.coupons);
-            this.setCouponsFetched(true);
             // TODO(pierre): remove console.log after debugging.
             // eslint-disable-next-line no-console
             console.log("Fetching the api was successful.");
+            console.log("we got response:");
+            console.log(response);
+            return gameInfo;
         } catch (e) {
             // TODO(pierre): remove console.log after debugging.
             // eslint-disable-next-line no-console
             console.log("Fetching the api did throw an error.");
+            // TODO(pierre): remove printing the error message.
+            console.log("we got error:");
+            console.log(e);
+            return [];
         }
+    }
+
+    @VuexMutation
+    initializeCoupons(gameInfo: GameInfo) {
+        this.setAmountAvailableCoupons(gameInfo.availableCoupons);
+        this.setCoupons(gameInfo.coupons);
+        this.setCouponsFetched(true);
     }
 
     @VuexMutation
