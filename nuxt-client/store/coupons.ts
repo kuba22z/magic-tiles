@@ -71,6 +71,5 @@ export default class CouponStore extends VuexModule {
         this.amountAvailableCoupons = gameInfo.availableCoupons;
         this.coupons = gameInfo.coupons;
         this.couponsFetched = false;
-        console.log(gameInfo);
     }
 }

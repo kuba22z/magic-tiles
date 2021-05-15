@@ -30,6 +30,21 @@
                 <GameBoard />
             </div>
         </div>
+        <!-- TODO(pierre): maybe keep these. just keep them for debugging purposes right now. -->
+        <div
+            class="bottom-navigation-buttons flex flex-col justify-center mt-10 items-center border border-red-300 w-full"
+        >
+            <div
+                class="back-button mt-6 border border-red-300 h-12 w-39 flex justify-center items-center text-center"
+            >
+                <MagicTilesButton
+                    text="Zurück"
+                    link-to="/explanation-coupons"
+                    button-type="nuxtlink"
+                    color="green"
+                />
+            </div>
+        </div>
     </div>
 </template>
 
