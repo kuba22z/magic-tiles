@@ -13,7 +13,7 @@ import { GameInfo } from "~/types/gameInfo";
  * @description Store that is used to store the internal state for our coupons.
  */
 @Module({
-    name: "couponStore",
+    name: "coupons",
     stateFactory: true,
     namespaced: true,
 })
@@ -38,8 +38,10 @@ export default class CouponStore extends VuexModule {
     /**
      * @description calls the main server to get all the game infos that we need.
      */
-    // TODO(pierre): debug here?
     async fetchCoupons() {
+        // TODO(pierre): find out why axios is undefined?
+        console.log("axios:");
+        console.log($axios);
         // TODO(pierre): include api token in request once the main server api
         // is implemented.
         // TODO(pierre): Ask karbush and rias if we will have
