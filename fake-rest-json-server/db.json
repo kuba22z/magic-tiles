@@ -1,5 +1,5 @@
 {
-    "gameInfo": [
+    "gameInfo":
         {
             "validUntil": "2021-05-15T16:57:41.259Z",
             "availableCoupons": 2,
@@ -26,5 +26,4 @@
                 }
             ]
         }
-    ]
 }

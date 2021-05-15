@@ -34,14 +34,12 @@ export default class CouponStore extends VuexModule {
         return this.coupons;
     }
 
-    @VuexAction({ commit: "initializeCoupons", rawError: true })
     /**
      * @description calls the main server to get all the game infos that we need.
      */
+    @VuexAction({ commit: "initializeCoupons", rawError: true })
     async fetchCoupons() {
-        // TODO(pierre): find out why axios is undefined?
-        console.log("axios:");
-        console.log($axios);
+        console.log("fetching request...");
         // TODO(pierre): include api token in request once the main server api
         // is implemented.
         // TODO(pierre): Ask karbush and rias if we will have
@@ -54,39 +52,25 @@ export default class CouponStore extends VuexModule {
             // TODO(pierre): remove console.log after debugging.
             // eslint-disable-next-line no-console
             console.log("Fetching the api was successful.");
-            console.log("we got data:");
-            console.log(gameInfo);
             return gameInfo;
         } catch (e) {
             // TODO(pierre): remove console.log after debugging.
             // eslint-disable-next-line no-console
             console.log("Fetching the api did throw an error.");
-            // TODO(pierre): remove printing the error message.
-            console.log("we got error:");
-            console.log(e);
             return [];
         }
     }
 
+    /**
+     * @description Initializes our coupon store based on game info we got from
+     * our api request.
+     * @param gameInfo
+     */
     @VuexMutation
     initializeCoupons(gameInfo: GameInfo) {
-        this.setAmountAvailableCoupons(gameInfo.availableCoupons);
-        this.setCoupons(gameInfo.coupons);
-        this.setCouponsFetched(true);
-    }
-
-    @VuexMutation
-    setCouponsFetched(fetched: boolean) {
-        this.couponsFetched = fetched;
-    }
-
-    @VuexMutation
-    setAmountAvailableCoupons(amount: number) {
-        this.amountAvailableCoupons = amount;
-    }
-
-    @VuexMutation
-    setCoupons(coupons: Coupons) {
-        this.coupons = coupons;
+        this.amountAvailableCoupons = gameInfo.availableCoupons;
+        this.coupons = gameInfo.coupons;
+        this.couponsFetched = false;
+        console.log(gameInfo);
     }
 }
