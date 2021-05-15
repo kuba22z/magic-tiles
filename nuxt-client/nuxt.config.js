@@ -18,7 +18,9 @@ export default {
 
     // config for node server
     server: {
-        host: "0.0.0.0",
+        // reads value from .env file. If no .env file, use 0.0.0.0 (globally
+        // accessable)
+        host: process.env.HOST_ADDR || "0.0.0.0",
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
