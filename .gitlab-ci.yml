@@ -44,8 +44,8 @@ build:
   cache:
     key: client-build-cache
     paths:
-      - /nuxt-client/node_modules/
-      - /nuxt-client/.nuxt/
+      - nuxt-client/node_modules/
+      - nuxt-client/.nuxt/
 
 
   # builds image and pushes the image to the gitlab docker registry
@@ -116,8 +116,8 @@ deploy:
   cache:
     key: client-build-cache
     paths:
-      - /nuxt-client/node_modules/
-      - /nuxt-client/.nuxt/
+      - nuxt-client/node_modules/
+      - nuxt-client/.nuxt/
 
   rules:
     # runs job if on master or develop branch.
