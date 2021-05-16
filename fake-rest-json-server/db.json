@@ -1,0 +1,29 @@
+{
+    "gameInfo":
+        {
+            "validUntil": "2021-05-15T16:57:41.259Z",
+            "availableCoupons": 2,
+            "coupons": [
+                {
+                    "description": "5% auf alles!",
+                    "level": 1,
+                    "image": "https://i.picsum.photos/id/193/200/200.jpg?hmac=JHo5tWHSRWvVbL3HX6rwDNdkvYPFojLtXkEGEUCgz6A "
+                },
+                {
+                    "description": "10% auf alles!",
+                    "level": 2,
+                    "image": "https://i.picsum.photos/id/336/200/200.jpg?hmac=VZ7MzNM30jINYNf5Oj_8zqPLTDAyKDk6eXWTGnNb4bU"
+                }
+            ],
+            "magicTiles": [
+                {
+                  "correctImage": "https://i.picsum.photos/id/525/200/200.jpg?hmac=_RnAIjIviTYNBh6qG-zjQg_m2UBgAnnh96jDb8ZDKSI",
+                  "falseImages": [
+                      "https://i.picsum.photos/id/536/200/200.jpg?hmac=Ncz_gqWPnq2UI5u-tKvEfwaXLLhoc4ryLBjGJ7fjR1c",
+                      "https://i.picsum.photos/id/281/200/200.jpg?hmac=5FvZ-Y5zbbpS3-mJ_mp6-eH61MkwhUJi9qnhscegqkY",
+                      "https://i.picsum.photos/id/141/200/200.jpg?hmac=cy5VCF6f8Mq7cum6d-R7m7mbrGC0wgUzI4UpSX_qkIk"
+                    ]
+                }
+            ]
+        }
+}
