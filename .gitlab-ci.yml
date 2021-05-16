@@ -18,7 +18,8 @@ stages:
 # NOTE(pierre): $DOCKER_VERSION is a project specific deployment variable.
 variables:
     DOCKER_COMPOSE: $CI_REGISTRY_IMAGE/docker-compose:$DOCKER_VERSION
-    DOCKER_DIND: $CI_REGISTRY_IMAGE/docker-dind:$DOCKER_VERSION
+    # somehow not working?
+    # DOCKER_DIND: $CI_REGISTRY_IMAGE/docker-dind:$DOCKER_VERSION
 
 
 # builds the client
@@ -27,7 +28,7 @@ build:
   image: $DOCKER_COMPOSE
 
   services:
-    - $DOCKER_DIND
+    - docker:dind
 
   stage: build
 
