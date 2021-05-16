@@ -14,6 +14,12 @@ stages:
   - test
   - deploy
 
+# these can be accessed at every job
+variables:
+    DOCKER_VERSION: 20.10
+    DOCKER_COMPOSE: $CI_REGISTRY_IMAGE/docker-compose:$DOCKER_VERSION
+    DOCKER_DIND: $CI_REGISTRY_IMAGE/docker-dind:$DOCKER_VERSION
+
 
 # builds the client
 build:
@@ -25,11 +31,11 @@ build:
 
   stage: build
 
-
-
   # logs into the gitlab docker registry
   # https://forum.gitlab.com/t/how-to-use-the-deploy-token-correctly/21154
   before_script:
+    # print debug output TODO(pierre): remove later
+    - export
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
 
   # builds image and pushes the image to the gitlab docker registry
@@ -89,7 +95,6 @@ test:unit:
   # makes sure tests are ran sequentially instead of concurrently.
   # concurrent execution did lead to errors with the docker registry.
   resource_group: test
-
 
   before_script:
     - echo "$CI_BUILD_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
