@@ -6,21 +6,6 @@
 #
 # base file copied and adapted from:
 # https://gitlab.com/SystemSlayerOfficial/gitlab-ci-series/-/blob/Gitlab_CI_Series_EP03/.gitlab-ci.yml
-#
-# Environment variable readme
-# https://docs.gitlab.com/ee/ci/variables/
-#
-# Predefined environment variables
-# https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
-#
-# Using docker images
-# https://docs.gitlab.com/ee/ci/docker/using_docker_images.html
-#
-# .gitlab-ci.yml reference
-# https://docs.gitlab.com/ee/ci/yaml/
-#
-# Container registry reference (authenticating, etc.)
-# https://gitlab.com/help/user/packages/container_registry/index
 
 
 # stages in the order we are going through them
@@ -40,6 +25,8 @@ build:
 
   stage: build
 
+
+
   # logs into the gitlab docker registry
   # https://forum.gitlab.com/t/how-to-use-the-deploy-token-correctly/21154
   before_script:
@@ -51,7 +38,6 @@ build:
     - echo "CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE" >> .env
     - docker-compose build --no-cache
     - docker-compose run nuxt-client /pipeline-scripts/build.sh
-      # - docker commit $(docker ps -aq --filter ancestor="$CI_REGISTRY_IMAGE:latest") "$CI_REGISTRY_IMAGE:latest"
     - docker push "$CI_REGISTRY_IMAGE:latest"
       # rather use 'latest' tag since we can't auto delete registry images
       # easily and have no need for recovery images.
@@ -71,6 +57,9 @@ test:e2e:
 
   stage: test
 
+  # makes sure tests are ran sequentially instead of concurrently.
+  # concurrent execution did lead to errors with the docker registry.
+  resource_group: test
 
   before_script:
     - echo "$CI_BUILD_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
@@ -96,6 +85,11 @@ test:unit:
       - docker:dind
 
   stage: test
+
+  # makes sure tests are ran sequentially instead of concurrently.
+  # concurrent execution did lead to errors with the docker registry.
+  resource_group: test
+
 
   before_script:
     - echo "$CI_BUILD_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
