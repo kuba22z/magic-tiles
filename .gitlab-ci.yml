@@ -18,7 +18,7 @@ stages:
 # $DOCKER_VERSION is a project specific deployment variable.
 variables:
     DOCKER_COMPOSE: $CI_REGISTRY_IMAGE/docker-compose:$DOCKER_VERSION
-    # somehow not working?
+    # NOTE(pierre): somehow not working?
     # DOCKER_DIND: $CI_REGISTRY_IMAGE/docker-dind:$DOCKER_VERSION
 
 # will be run before any job that does not have before_script specified.
@@ -71,7 +71,6 @@ test:e2e:
   # concurrent execution did lead to errors with the docker registry.
   resource_group: test
 
-
   script:
       - docker pull "$CI_REGISTRY_IMAGE:latest"
       # TODO(pierre): for e2e testing probably locally host it here before
@@ -112,13 +111,6 @@ deploy:
 
   stage: deploy
 
-  # caches the build results. They can be reused by other jobs.
-  cache:
-    key: client-build-cache
-    paths:
-      - nuxt-client/node_modules/
-      - nuxt-client/.nuxt/
-
   rules:
     # runs job if on master or develop branch.
     - if: $CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "development"
@@ -127,6 +119,5 @@ deploy:
 
   script:
       - docker pull "$CI_REGISTRY_IMAGE:latest"
-      # - docker-compose run nuxt-client /pipeline-scripts/build.sh
       - docker-compose run nuxt-client /pipeline-scripts/copy-deployment.sh "$DOCKER_ENV_CI_COMMIT_BRANCH" "$DOCKER_ENV_CI_COMMIT_MESSAGE" "$DOCKER_ENV_CI_PROJECT_NAME"
 
