@@ -6,8 +6,11 @@ module.exports = {
     },
     extends: [
         "@nuxtjs/eslint-config-typescript",
-        "plugin:prettier/recommended",
         "plugin:nuxt/recommended",
+        // rules specific for cypress
+        "plugin:cypress/recommended"
+         // prettier has to be the last to overwrite eslint rules.
+        "plugin:prettier/recommended",
     ],
     plugins: [],
     // add your custom rules here
