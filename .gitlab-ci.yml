@@ -40,6 +40,14 @@ build:
 
   stage: build
 
+  # caches the build results. They can be reused by other jobs.
+  cache:
+    key: client-build-cache
+    paths:
+      - /nuxt-client/node_modules/
+      - /nuxt-client/.nuxt/
+
+
   # builds image and pushes the image to the gitlab docker registry
   # https://docs.gitlab.com/ee/user/packages/container_registry/
   script:
@@ -104,6 +112,13 @@ deploy:
 
   stage: deploy
 
+  # caches the build results. They can be reused by other jobs.
+  cache:
+    key: client-build-cache
+    paths:
+      - /nuxt-client/node_modules/
+      - /nuxt-client/.nuxt/
+
   rules:
     # runs job if on master or develop branch.
     - if: $CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "development"
@@ -112,6 +127,6 @@ deploy:
 
   script:
       - docker pull "$CI_REGISTRY_IMAGE:latest"
-      - docker-compose run nuxt-client /pipeline-scripts/build.sh
+      # - docker-compose run nuxt-client /pipeline-scripts/build.sh
       - docker-compose run nuxt-client /pipeline-scripts/copy-deployment.sh "$DOCKER_ENV_CI_COMMIT_BRANCH" "$DOCKER_ENV_CI_COMMIT_MESSAGE" "$DOCKER_ENV_CI_PROJECT_NAME"
 
