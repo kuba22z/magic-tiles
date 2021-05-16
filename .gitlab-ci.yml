@@ -57,7 +57,7 @@ build:
 # runs e2e tests with cypress.io
 test:e2e:
 
-  image: tmaier/docker-compose
+  image: $DOCKER_COMPOSE
 
   services:
       - docker:dind
@@ -86,7 +86,7 @@ test:e2e:
 # runs bdd unit tests with moccha && chai
 test:unit:
 
-  image: tmaier/docker-compose
+  image: $DOCKER_COMPOSE
 
   services:
       - docker:dind
@@ -113,7 +113,7 @@ test:unit:
 # copies/deploys files to the deploy dir
 deploy:
 
-  image: tmaier/docker-compose
+  image: $DOCKER_COMPOSE
 
   services:
       - docker:dind
