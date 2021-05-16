@@ -6,6 +6,6 @@ import { ScoreBoard } from "~/types/scoreBoard";
     stateFactory: true,
     namespaced: true,
 })
-export default class gamingScreen extends VuexModule {
+export default class GamingScreen extends VuexModule {
     public scoreBoard: ScoreBoard = new ScoreBoard();
 }
