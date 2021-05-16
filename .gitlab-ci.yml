@@ -15,8 +15,8 @@ stages:
   - deploy
 
 # these can be accessed at every job
+# NOTE(pierre): $DOCKER_VERSION is a project specific deployment variable.
 variables:
-    DOCKER_VERSION: 20.10
     DOCKER_COMPOSE: $CI_REGISTRY_IMAGE/docker-compose:$DOCKER_VERSION
     DOCKER_DIND: $CI_REGISTRY_IMAGE/docker-dind:$DOCKER_VERSION
 
