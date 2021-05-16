@@ -40,7 +40,6 @@ build:
 
   stage: build
 
-
   # builds image and pushes the image to the gitlab docker registry
   # https://docs.gitlab.com/ee/user/packages/container_registry/
   script:
@@ -48,9 +47,6 @@ build:
     - docker-compose build --no-cache
     - docker-compose run nuxt-client /pipeline-scripts/build.sh
     - docker push "$CI_REGISTRY_IMAGE:latest"
-      # rather use 'latest' tag since we can't auto delete registry images
-      # easily and have no need for recovery images.
-      #- docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
 
 
 # runs e2e tests with cypress.io
@@ -67,19 +63,14 @@ test:e2e:
   # concurrent execution did lead to errors with the docker registry.
   resource_group: test
 
-  before_script:
-    - echo "$CI_BUILD_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:latest"
-    # TODO(pierre): for e2e testing probably locally host it here before
-    # invoking tests.
 
   script:
+      - docker pull "$CI_REGISTRY_IMAGE:latest"
+      # TODO(pierre): for e2e testing probably locally host it here before
+      # invoking tests.
       # invokes a mocked test script. TODO(pierre): create tests and run them
       # here
       - docker-compose run nuxt-client /pipeline-scripts/test.sh
-
-  after_script:
-      - docker logout "$CI_REGISTRY_USER"
 
 
 # runs bdd unit tests with moccha && chai
@@ -96,17 +87,11 @@ test:unit:
   # concurrent execution did lead to errors with the docker registry.
   resource_group: test
 
-  before_script:
-    - echo "$CI_BUILD_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:latest"
-
   script:
+      - docker pull "$CI_REGISTRY_IMAGE:latest"
       # invokes a mocked test script. TODO(pierre): create tests and run them
       # here
       - docker-compose run nuxt-client /pipeline-scripts/test.sh
-
-  after_script:
-      - docker logout "$CI_REGISTRY_USER"
 
 
 # copies/deploys files to the deploy dir
@@ -125,14 +110,8 @@ deploy:
     # runs job if "CI_STAGING_1" or "CI_STAGING_2" is written in commit.
     - if: $CI_COMMIT_MESSAGE =~ /CI_STAGING_1/ || $CI_COMMIT_MESSAGE =~ /CI_STAGING_2/
 
-  # builds image before running 'script'
-  before_script:
-      - echo "$CI_BUILD_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
-      - docker pull "$CI_REGISTRY_IMAGE:latest"
-
   script:
+      - docker pull "$CI_REGISTRY_IMAGE:latest"
       - docker-compose run nuxt-client /pipeline-scripts/build.sh
       - docker-compose run nuxt-client /pipeline-scripts/copy-deployment.sh "$DOCKER_ENV_CI_COMMIT_BRANCH" "$DOCKER_ENV_CI_COMMIT_MESSAGE" "$DOCKER_ENV_CI_PROJECT_NAME"
 
-  after_script:
-      - docker logout "$CI_REGISTRY_USER"
