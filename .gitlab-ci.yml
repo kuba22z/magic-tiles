@@ -24,10 +24,10 @@ variables:
 # builds the client
 build:
 
-  image: tmaier/docker-compose
+  image: $DOCKER_COMPOSE
 
   services:
-    - docker:dind
+    - $DOCKER_DIND
 
   stage: build
 
