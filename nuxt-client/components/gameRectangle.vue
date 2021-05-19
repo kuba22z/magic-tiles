@@ -1,4 +1,5 @@
 <template>
+    <!--    .stop calls event.stopPropagation() this prevents further propagation of the current event in the capturing and bubbling phases-->
     <svg :x="rect.x + '%'" :y="rect.y + '%'" @click.stop="checkCorrectRect">
         <rect fill="black" height="25%" width="25%" />
         <!--    TODO(jakub) BUG: on firefox some images flicker between cook-book.svg and book.svg -->
@@ -41,10 +42,16 @@ export default class gamingRectangle extends Vue {
     @board.Mutation
     public setIsClicked!: (rectIndexes: [number, number]) => void;
 
+    /**
+     * @describe Check whether the correct rect was clicked if yes increment
+     * score and set rect as clicked otherwise Game End
+     */
     checkCorrectRect() {
-        this.setIsClicked([this.rowIndex, this.index]);
-        if (this.rect.image === "book.svg") this.incrementScore();
-        else this.stopGame();
+        if (!this.rect.isClicked) {
+            this.setIsClicked([this.rowIndex, this.index]);
+            if (this.rect.image === "book.svg") this.incrementScore();
+            else this.stopGame();
+        }
     }
 }
 </script>

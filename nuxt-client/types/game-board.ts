@@ -32,7 +32,7 @@ export class RectBoard {
     public board: RectRow[] = [];
 
     constructor(NumOfRow: number = 0) {
-        for (let y = -25; y < (NumOfRow - 1) * 25; y += 25) {
+        for (let y = -125; y < (NumOfRow - 5) * 25; y += 25) {
             this.board.push(new RectRow(y));
         }
     }

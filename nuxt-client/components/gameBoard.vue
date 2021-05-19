@@ -10,7 +10,10 @@
             />
         </svg>
 
-        <button class="test-btn border border-black w-40" @click="startGame">
+        <button
+            class="test-btn border border-black w-40"
+            @click="moveRectRowUntilBottom"
+        >
             Speed Up
         </button>
         <button class="test-btn border border-black w-20" @click="stopGame">
@@ -46,25 +49,41 @@ export default class gamingBoard extends Vue {
     @gaming.State
     public scoreBoard!: ScoreBoard;
 
-    i: number = 0;
+    miniStep: number = 0;
     readonly stepSize: number = 0.5;
     readonly bigStep: number = 25 / this.stepSize;
     timerRef: any;
 
     /**
-     *@describe Endless loop which move all RectRow to the bottom
+     *@describe move down all RectRow until the last RectRow
+     * is at the bottom, then it stops the loop and calls startGame()
+     */
+    public moveRectRowUntilBottom() {
+        this.timerRef = setInterval(() => {
+            this.moveRectRowDown(this.stepSize);
+            this.miniStep++;
+            if (this.miniStep === this.bigStep * 4) {
+                this.miniStep = 0;
+                clearInterval(this.timerRef);
+                this.startGame();
+            }
+        }, 15);
+    }
+
+    /**
+     *@describe endless loop which move all RectRow to the bottom
      * and creates new rectRows at the top
      */
     public startGame() {
         this.timerRef = setInterval(() => {
             this.moveRectRowDown(this.stepSize);
-            this.i++;
-            if (this.i === this.bigStep) {
+            this.miniStep++;
+            if (this.miniStep === this.bigStep) {
                 this.checkGameEnd();
                 this.pushFrontAndPop();
-                this.i = 0;
+                this.miniStep = 0;
             }
-        }, 20);
+        }, 15);
     }
 
     /**
@@ -75,7 +94,7 @@ export default class gamingBoard extends Vue {
     }
 
     /**
-     * @describe
+     * @describe check if a Rectangle was clicked in the last RectRow if no -> game end
      */
     public checkGameEnd() {
         if (
