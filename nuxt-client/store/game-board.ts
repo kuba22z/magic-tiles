@@ -6,7 +6,7 @@ import { RectBoard, RectRow } from "~/types/game-board";
     stateFactory: true,
     namespaced: true,
 })
-export default class gamingBoard extends VuexModule {
+export default class GamingBoard extends VuexModule {
     public rectBoard: RectBoard = new RectBoard(5);
 
     /**
