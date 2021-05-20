@@ -53,7 +53,7 @@ export default class gamingBoard extends Vue {
     readonly stepSize: number = 0.5;
     readonly bigStep: number = 25 / this.stepSize;
     timerRef: any;
-    delay: number = 10;
+    delay: number = 15;
 
     /**
      *@describe move down all RectRow until the last RectRow
