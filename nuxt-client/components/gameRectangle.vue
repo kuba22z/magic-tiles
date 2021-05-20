@@ -1,6 +1,5 @@
 <template>
-    <!--    .stop calls event.stopPropagation() this prevents further propagation of the current event in the capturing and bubbling phases-->
-    <svg :x="rect.x + '%'" :y="rect.y + '%'" @click.stop="checkCorrectRect">
+    <svg :x="rect.x + '%'" :y="rect.y + '%'" @click="checkCorrectRect">
         <rect fill="black" height="25%" width="25%" />
         <!--    TODO(jakub) BUG: on firefox some images flicker between cook-book.svg and book.svg -->
         <!--    BUG: :href="rect.images" doesnt work properly same bug as with magic tiles button   -->

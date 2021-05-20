@@ -14,7 +14,7 @@
             class="test-btn border border-black w-40"
             @click="moveRectRowUntilBottom"
         >
-            Speed Up
+            Start
         </button>
         <button class="test-btn border border-black w-20" @click="stopGame">
             Stop
@@ -53,6 +53,7 @@ export default class gamingBoard extends Vue {
     readonly stepSize: number = 0.5;
     readonly bigStep: number = 25 / this.stepSize;
     timerRef: any;
+    delay: number = 10;
 
     /**
      *@describe move down all RectRow until the last RectRow
@@ -67,7 +68,7 @@ export default class gamingBoard extends Vue {
                 clearInterval(this.timerRef);
                 this.startGame();
             }
-        }, 15);
+        }, this.delay);
     }
 
     /**
@@ -83,7 +84,7 @@ export default class gamingBoard extends Vue {
                 this.pushFrontAndPop();
                 this.miniStep = 0;
             }
-        }, 15);
+        }, this.delay);
     }
 
     /**
