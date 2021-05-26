@@ -41,7 +41,7 @@ export default class gamingRectangle extends Vue {
     public setIsClicked!: (rectIndexes: [number, number]) => void;
 
     /**
-     * @describe Check whether the correct rect was clicked if yes increment
+     * @description Check whether the correct rect was clicked if yes increment
      * score and set rect as clicked otherwise Game End
      */
     checkCorrectRect() {

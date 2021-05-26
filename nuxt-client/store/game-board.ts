@@ -10,7 +10,7 @@ export default class GamingBoard extends VuexModule {
     public rectBoard: RectBoard = new RectBoard(5);
 
     /**
-     * @describe moves all rectangle rows to the bottom
+     * @description moves all rectangle rows to the bottom
      * @param stepSize determines how far all rectangle rows are moved down
      */
     @VuexMutation
@@ -23,7 +23,7 @@ export default class GamingBoard extends VuexModule {
     }
 
     /**
-     * @describe creates a new RectRow at the top and removes a RectRow at the bottom
+     * @description creates a new RectRow at the top and removes a RectRow at the bottom
      */
     @VuexMutation
     pushFrontAndPop() {

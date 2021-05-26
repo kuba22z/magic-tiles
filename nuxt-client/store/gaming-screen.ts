@@ -10,7 +10,7 @@ export default class GamingScreen extends VuexModule {
     public scoreBoard: ScoreBoard = new ScoreBoard();
 
     /**
-     *@describe increments the score
+     *@description increments the score
      */
     @VuexMutation
     incrementScore() {

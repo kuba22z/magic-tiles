@@ -55,7 +55,7 @@ export default class gamingBoard extends Vue {
     delay: number = 15;
 
     /**
-     *@describe move down all RectRow until the last RectRow
+     *@description move down all RectRow until the last RectRow
      * is at the bottom, then it stops the loop and calls startGame()
      */
     public moveRectRowUntilBottom() {
@@ -71,7 +71,7 @@ export default class gamingBoard extends Vue {
     }
 
     /**
-     *@describe endless loop which move all RectRow to the bottom
+     *@description endless loop which move all RectRow to the bottom
      * and creates new rectRows at the top
      */
     public startGame() {
@@ -87,14 +87,14 @@ export default class gamingBoard extends Vue {
     }
 
     /**
-     * @describe stop the game
+     * @description stop the game
      */
     public stopGame() {
         clearInterval(this.timerRef);
     }
 
     /**
-     * @describe check if a Rectangle was clicked in the last RectRow if no -> game end
+     * @description check if a Rectangle was clicked in the last RectRow if no -> game end
      */
     public checkGameEnd() {
         if (
