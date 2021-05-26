@@ -4,12 +4,17 @@
             <GameRow
                 v-for="(rectRow, index) in rectBoard.board"
                 :key="index"
+                :row-index="index"
                 :rect-row="rectRow"
+                :stop-game="stopGame"
             />
         </svg>
 
-        <button class="test-btn border border-black w-40" @click="startGame">
-            Speed Up
+        <button
+            class="test-btn border border-black w-40"
+            @click="moveRectRowUntilBottom"
+        >
+            Start
         </button>
         <button class="test-btn border border-black w-20" @click="stopGame">
             Stop
@@ -18,14 +23,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { namespace } from "vuex-class";
+import { Component, Vue, namespace } from "nuxt-property-decorator";
 import GameRectangle from "~/components/gameRectangle.vue";
 import Test from "~/pages/testing/test.vue";
 import GameRow from "~/components/gameRow.vue";
 import { RectBoard } from "~/types/game-board";
+import { ScoreBoard } from "~/types/scoreBoard";
 
 const board = namespace("game-board");
+const gaming = namespace("gaming-screen");
 @Component({
     components: { GameRow, Test, GameRectangle },
 })
@@ -39,34 +45,67 @@ export default class gamingBoard extends Vue {
     @board.Mutation
     public pushFrontAndPop!: () => void;
 
-    i: number = 0;
-    readonly stepSize: number = 1;
+    @gaming.State
+    public scoreBoard!: ScoreBoard;
+
+    miniStep: number = 0;
+    readonly stepSize: number = 0.5;
     readonly bigStep: number = 25 / this.stepSize;
-    startRef: number = 0;
     timerRef: any;
+    delay: number = 15;
 
     /**
-     *@describe Endless loop which move all RectRow to the bottom
-     * and creates new rectRows at the top
+     *@description move down all RectRow until the last RectRow
+     * is at the bottom, then it stops the loop and calls startGame()
      */
-    public startGame() {
-        this.timerRef = setTimeout(() => {
-            this.startRef = requestAnimationFrame(this.startGame);
-        }, 25);
-        this.moveRectRowDown(this.stepSize);
-        this.i++;
-        if (this.i === this.bigStep) {
-            this.pushFrontAndPop();
-            this.i = 0;
-        }
+    public moveRectRowUntilBottom() {
+        this.timerRef = setInterval(() => {
+            this.moveRectRowDown(this.stepSize);
+            this.miniStep++;
+            if (this.miniStep === this.bigStep * 4) {
+                this.miniStep = 0;
+                clearInterval(this.timerRef);
+                this.startGame();
+            }
+        }, this.delay);
     }
 
     /**
-     * @describe stop the game
+     *@description endless loop which move all RectRow to the bottom
+     * and creates new rectRows at the top
+     */
+    public startGame() {
+        this.timerRef = setInterval(() => {
+            this.moveRectRowDown(this.stepSize);
+            this.miniStep++;
+            if (this.miniStep === this.bigStep) {
+                this.checkGameEnd();
+                this.pushFrontAndPop();
+                this.miniStep = 0;
+            }
+        }, this.delay);
+    }
+
+    /**
+     * @description stop the game
      */
     public stopGame() {
-        cancelAnimationFrame(this.startRef);
-        clearTimeout(this.timerRef);
+        clearInterval(this.timerRef);
+    }
+
+    /**
+     * @description check if a Rectangle was clicked in the last RectRow if no -> game end
+     */
+    public checkGameEnd() {
+        if (
+            !(
+                this.rectBoard.board[4].row[0].isClicked ||
+                this.rectBoard.board[4].row[1].isClicked ||
+                this.rectBoard.board[4].row[2].isClicked ||
+                this.rectBoard.board[4].row[3].isClicked
+            )
+        )
+            this.stopGame();
     }
 }
 </script>
