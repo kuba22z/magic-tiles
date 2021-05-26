@@ -1,4 +1,4 @@
-import { Module, VuexModule } from "vuex-module-decorators";
+import { Module, VuexModule, VuexMutation } from "nuxt-property-decorator";
 import { ScoreBoard } from "~/types/scoreBoard";
 
 @Module({
@@ -8,4 +8,12 @@ import { ScoreBoard } from "~/types/scoreBoard";
 })
 export default class GamingScreen extends VuexModule {
     public scoreBoard: ScoreBoard = new ScoreBoard();
+
+    /**
+     *@description increments the score
+     */
+    @VuexMutation
+    incrementScore() {
+        this.scoreBoard.score++;
+    }
 }

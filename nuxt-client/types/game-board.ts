@@ -2,31 +2,66 @@ export class Rect {
     image: string;
     x: number;
     y: number;
+    isClicked: boolean;
 
-    constructor(x: number = 0, y: number = 0, image: string = "") {
+    constructor(
+        x: number = 0,
+        y: number = 0,
+        image: string = "",
+        isClicked: boolean = false
+    ) {
         this.x = x;
         this.y = y;
         this.image = image;
+        this.isClicked = isClicked;
     }
 }
 
 export class RectRow {
     public row: Rect[] = [];
-    constructor(y: number = 0) {
-        const random: number = Math.floor(Math.random() * 4);
+    constructor(rectPosY: number = 0) {
+        const correctImage: string = "book.svg";
+        const badImage: string = "cook-book.svg";
+        // Number of Rectangles for each Row
+        const rectanglesPerRow: number = 4;
 
-        for (let x = 0, i = 0; x < 100; x += 25, i++) {
-            if (random === i) this.row.push(new Rect(x, y, "book.svg"));
-            else this.row.push(new Rect(x, y, "cook-book.svg"));
+        // relative width of all rectangles
+        const rectWitdh: number = 25;
+
+        // x coordinate of current rectangle
+        let rectPosX: number;
+        let resultingImage: string;
+
+        // number of correct image -> a number between 1-4
+        const numOfCorrectImage: number = Math.floor(
+            Math.random() * rectanglesPerRow
+        );
+
+        for (let i = 0; i < rectanglesPerRow; i++) {
+            resultingImage = i === numOfCorrectImage ? correctImage : badImage;
+            rectPosX = i * rectWitdh;
+            this.row.push(new Rect(rectPosX, rectPosY, resultingImage));
         }
     }
 }
 export class RectBoard {
     public board: RectRow[] = [];
 
-    constructor(NumOfRow: number = 0) {
-        for (let y = -25; y < (NumOfRow - 1) * 25; y += 25) {
-            this.board.push(new RectRow(y));
+    /**
+     * @description initialize the game board so that the RectRows are above the game board
+     * @param NumOfRowsOverGameBoard determine the number of RectRows above the gaming board.
+     */
+    constructor(NumOfRowsOverGameBoard: number = 0) {
+        // relative height of all rectangles
+        const rowHeight: number = 25;
+
+        // relative height of all rectangles
+        let rectPosY: number;
+
+        // the RectRows get a high negative y coordinate beacuse of that they are not visible at the beginning
+        for (let i = NumOfRowsOverGameBoard; i > 0; i--) {
+            rectPosY = -i * rowHeight;
+            this.board.push(new RectRow(rectPosY));
         }
     }
 }
