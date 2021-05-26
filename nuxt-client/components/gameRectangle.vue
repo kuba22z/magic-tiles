@@ -28,7 +28,7 @@ const board = namespace("game-board");
 export default class gamingRectangle extends Vue {
     @Prop() public rect!: Rect;
 
-    @Prop() public index!: number;
+    @Prop() public colIndex!: number;
 
     @Prop() public rowIndex!: number;
 
@@ -46,7 +46,7 @@ export default class gamingRectangle extends Vue {
      */
     checkCorrectRect() {
         if (!this.rect.isClicked) {
-            this.setIsClicked([this.rowIndex, this.index]);
+            this.setIsClicked([this.rowIndex, this.colIndex]);
             if (this.rect.image === "book.svg") this.incrementScore();
             else this.stopGame();
         }

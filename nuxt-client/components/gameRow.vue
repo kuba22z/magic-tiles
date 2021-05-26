@@ -3,7 +3,7 @@
         <GameRectangle
             v-for="(rect, index) in rectRow.row"
             :key="index"
-            :index="index"
+            :col-index="index"
             :rect="rect"
             :row-index="rowIndex"
             :stop-game="stopGame"
