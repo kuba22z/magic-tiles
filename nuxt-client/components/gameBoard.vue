@@ -23,8 +23,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { namespace } from "vuex-class";
+import { Component, Vue, namespace } from "nuxt-property-decorator";
 import GameRectangle from "~/components/gameRectangle.vue";
 import Test from "~/pages/testing/test.vue";
 import GameRow from "~/components/gameRow.vue";

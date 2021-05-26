@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "nuxt-property-decorator";
 import GameRectangle from "~/components/gameRectangle.vue";
 import { RectRow } from "~/types/game-board";
 

@@ -19,8 +19,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { namespace } from "vuex-class";
+import { Component, Prop, Vue, namespace } from "nuxt-property-decorator";
 import { Rect } from "~/types/game-board";
 const gaming = namespace("gaming-screen");
 const board = namespace("game-board");
