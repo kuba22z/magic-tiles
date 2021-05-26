@@ -1,1 +1,4 @@
-{}
+{
+    "ignoreTestFiles": "*.spec.js",
+    "integrationFolder": "cypress/tests"
+}
