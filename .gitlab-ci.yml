@@ -70,7 +70,7 @@ test:e2e:
   resource_group: test
 
   script:
-      - docker-compose pull "$CI_REGISTRY_IMAGE:latest"
+      - docker pull "$CI_REGISTRY_IMAGE:latest"
       - docker-compose run nuxt-client /pipeline-scripts/test-e2e.sh
 
 
@@ -84,7 +84,7 @@ test:unit:
   resource_group: test
 
   script:
-      - docker-compose pull "$CI_REGISTRY_IMAGE:latest"
+      - docker pull "$CI_REGISTRY_IMAGE:latest"
       # invokes a mocked test script. TODO(pierre): create tests and run them
       # here
       - docker-compose run nuxt-client /pipeline-scripts/test-unit.sh
@@ -102,6 +102,6 @@ deploy:
     - if: $CI_COMMIT_MESSAGE =~ /CI_STAGING_1/ || $CI_COMMIT_MESSAGE =~ /CI_STAGING_2/
 
   script:
-      - docker-compose pull "$CI_REGISTRY_IMAGE:latest"
+      - docker pull "$CI_REGISTRY_IMAGE:latest"
       - docker-compose run nuxt-client /pipeline-scripts/deploy.sh "$DOCKER_ENV_CI_COMMIT_BRANCH" "$DOCKER_ENV_CI_COMMIT_MESSAGE" "$DOCKER_ENV_CI_PROJECT_NAME"
 
