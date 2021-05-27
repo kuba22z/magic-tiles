@@ -18,9 +18,6 @@ stages:
 # $DOCKER_VERSION is a project specific deployment variable.
 variables:
     DOCKER_COMPOSE: $CI_REGISTRY_IMAGE/docker-compose:$DOCKER_VERSION
-    # sets env variables to cache the cypress installation and npm config.
-    npm_config_cache: '$CI_PROJECT_DIR/.npm'
-    CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/cache/Cypress'
 
 # Makes sure we cache the results from our build step. This cache will be used
 # by all jobs in this pipeline.
@@ -29,8 +26,7 @@ cache:
   paths:
     - nuxt-client/node_modules
     - nuxt-client/.nuxt
-    - cache/Cypress
-    - .npm
+    - nuxt-client/.cache/Cypress
 
 # will be run before any job that does not have before_script specified.
 before_script:
@@ -118,5 +114,5 @@ deploy:
 
   script:
       - docker pull "$CI_REGISTRY_IMAGE:latest"
-      - docker-compose run nuxt-client /pipeline-scripts/copy-deployment.sh "$DOCKER_ENV_CI_COMMIT_BRANCH" "$DOCKER_ENV_CI_COMMIT_MESSAGE" "$DOCKER_ENV_CI_PROJECT_NAME"
+      - docker-compose run nuxt-client /pipeline-scripts/deploy.sh "$DOCKER_ENV_CI_COMMIT_BRANCH" "$DOCKER_ENV_CI_COMMIT_MESSAGE" "$DOCKER_ENV_CI_PROJECT_NAME"
 
