@@ -9,6 +9,6 @@
 cd /nuxt-client || (echo "/nuxt-client not found." && exit 1)
 # installs all dependencies
 echo "installing dependencies..."
-npm install
+npm ci
 echo "building nuxt client..."
 npm run build
