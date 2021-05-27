@@ -6,8 +6,6 @@
 # Description: copies cypress binary into build path and builds the nuxt client
 
 
-update-ca-certificates
-
 cd /nuxt-client || (echo "/nuxt-client not found." && exit 1)
 # installs all dependencies
 echo "installing dependencies..."

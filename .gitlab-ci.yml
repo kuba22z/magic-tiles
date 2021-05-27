@@ -45,6 +45,9 @@ before_script:
 after_script:
   - docker logout "$CI_REGISTRY_USER"
 
+# if any job fails on the first run, retry maximum of two more times.
+retry:
+    max: 2
 
 # builds the client
 build:
