@@ -73,10 +73,6 @@ test:e2e:
 
   script:
       - docker pull "$CI_REGISTRY_IMAGE:latest"
-      # TODO(pierre): for e2e testing probably locally host it here before
-      # invoking tests.
-      # invokes a mocked test script. TODO(pierre): create tests and run them
-      # here
       - docker-compose run nuxt-client /pipeline-scripts/test.sh
 
 
