@@ -9,6 +9,8 @@
 cd /nuxt-client || (echo "/nuxt-client not found." && exit 1)
 # installing all packages and build server
 # NOTE(pierre): (somehow did not work with cache in gitlab ci)
+# makes sure the production server will be reachable under localhost
+echo 'HOST_ADDR="localhost"' > .env
 npm ci
 npm run build
 echo "Running e2e tests ..."
