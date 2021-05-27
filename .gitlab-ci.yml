@@ -18,8 +18,19 @@ stages:
 # $DOCKER_VERSION is a project specific deployment variable.
 variables:
     DOCKER_COMPOSE: $CI_REGISTRY_IMAGE/docker-compose:$DOCKER_VERSION
-    # NOTE(pierre): somehow not working?
-    # DOCKER_DIND: $CI_REGISTRY_IMAGE/docker-dind:$DOCKER_VERSION
+    # sets env variables to cache the cypress installation and npm config.
+    npm_config_cache: '$CI_PROJECT_DIR/.npm'
+    CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/cache/Cypress'
+
+# Makes sure we cache the results from our build step. This cache will be used
+# by all jobs in this pipeline.
+cache:
+  key: client-build-cache
+  paths:
+    - nuxt-client/node_modules
+    - nuxt-client/.nuxt
+    - cache/Cypress
+    - .npm
 
 # will be run before any job that does not have before_script specified.
 before_script:
@@ -40,14 +51,6 @@ build:
 
   stage: build
 
-  # caches the build results. They can be reused by other jobs.
-  cache:
-    key: client-build-cache
-    paths:
-      - nuxt-client/node_modules/
-      - nuxt-client/.nuxt/
-
-
   # builds image and pushes the image to the gitlab docker registry
   # https://docs.gitlab.com/ee/user/packages/container_registry/
   script:
@@ -67,13 +70,6 @@ test:e2e:
 
   stage: test
 
-  # Reuses the build results from the build job.
-  cache:
-    key: client-build-cache
-    paths:
-      - nuxt-client/node_modules/
-      - nuxt-client/.nuxt/
-
   # makes sure tests are ran sequentially instead of concurrently.
   # concurrent execution did lead to errors with the docker registry.
   resource_group: test
@@ -92,14 +88,6 @@ test:unit:
       - docker:dind
 
   stage: test
-
-  # Reuses the build results from the build job.
-  cache:
-    key: client-build-cache
-    paths:
-      - nuxt-client/node_modules/
-      - nuxt-client/.nuxt/
-
 
   # makes sure tests are ran sequentially instead of concurrently.
   # concurrent execution did lead to errors with the docker registry.
@@ -121,13 +109,6 @@ deploy:
       - docker:dind
 
   stage: deploy
-
-  # Reuses the build results from the build job.
-  cache:
-    key: client-build-cache
-    paths:
-      - nuxt-client/node_modules/
-      - nuxt-client/.nuxt/
 
   rules:
     # runs job if on master or develop branch.
