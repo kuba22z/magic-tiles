@@ -57,7 +57,7 @@ build:
     - docker push "$CI_REGISTRY_IMAGE:latest"
 
 
-# runs e2e tests with cypress.io
+# runs e2e tests with cypress
 test:e2e:
 
   image: $DOCKER_COMPOSE
@@ -67,16 +67,19 @@ test:e2e:
 
   stage: test
 
+  # Reuses the build results from the build job.
+  cache:
+    key: client-build-cache
+    paths:
+      - nuxt-client/node_modules/
+      - nuxt-client/.nuxt/
+
   # makes sure tests are ran sequentially instead of concurrently.
   # concurrent execution did lead to errors with the docker registry.
   resource_group: test
 
   script:
       - docker pull "$CI_REGISTRY_IMAGE:latest"
-      # TODO(pierre): for e2e testing probably locally host it here before
-      # invoking tests.
-      # invokes a mocked test script. TODO(pierre): create tests and run them
-      # here
       - docker-compose run nuxt-client /pipeline-scripts/test.sh
 
 
@@ -111,7 +114,7 @@ deploy:
 
   stage: deploy
 
-  # caches the build results. They can be reused by other jobs.
+  # Reuses the build results from the build job.
   cache:
     key: client-build-cache
     paths:
