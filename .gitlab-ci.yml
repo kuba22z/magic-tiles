@@ -19,6 +19,8 @@ stages:
 variables:
     DOCKER_COMPOSE: $CI_REGISTRY_IMAGE/docker-compose:$DOCKER_VERSION
     DOCKER_DIND: $CI_REGISTRY_IMAGE/docker:$DOCKER_DIND_VERSION-dind
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: "/certs"
 
 # Makes sure we cache the results from our build step. This cache will be used
 # by all jobs in this pipeline.
