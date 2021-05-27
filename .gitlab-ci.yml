@@ -45,9 +45,6 @@ before_script:
 after_script:
   - docker logout "$CI_REGISTRY_USER"
 
-# if any job fails on the first run, retry maximum of two more times.
-retry:
-    max: 2
 
 # builds the client
 build:
@@ -61,7 +58,9 @@ build:
     - docker-compose build --no-cache
     - docker-compose run nuxt-client /pipeline-scripts/build.sh
     - docker push "$CI_REGISTRY_IMAGE:latest"
-
+  # retries running script section maximum two times, if it fails.
+  retry:
+    max: 2
 
 # runs e2e tests with cypress
 test:e2e:
@@ -75,6 +74,9 @@ test:e2e:
   script:
       - docker pull "$CI_REGISTRY_IMAGE:latest"
       - docker-compose run nuxt-client /pipeline-scripts/test-e2e.sh
+  # retries running script section maximum two times, if it fails.
+  retry:
+    max: 2
 
 
 # runs bdd unit tests with moccha && chai
@@ -91,6 +93,9 @@ test:unit:
       # invokes a mocked test script. TODO(pierre): create tests and run them
       # here
       - docker-compose run nuxt-client /pipeline-scripts/test-unit.sh
+  # retries running script section maximum two times, if it fails.
+  retry:
+    max: 2
 
 
 # copies/deploys files to the deploy dir
@@ -107,4 +112,5 @@ deploy:
   script:
       - docker pull "$CI_REGISTRY_IMAGE:latest"
       - docker-compose run nuxt-client /pipeline-scripts/deploy.sh "$DOCKER_ENV_CI_COMMIT_BRANCH" "$DOCKER_ENV_CI_COMMIT_MESSAGE" "$DOCKER_ENV_CI_PROJECT_NAME"
+
 
