@@ -5,6 +5,7 @@
 #
 # Description: stub. will be replaced by out unit and e2e tests.
 
-echo "mock running tests..."
-exit 0
 
+cd /nuxt-client || (echo "/nuxt-client not found." && exit 1)
+echo "Running e2e tests ..."
+npm run test:e2e

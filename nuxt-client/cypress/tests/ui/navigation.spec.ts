@@ -37,10 +37,6 @@ describe("Testing if the navigation of our app does work.", () => {
         // gets first element that has class "button" and clicks on it.
         cy.get(".button").last().click();
         // after click on the first button we expect to be at the /gaming-screen page.
-        cy.url().should("not.include", [
-            "/gaming-screen",
-            "/explanation-coupons",
-            "score-screen",
-        ]);
+        cy.url().should("equal", "http://localhost:3000/");
     });
 });
