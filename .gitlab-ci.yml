@@ -57,7 +57,10 @@ build:
   # https://docs.gitlab.com/ee/user/packages/container_registry/
   script:
     - echo "CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE" >> .env
-    - docker-compose build --no-cache
+    # pulls image from registry
+    - docker-compose pull
+    # builds it (if we did not get it from registry)
+    - docker-compose build
     - docker-compose run nuxt-client /pipeline-scripts/build.sh
     - docker push "$CI_REGISTRY_IMAGE:latest"
 
