@@ -80,7 +80,7 @@ test:e2e:
 
   script:
       - docker pull "$CI_REGISTRY_IMAGE:latest"
-      - docker-compose run nuxt-client /pipeline-scripts/test.sh
+      - docker-compose run nuxt-client /pipeline-scripts/test-e2e.sh
 
 
 # runs bdd unit tests with moccha && chai
@@ -93,6 +93,14 @@ test:unit:
 
   stage: test
 
+  # Reuses the build results from the build job.
+  cache:
+    key: client-build-cache
+    paths:
+      - nuxt-client/node_modules/
+      - nuxt-client/.nuxt/
+
+
   # makes sure tests are ran sequentially instead of concurrently.
   # concurrent execution did lead to errors with the docker registry.
   resource_group: test
@@ -101,7 +109,7 @@ test:unit:
       - docker pull "$CI_REGISTRY_IMAGE:latest"
       # invokes a mocked test script. TODO(pierre): create tests and run them
       # here
-      - docker-compose run nuxt-client /pipeline-scripts/test.sh
+      - docker-compose run nuxt-client /pipeline-scripts/test-unit.sh
 
 
 # copies/deploys files to the deploy dir
