@@ -18,8 +18,7 @@ stages:
 # $DOCKER_VERSION is a project specific deployment variable.
 variables:
     DOCKER_COMPOSE: $CI_REGISTRY_IMAGE/docker-compose:$DOCKER_VERSION
-    # MAYBE(pierre): ask karbush if he knows why this is not working?
-    # DOCKER_DIND: $CI_REGISTRY_IMAGE/docker:$DOCKER_VERSION-dind
+    DOCKER_DIND: $CI_REGISTRY_IMAGE/docker:$DOCKER_DIND_VERSION-dind
 
 # Makes sure we cache the results from our build step. This cache will be used
 # by all jobs in this pipeline.
@@ -45,7 +44,7 @@ build:
   image: $DOCKER_COMPOSE
 
   services:
-      - docker:dind
+      - $DOCKER_DIND
 
   stage: build
 
@@ -64,7 +63,7 @@ test:e2e:
   image: $DOCKER_COMPOSE
 
   services:
-      - docker:dind
+      - $DOCKER_DIND
 
   stage: test
 
@@ -83,7 +82,7 @@ test:unit:
   image: $DOCKER_COMPOSE
 
   services:
-      - docker:dind
+      - $DOCKER_DIND
 
   stage: test
 
@@ -104,7 +103,7 @@ deploy:
   image: $DOCKER_COMPOSE
 
   services:
-      - docker:dind
+      - $DOCKER_DIND
 
   stage: deploy
 
