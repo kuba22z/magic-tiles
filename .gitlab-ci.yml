@@ -59,8 +59,8 @@ build:
     - echo "CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE" >> .env
     # pulls image from registry
     - docker-compose pull
-    # builds it (if we did not get it from registry)
-    - docker-compose build
+    # builds image (if we did not get it from registry) ands runs our build
+    # script.
     - docker-compose run nuxt-client /pipeline-scripts/build.sh
     - docker push "$CI_REGISTRY_IMAGE:latest"
 
