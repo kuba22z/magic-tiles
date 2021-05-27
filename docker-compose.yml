@@ -16,3 +16,4 @@ services:
             # mounted directory where pm2 will listen on file changes and auto
             # reload the deployment :]
             - /deploy:/deploy
+            - /etc/ssl/certs:/etc/ssl/certs

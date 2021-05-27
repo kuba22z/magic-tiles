@@ -14,9 +14,9 @@ stages:
   - test
   - deploy
 
-# these can be accessed at every job
-# $DOCKER_VERSION is a project specific deployment variable.
 variables:
+    # $DOCKER_VERSION and $DOCKER_DIND_VERSION are project specific deployment
+    # variables.
     DOCKER_COMPOSE: $CI_REGISTRY_IMAGE/docker-compose:$DOCKER_VERSION
     DOCKER_DIND: $CI_REGISTRY_IMAGE/docker:$DOCKER_DIND_VERSION-dind
 
@@ -29,15 +29,13 @@ cache:
     - nuxt-client/.nuxt
     - nuxt-client/.cache
 
-# will be using a docker image that is able to use docker-compose for every
-# job
+# uses docker image which enables us to use docker-compose in our jobs
 image: $DOCKER_COMPOSE
 
 # enables us to use docker inside of docker for every job
 services:
   - name: $DOCKER_DIND
     alias: docker
-
 
 # will be run before any job that does not have before_script specified.
 before_script:
@@ -57,10 +55,7 @@ build:
   # https://docs.gitlab.com/ee/user/packages/container_registry/
   script:
     - echo "CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE" >> .env
-    # pulls image from registry
-    - docker-compose pull
-    # builds image (if we did not get it from registry) ands runs our build
-    # script.
+    - docker-compose build --no-cache
     - docker-compose run nuxt-client /pipeline-scripts/build.sh
     - docker push "$CI_REGISTRY_IMAGE:latest"
 
@@ -75,7 +70,7 @@ test:e2e:
   resource_group: test
 
   script:
-      - docker pull "$CI_REGISTRY_IMAGE:latest"
+      - docker-compose pull "$CI_REGISTRY_IMAGE:latest"
       - docker-compose run nuxt-client /pipeline-scripts/test-e2e.sh
 
 
@@ -89,7 +84,7 @@ test:unit:
   resource_group: test
 
   script:
-      - docker pull "$CI_REGISTRY_IMAGE:latest"
+      - docker-compose pull "$CI_REGISTRY_IMAGE:latest"
       # invokes a mocked test script. TODO(pierre): create tests and run them
       # here
       - docker-compose run nuxt-client /pipeline-scripts/test-unit.sh
@@ -107,6 +102,6 @@ deploy:
     - if: $CI_COMMIT_MESSAGE =~ /CI_STAGING_1/ || $CI_COMMIT_MESSAGE =~ /CI_STAGING_2/
 
   script:
-      - docker pull "$CI_REGISTRY_IMAGE:latest"
+      - docker-compose pull "$CI_REGISTRY_IMAGE:latest"
       - docker-compose run nuxt-client /pipeline-scripts/deploy.sh "$DOCKER_ENV_CI_COMMIT_BRANCH" "$DOCKER_ENV_CI_COMMIT_MESSAGE" "$DOCKER_ENV_CI_PROJECT_NAME"
 
