@@ -13,6 +13,8 @@ services:
             # used to build the client
             - ./nuxt-client:/nuxt-client
             - ./.pipeline-scripts:/pipeline-scripts
+            # used to cache the cypress binary
+            - /root/.cache:/root/.cache
             # mounted directory where pm2 will listen on file changes and auto
             # reload the deployment :]
             - /deploy:/deploy
