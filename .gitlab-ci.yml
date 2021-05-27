@@ -19,8 +19,6 @@ stages:
 variables:
     DOCKER_COMPOSE: $CI_REGISTRY_IMAGE/docker-compose:$DOCKER_VERSION
     DOCKER_DIND: $CI_REGISTRY_IMAGE/docker:$DOCKER_DIND_VERSION-dind
-    DOCKER_DRIVER: overlay2
-    DOCKER_TLS_CERTDIR: "/certs"
 
 # Makes sure we cache the results from our build step. This cache will be used
 # by all jobs in this pipeline.
@@ -30,6 +28,16 @@ cache:
     - nuxt-client/node_modules
     - nuxt-client/.nuxt
     - nuxt-client/.cache
+
+# will be using a docker image that is able to use docker-compose for every
+# job
+image: $DOCKER_COMPOSE
+
+# enables us to use docker inside of docker for every job
+services:
+  - name: $DOCKER_DIND
+    alias: docker
+
 
 # will be run before any job that does not have before_script specified.
 before_script:
@@ -42,11 +50,6 @@ after_script:
 
 # builds the client
 build:
-
-  image: $DOCKER_COMPOSE
-
-  services:
-      - $DOCKER_DIND
 
   stage: build
 
@@ -62,11 +65,6 @@ build:
 # runs e2e tests with cypress
 test:e2e:
 
-  image: $DOCKER_COMPOSE
-
-  services:
-      - $DOCKER_DIND
-
   stage: test
 
   # makes sure tests are ran sequentially instead of concurrently.
@@ -80,11 +78,6 @@ test:e2e:
 
 # runs bdd unit tests with moccha && chai
 test:unit:
-
-  image: $DOCKER_COMPOSE
-
-  services:
-      - $DOCKER_DIND
 
   stage: test
 
@@ -101,11 +94,6 @@ test:unit:
 
 # copies/deploys files to the deploy dir
 deploy:
-
-  image: $DOCKER_COMPOSE
-
-  services:
-      - $DOCKER_DIND
 
   stage: deploy
 
