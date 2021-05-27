@@ -16,6 +16,7 @@
             'ring-' + color + '-600',
             'hover:bg-' + color + '-600',
         ]"
+        class="button"
     >
         <div class="mx-1 mt-2.5 mb-3 text-center font-bold shadow-md">
             {{ text }}
@@ -36,6 +37,7 @@
             'ring-' + color + '-600',
             'hover:bg-' + color + '-600',
         ]"
+        class="button"
     >
         <a :href="href">
             <div class="mx-1 mt-2.5 mb-2 text-center font-bold shadow-md">
