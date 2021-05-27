@@ -27,7 +27,7 @@ cache:
     - nuxt-client/node_modules
     - nuxt-client/.nuxt
     # default path where Cypress will be stored and accessed
-    - /root/home/.cache/Cypress
+    - /root/.cache/Cypress
 
 # will be run before any job that does not have before_script specified.
 before_script:
