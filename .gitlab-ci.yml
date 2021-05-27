@@ -26,7 +26,7 @@ cache:
   paths:
     - nuxt-client/node_modules
     - nuxt-client/.nuxt
-    - nuxt-client/.cache/Cypress
+    - nuxt-client/.cache
 
 # will be run before any job that does not have before_script specified.
 before_script:

@@ -14,10 +14,10 @@ npm ci
 # messages from gitlab ci
 echo "copying cypress binary to ./nuxt-client/.cache/Cypress"
 mkdir -p .cache
-cp -RT ~/.cache/Cypress .cache/
+cp -R ~/.cache/Cypress .cache/
 echo "resulting files in .cache:"
 ls -lah .cache
 echo "building nuxt client..."
 npm run build
 echo "try running cypress test here:"
-CYPRESS_CACHE_FOLDER=./.cache npm run test:e2e
+CYPRESS_CACHE_FOLDER=./.cache/Cypress npm run test:e2e
