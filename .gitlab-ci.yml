@@ -111,6 +111,13 @@ deploy:
 
   stage: deploy
 
+  # caches the build results. They can be reused by other jobs.
+  cache:
+    key: client-build-cache
+    paths:
+      - nuxt-client/node_modules/
+      - nuxt-client/.nuxt/
+
   rules:
     # runs job if on master or develop branch.
     - if: $CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "development"
