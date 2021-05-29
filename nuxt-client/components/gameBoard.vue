@@ -1,51 +1,111 @@
 <template>
     <div>
-        <svg height="428" width="282" class="border border-blue-600">
-            <rect height="25%" width="25%" y="0"></rect>
-            <rect height="25%" width="25%" y="25%"></rect>
-            <rect height="25%" width="25%" y="50%"></rect>
-            <rect height="25%" width="25%" y="75%" fill="red"></rect>
-
-            <rect height="25%" width="25%" x="50%"></rect>
-            <rect height="25%" width="25%" x="75%"></rect>
-            <rect
-                height="25%"
-                width="25%"
-                :y="rect.y + '%'"
-                :x="rect.x + '%'"
-                fill="red"
+        <svg height="426" width="282" class="border border-blue-600">
+            <GameRow
+                v-for="(rectRow, index) in rectBoard.board"
+                :key="index"
+                :row-index="index"
+                :rect-row="rectRow"
+                :stop-game="stopGame"
             />
         </svg>
-        <button @click="startGame" class="test-btn border border-black w-40">
-            Test
+
+        <button
+            class="test-btn border border-black w-40"
+            @click="moveRectRowUntilBottom"
+        >
+            Start
+        </button>
+        <button class="test-btn border border-black w-20" @click="stopGame">
+            Stop
         </button>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch, Vue } from "vue-property-decorator";
-import { namespace } from "vuex-class";
-import { Rect } from "types/gaming-screen";
+import { Component, Vue, namespace } from "nuxt-property-decorator";
+import GameRectangle from "~/components/gameRectangle.vue";
+import Test from "~/pages/testing/test.vue";
+import GameRow from "~/components/gameRow.vue";
+import { RectBoard } from "~/types/game-board";
+import { ScoreBoard } from "~/types/scoreBoard";
 
 const board = namespace("game-board");
-@Component
+const gaming = namespace("gaming-screen");
+@Component({
+    components: { GameRow, Test, GameRectangle },
+})
 export default class gamingBoard extends Vue {
-    public localData: object = {};
     @board.State
-    public rect!: Rect;
+    public rectBoard!: RectBoard;
 
     @board.Mutation
-    public moveRectDown!: (c: number) => void;
+    public moveRectRowDown!: (stepSize: number) => void;
+
+    @board.Mutation
+    public pushFrontAndPop!: () => void;
+
+    @gaming.State
+    public scoreBoard!: ScoreBoard;
+
+    miniStep: number = 0;
+    readonly stepSize: number = 0.5;
+    readonly bigStep: number = 25 / this.stepSize;
+    timerRef: any;
+    delay: number = 15;
 
     /**
-     *@describe Endless loop which moves a Rectangle to the bottom.
+     *@description move down all RectRow until the last RectRow
+     * is at the bottom, then it stops the loop and calls startGame()
+     */
+    public moveRectRowUntilBottom() {
+        this.timerRef = setInterval(() => {
+            this.moveRectRowDown(this.stepSize);
+            this.miniStep++;
+            if (this.miniStep === this.bigStep * 4) {
+                this.miniStep = 0;
+                clearInterval(this.timerRef);
+                this.startGame();
+            }
+        }, this.delay);
+    }
+
+    /**
+     *@description endless loop which move all RectRow to the bottom
+     * and creates new rectRows at the top
      */
     public startGame() {
-        let c: number = 0;
-        setInterval(() => {
-            this.moveRectDown(c);
-            c += 1;
-        }, 30);
+        this.timerRef = setInterval(() => {
+            this.moveRectRowDown(this.stepSize);
+            this.miniStep++;
+            if (this.miniStep === this.bigStep) {
+                this.checkGameEnd();
+                this.pushFrontAndPop();
+                this.miniStep = 0;
+            }
+        }, this.delay);
+    }
+
+    /**
+     * @description stop the game
+     */
+    public stopGame() {
+        clearInterval(this.timerRef);
+    }
+
+    /**
+     * @description check if a Rectangle was clicked in the last RectRow if no -> game end
+     */
+    public checkGameEnd() {
+        if (
+            !(
+                this.rectBoard.board[4].row[0].isClicked ||
+                this.rectBoard.board[4].row[1].isClicked ||
+                this.rectBoard.board[4].row[2].isClicked ||
+                this.rectBoard.board[4].row[3].isClicked
+            )
+        )
+            this.stopGame();
     }
 }
 </script>

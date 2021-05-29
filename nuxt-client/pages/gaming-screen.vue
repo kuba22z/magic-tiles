@@ -10,7 +10,7 @@
                     Highscore:
                 </div>
                 <div class="highscore-result border border-red-300 w-6/12 flex">
-                    {{ getHighscore }}
+                    {{ scoreBoard.highscore }}
                 </div>
             </div>
 
@@ -21,7 +21,7 @@
                     Punktestand:
                 </div>
                 <div class="score-result border border-red-300 w-6/12 flex">
-                    {{ getScore }}
+                    {{ scoreBoard.score }}
                 </div>
             </div>
             <div
@@ -30,29 +30,34 @@
                 <GameBoard />
             </div>
         </div>
+        <!-- TODO(pierre): maybe keep these. just keep them for debugging purposes right now. -->
+        <div
+            class="bottom-navigation-buttons flex flex-col justify-center mt-10 items-center border border-red-300 w-full"
+        >
+            <div
+                class="back-button mt-6 border border-red-300 h-12 w-39 flex justify-center items-center text-center"
+            >
+                <MagicTilesButton
+                    text="Zurück"
+                    link-to="/explanation-coupons"
+                    button-type="nuxtlink"
+                    color="green"
+                />
+            </div>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
-import { ScoreBoard } from "~/types/gaming-screen";
+import { ScoreBoard } from "~/types/scoreBoard";
 
 const gaming = namespace("gaming-screen");
 @Component
 export default class gamingScreen extends Vue {
-    public localData: object = {};
     @gaming.State
     public scoreBoard!: ScoreBoard;
-
-    @gaming.Getter("getScoreBoard")
-    public getScoreBoard!: ScoreBoard;
-
-    @gaming.Getter("getHighscore")
-    public getHighscore!: number;
-
-    @gaming.Getter("getScore")
-    public getScore!: number;
 }
 </script>
 

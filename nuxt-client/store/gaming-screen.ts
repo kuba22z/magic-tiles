@@ -1,21 +1,19 @@
-import { Module, VuexModule } from "vuex-module-decorators";
-import { ScoreBoard } from "../types/gaming-screen";
+import { Module, VuexModule, VuexMutation } from "nuxt-property-decorator";
+import { ScoreBoard } from "~/types/scoreBoard";
 
 @Module({
     name: "gamingScreen",
     stateFactory: true,
     namespaced: true,
 })
-export default class gamingScreen extends VuexModule {
-    public scoreBoard: ScoreBoard = {
-        score: 0,
-        highscore: 0,
-    };
+export default class GamingScreen extends VuexModule {
+    public scoreBoard: ScoreBoard = new ScoreBoard();
 
-    get getHighscore(): number {
-        return this.scoreBoard.highscore;
-    }
-    get getScore(): number {
-        return this.scoreBoard.score;
+    /**
+     *@description increments the score
+     */
+    @VuexMutation
+    incrementScore() {
+        this.scoreBoard.score++;
     }
 }

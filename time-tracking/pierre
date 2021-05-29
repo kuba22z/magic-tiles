@@ -17,4 +17,16 @@ Datum; Geplante Aufgabe; Zeit geschaetzt; Zeit gebraucht; Erledigte Aufgabe ; Pr
 28.04.2021;gitlab cicd einarbeiten;1h;1h;basics anhand von docu und yt video angeschaut;;
 28.04.2021;weekly meeting;30min;1h10min;probleme diskutiert. coupons anzahl,
 corporate design, benotung;;
-28.08.2021;gitlab ci-cid einrichten;3h;7h;falsche flag bei der installation des gitlab runners gesetzt, wodurch ich DooD(docker out of docker) anstatt DiD(docker in docker) hatte und im inneren compose nichts mehr mounten konnte. habe das natürlich erst nach einigen Stunden debugging bemerkt... Habe dann an einem Testprojekt eine erste Pipeline aufgesetzt, bei der es Funktioniert hat. Als nächstes muss man sich um das deployment des nuxt-clients kümmern im zusammenhang mit cicd.
+28.04.2021;gitlab ci-cid einrichten;3h;7h;falsche flag bei der installation des gitlab runners gesetzt, wodurch ich DooD(docker out of docker) anstatt DiD(docker in docker) hatte und im inneren compose nichts mehr mounten konnte. habe das natürlich erst nach einigen Stunden debugging bemerkt... Habe dann an einem Testprojekt eine erste Pipeline aufgesetzt, bei der es Funktioniert hat. Als nächstes muss man sich um das deployment des nuxt-clients kümmern im zusammenhang mit cicd.
+29.04.2021;gitlab ci-cd in stages (build, test, deploy) grob einrichten. pm2 für test repo aufsetzten genauso wie ein simplen nginx um die Idee zu testen. herausfinden wie man docker images auf die registry pusht und pullt. überlegen wie man das alles deployed (pm2, nginx);2h;5h;wie beschrieben;;
+30.04.2021;gitlab ci-cd zum laufen bringen. (docker images pushen und pullen) überlegen wie man nur auf master und development baut und deployed, jedoch jeden push einmal baut.. und falls CI_STAGING_1 im commit steht, das auch darauf deployed. pm2 und nginx docker container erstellen;4h;6h;bau logik funktioniert;;
+04.05.2021;letzte probleme beim cicd beseitigen (node_modules werden nicht kopiert??);1h;2h;wie beschrieben;;
+05.05.2021; auto deploy container pm2 und nginx aufsetzen, magic-tiles damit deployen. .htaccess einbauen mit einem passwort bei nginx.;4h;5h;wie beschrieben;;
+05.05.2021; weekly 18:00 bis 18:20;15min;20min;probleme besprochen, aufgaben für nächste woche geklärt;;
+05.05.2021; mit karbusch besprochen, wie wir die abrechung klären, ob wir den server aufrüsten sollten, und wie wir das deployment abschließen.;1h;1h20min;;
+05.05.2021; ergebnisse, cicd und server stand karbusch vorgestellt und darüber diskutiert;1h;2h;;;
+06.05.2021; auto build auto deploy für move-furniture-game, quiz-game und backtostreet main-page (hier nur nuxt client) eingerichtet;5h;5h;;;
+12.05.2021;weekly ip meeting;15min;30min;aktuelle Probleme innerhalb der Spiele besprochen;probleme beim Spiel move furniture mit dem verschieben von autos;;;
+13.05.2021;review meeting ip;1h;1h30min;aktuellen Stand vorstellen. Meinung von einem Kunden einholen bezüglich der Spiele. Probleme beim Spiel move-furniture diskutiert;;
+15.05.2021;create types for coupons. create fake json server to try querying data which will be used for coupons. implement store for for coupons.  implement store accessores. implement usage of axios to make api requests.;4h;5h;first we did not declare the axios initializor in our plugins.  second we did not prepend http:// for axios route which resulted in 404 error...;
+16.05.2021;implement explanation-coupons page which displays the data we get from our store. implements fetchstate.pending and fetchstate.error cases;2h;2h;as described;;

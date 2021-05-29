@@ -4,7 +4,7 @@ services:
     nuxt-client:
         # names the resulting image
         image: ${CI_REGISTRY_IMAGE}:latest
-        # builds image if it's not existant in our registry
+        # how to build image if it is not in the registry.
         build:
             context: .
             dockerfile: nuxt-client-dockerfile
@@ -16,3 +16,4 @@ services:
             # mounted directory where pm2 will listen on file changes and auto
             # reload the deployment :]
             - /deploy:/deploy
+            - /etc/ssl/certs:/etc/ssl/certs
