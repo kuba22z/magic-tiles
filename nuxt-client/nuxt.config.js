@@ -44,6 +44,8 @@ export default {
     modules: [
         // https://go.nuxtjs.dev/axios
         "@nuxtjs/axios",
+        // https://github.com/nuxt-community/proxy-module
+        "@nuxtjs/proxy",
     ],
 
     // https://tailwindcss.nuxtjs.org/releases/#v4.0.0
@@ -52,7 +54,25 @@ export default {
     },
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
-    axios: {},
+    axios: {
+        // sets this header as default for all requests we issue with axios.
+        headers: {
+            common: { "Content-Type": "application/json" },
+        },
+        proxy: true
+    },
+
+    proxy: {
+        // avoids CORS(Cross Origin Ressource Sharing) error for api calls.
+        "/api/": {
+            target: "https://api-dev.back2street.de",
+            pathRewrite: {'^/api/': ''}
+        },
+        "/test/": {
+            target: "https://jsonplaceholder.typicode.com",
+            pathRewrite: {'^/test/': ''}
+        },
+    },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
