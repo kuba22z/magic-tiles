@@ -1,6 +1,6 @@
 <template>
     <svg :x="rect.x + '%'" :y="rect.y + '%'" @click="checkCorrectRect">
-        <rect fill="black" height="25%" width="25%" />
+        <rect :fill="rect.color" height="25%" width="25%" />
         <!--    TODO(jakub) BUG: on firefox some images flicker between cook-book.svg and book.svg -->
         <!--    BUG: :href="rect.images" doesnt work properly same bug as with magic tiles button   -->
         <image
@@ -38,6 +38,9 @@ export default class gamingRectangle extends Vue {
     public incrementScore!: () => void;
 
     @board.Mutation
+    public setColor!: (colorAndIndexes: [string, number, number]) => void;
+
+    @board.Mutation
     public setIsClicked!: (rectIndexes: [number, number]) => void;
 
     /**
@@ -47,8 +50,13 @@ export default class gamingRectangle extends Vue {
     checkCorrectRect() {
         if (!this.rect.isClicked) {
             this.setIsClicked([this.rowIndex, this.colIndex]);
-            if (this.rect.image === "book.svg") this.incrementScore();
-            else this.stopGame();
+            if (this.rect.image === "book.svg") {
+                this.incrementScore();
+                this.setColor(["green", this.rowIndex, this.colIndex]);
+            } else {
+                this.stopGame();
+                this.setColor(["red", this.rowIndex, this.colIndex]);
+            }
         }
     }
 }

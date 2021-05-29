@@ -36,4 +36,10 @@ export default class GamingBoard extends VuexModule {
     setIsClicked(indexes: [number, number]) {
         this.rectBoard.board[indexes[0]].row[indexes[1]].isClicked = true;
     }
+
+    @VuexMutation
+    setColor(colorAndIndexes: [string, number, number]) {
+        this.rectBoard.board[colorAndIndexes[1]].row[colorAndIndexes[2]].color =
+            colorAndIndexes[0];
+    }
 }

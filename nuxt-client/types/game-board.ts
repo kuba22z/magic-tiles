@@ -3,17 +3,20 @@ export class Rect {
     x: number;
     y: number;
     isClicked: boolean;
+    color: string;
 
     constructor(
         x: number = 0,
         y: number = 0,
         image: string = "",
-        isClicked: boolean = false
+        isClicked: boolean = false,
+        color: string = "black"
     ) {
         this.x = x;
         this.y = y;
         this.image = image;
         this.isClicked = isClicked;
+        this.color = color;
     }
 }
 
