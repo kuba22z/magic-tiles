@@ -6,10 +6,15 @@
         <!-- validation done -->
         <div v-else>
             <div v-if="validationSuccessful">
-                validation successful!
-                <pre>
-                test
-                </pre>
+                <div
+                    class="validation-successfull text-green-400 flex flex-col justify-center items-center"
+                >
+                    <div>validation successful!</div>
+                    <div>
+                        Redirecting to the starting page of the magic-tiles game
+                        in {{ countDownDuration }}
+                    </div>
+                </div>
             </div>
             <div v-else>
                 <div
@@ -73,13 +78,25 @@ export default class Validation extends Vue {
             );
             gameInfoStore.initializeGameInfo(response.data);
             this.validationSuccessful = true;
+            this.redirectToGameStartPage();
         } catch (e) {
             console.log("error happened.");
             console.log("error:");
             console.log(e);
             this.validationSuccessful = false;
-            this.redirectToMainPage();
+            this.redirectToGameStartPage();
         }
+    }
+
+    /**
+     * @description Redirects the user to the first page of our game. User will only
+     * be redirected if he did validate with his token before.
+     */
+    async redirectToGameStartPage() {
+        await this.countToZero();
+        this.$router.push({
+            path: "/",
+        });
     }
 
     /**
