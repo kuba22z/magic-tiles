@@ -1,26 +1,72 @@
-import { Coupons } from "~/types/coupons";
 /**
  * @file Interfaces which are used to describe the responses we get from the main server.
  */
 
 /**
- * TODO(pierre): Ask Karbush and Rias how this data will look?
- * @description Contains the specific data that is required for the magic
- * tiles game. We get one link to the correct image, that the user has to
- * click on and three links to bad images, that should not be clicked.
+ * @description Contains all the infos we get by querying the main server.
+ * Sadly data is malformed. Have to use .data.data :[
  */
-export interface MagicTilesInfo {
-    correctImage: string;
-    falseImages: string[];
+export interface GameInfo {
+    data: GameData;
 }
 
 /**
- * TODO(pierre): Ask Karbush and Rias how this data will look?
- * @description Contains all the infos we get by querying the main server.
+ * @description The Game data that we get from the main backend api after validating.
  */
-export interface GameInfo {
-    validUntil: Date;
-    availableCoupons: number;
+export interface GameData {
+    game_max_level: number;
+    json_data: MagicTilesData;
+    redirect_url: string;
+    coupon_types: CouponTypes;
+}
+
+/**
+ * @description The Game data that is specific to the magic tiles game.
+ */
+export interface MagicTilesData {
+    correctImage: string;
+    falseImage: string;
+}
+
+/**
+ * @description Description of the coupons.
+ */
+export interface CouponTypes extends Array<CouponType> {}
+
+/**
+ * @description Api response we get from the main backend to describe the
+ * coupons for a specific level.
+ */
+export interface CouponType {
+    level: number;
     coupons: Coupons;
-    magicTiles: MagicTilesInfo;
+}
+
+/**
+ * @description Contains an array of possible coupons.
+ */
+export interface Coupons extends Array<Coupon> {}
+
+/**
+ * @description Describes the structure of one coupon oject.
+ */
+export interface Coupon {
+    description: string;
+}
+
+/**
+ * @description The internal representation that we use for coupons.
+ * NOTE(pierre): using this representation internally since the api
+ * response is weirdly formatted.
+ */
+export interface InternalCoupons extends Array<InternalCoupon> {}
+
+/**
+ * @description The internal representation that we use for a coupon.
+ * NOTE(pierre): using this representation internally since the api
+ * response is weirdly formatted.
+ */
+export interface InternalCoupon {
+    level: number;
+    description: string;
 }

@@ -6,7 +6,6 @@ import {
 } from "nuxt-property-decorator";
 import { AxiosResponse } from "axios";
 import { $axios } from "~/utils/api";
-import { Coupons } from "~/types/coupons";
 import { GameInfo } from "~/types/gameInfo";
 
 /**

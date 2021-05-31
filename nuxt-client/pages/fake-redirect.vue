@@ -1,20 +1,16 @@
 <template>
     <!-- fakes redirect because the main backend does not link to the validate page yet -->
-    <div>
-        <div class="hover:bg-green-300 bg-green-500" @click="createActivity">
-            click me to create an activity
+    <div class="flex flex-col justify-center text-center">
+        <div class="text-xl">
+            Hey ! I am a fake page. I act as the main backend main page. Click
+            on the game to start playing!
         </div>
-
-        <div class="response">
-            activity data we got:
-            {{ activityData }}
+        <div
+            class="text-xl hover:bg-green-300 bg-green-500"
+            @click="createActivity"
+        >
+            Click to play magic-tiles!
         </div>
-        <MagicTilesButton
-            text="click here to play magic-tiles!"
-            link-to="/explanation-coupons"
-            button-type="nuxtlink"
-            color="green"
-        />
     </div>
 </template>
 
@@ -39,7 +35,7 @@ export default class FakeRedirect extends Vue {
     async createActivity() {
         try {
             const response: AxiosResponse = await this.$axios.get(
-                "/api/user100/activity/create/3"
+                "/api/user100/activity/create/1"
             );
             // because the server response json is formatted weird we have to
             // call it like this :/
