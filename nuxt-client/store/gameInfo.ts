@@ -58,7 +58,9 @@ export default class GameInfoStore extends VuexModule {
         this.userValidated = true;
         const gameData: GameData = gameInfo.data;
         this.tilesData = gameData.json_data;
-        // TODO(pierre): we can we not access .correctImage ??
+        // TODO(pierre): CONTINUE HERE.
+        // we can we not access .correctImage because it is escaped in the api response...
+        // Wait for karbush and rias to fix it so I can continue with implementation.
         console.log("json data we got:");
         console.log(this.tilesData);
         console.log(this.tilesData.correctImage);
