@@ -45,7 +45,6 @@
             </div>
         </a>
     </button>
-    <!-- MAYBE(pierre): leave or remove error case -->
 </template>
 
 <script lang="ts">
