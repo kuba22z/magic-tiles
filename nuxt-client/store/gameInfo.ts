@@ -4,6 +4,7 @@ import {
     GameData,
     GameInfo,
     InternalCoupons,
+    MagicTilesData,
 } from "~/types/gameInfo";
 
 /**
@@ -45,6 +46,7 @@ export default class GameInfoStore extends VuexModule {
     // TODO(pierre): currently it is hardcoded "{baseUrl}..."? Ask main backend
     // team to fix this.
     redirectUrl: string = "";
+    tilesData: MagicTilesData | null = null;
 
     /**
      * @description Initializes the game data that we got from the main
@@ -55,7 +57,23 @@ export default class GameInfoStore extends VuexModule {
     initializeGameInfo(gameInfo: GameInfo) {
         this.userValidated = true;
         const gameData: GameData = gameInfo.data;
+        this.tilesData = gameData.json_data;
+        // TODO(pierre): we can we not access .correctImage ??
+        console.log("json data we got:");
+        console.log(this.tilesData);
+        console.log(this.tilesData.correctImage);
+        console.log(this.tilesData.falseImages);
         this.gameMaxLevel = gameData.game_max_level;
         this.coupons = extractCouponsFromApiData(gameData.coupon_types);
+        this.correctImage = gameData.json_data.correctImage;
+        // TODO(pierre): add false images to store.
+    }
+
+    get getCoupons(): InternalCoupons {
+        return this.coupons;
+    }
+
+    get getCorrectImage(): string {
+        return this.correctImage;
     }
 }

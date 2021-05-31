@@ -17,7 +17,10 @@
                 <div
                     class="flex justify-center items-center text-center h-20 w-20 bg-green-300 mt-4"
                 >
-                    image here
+                    <img
+                        :src="correctImage"
+                        alt="Image  you have to click to get points."
+                    />
                 </div>
                 <div class="hint text-center">
                     Dies ist die korrekte Kachel für die heutige Spielereunde!
@@ -60,12 +63,22 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "nuxt-property-decorator";
 import MagicTilesButton from "~/components/magicTilesButton.vue";
+import { gameInfoStore } from "~/store";
 
-export default Vue.extend({
-    components: { MagicTilesButton },
-});
+@Component({
+    name: "GameStartPage",
+    components: {
+        MagicTilesButton,
+    },
+})
+export default class GameStartPage extends Vue {
+    get correctImage(): string {
+        console.log(gameInfoStore.getCorrectImage);
+        return gameInfoStore.getCorrectImage;
+    }
+}
 </script>
 
 <style scoped></style>

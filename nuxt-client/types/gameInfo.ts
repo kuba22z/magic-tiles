@@ -25,7 +25,7 @@ export interface GameData {
  */
 export interface MagicTilesData {
     correctImage: string;
-    falseImage: string;
+    falseImages: string[];
 }
 
 /**
