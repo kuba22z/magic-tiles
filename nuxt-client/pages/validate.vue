@@ -76,11 +76,13 @@ export default class Validation extends Vue {
                     },
                 }
             );
+            console.log("response from fetch() at validate.vue:");
+            console.log(response.data);
             gameInfoStore.initializeGameInfo(response.data);
             this.validationSuccessful = true;
             this.redirectToGameStartPage();
         } catch (e) {
-            console.log("error happened.");
+            console.log("Error when calling fetch() on validate.vue.");
             console.log("error:");
             console.log(e);
             this.validationSuccessful = false;

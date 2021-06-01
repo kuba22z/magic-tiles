@@ -15,7 +15,7 @@
                 class="flex flex-col justify-center items-center logo-and-hint mt-4 w-full"
             >
                 <div
-                    class="flex justify-center items-center text-center h-20 w-20 bg-green-300 mt-4"
+                    class="flex justify-center items-center text-center h-20 w-20 mt-4"
                 >
                     <img
                         :src="correctImage"
@@ -75,7 +75,6 @@ import { gameInfoStore } from "~/store";
 })
 export default class GameStartPage extends Vue {
     get correctImage(): string {
-        console.log(gameInfoStore.getCorrectImage);
         return gameInfoStore.getCorrectImage;
     }
 }

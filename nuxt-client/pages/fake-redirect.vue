@@ -37,9 +37,7 @@ export default class FakeRedirect extends Vue {
             const response: AxiosResponse = await this.$axios.get(
                 "/api/user100/activity/create/1"
             );
-            // because the server response json is formatted weird we have to
-            // call it like this :/
-            this.activityData = response.data.data;
+            this.activityData = response.data;
             this.redirectToValidatePageWithParams();
         } catch (e) {
             console.log(`We got an error. Msg: ${e}`);

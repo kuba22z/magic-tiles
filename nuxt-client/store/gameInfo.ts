@@ -1,30 +1,5 @@
 import { Module, VuexModule, VuexMutation } from "nuxt-property-decorator";
-import {
-    CouponTypes,
-    GameData,
-    GameInfo,
-    InternalCoupons,
-    MagicTilesData,
-} from "~/types/gameInfo";
-
-/**
- * @description Helper function that formats the coupon response we get from the
- * api to match the internal coupon definition.
- */
-const extractCouponsFromApiData = (
-    couponTypes: CouponTypes
-): InternalCoupons => {
-    let allCoupons: InternalCoupons = [];
-    couponTypes.forEach((couponType) =>
-        couponType.coupons.forEach((coupon) =>
-            allCoupons.push({
-                level: couponType.level,
-                description: coupon.description,
-            })
-        )
-    );
-    return allCoupons;
-};
+import { Coupons, GameInfo, MagicTilesData } from "~/types/gameInfo";
 
 /**
  * @description Store that is used to store all game data that we get from the
@@ -37,8 +12,7 @@ const extractCouponsFromApiData = (
 })
 export default class GameInfoStore extends VuexModule {
     userValidated: boolean = false;
-    couponTypes: CouponTypes = [];
-    coupons: InternalCoupons = [];
+    coupons: Coupons = [];
     correctImage: string = "";
     falseImages: string[] = [];
     // TODO(pierre): why is this set to four in the api response we get?
@@ -46,7 +20,6 @@ export default class GameInfoStore extends VuexModule {
     // TODO(pierre): currently it is hardcoded "{baseUrl}..."? Ask main backend
     // team to fix this.
     redirectUrl: string = "";
-    tilesData: MagicTilesData | null = null;
 
     /**
      * @description Initializes the game data that we got from the main
@@ -56,26 +29,25 @@ export default class GameInfoStore extends VuexModule {
     @VuexMutation
     initializeGameInfo(gameInfo: GameInfo) {
         this.userValidated = true;
-        const gameData: GameData = gameInfo.data;
-        this.tilesData = gameData.json_data;
-        // TODO(pierre): CONTINUE HERE.
-        // we can we not access .correctImage because it is escaped in the api response...
-        // Wait for karbush and rias to fix it so I can continue with implementation.
-        console.log("json data we got:");
-        console.log(this.tilesData);
-        console.log(this.tilesData.correctImage);
-        console.log(this.tilesData.falseImages);
-        this.gameMaxLevel = gameData.game_max_level;
-        this.coupons = extractCouponsFromApiData(gameData.coupon_types);
-        this.correctImage = gameData.json_data.correctImage;
-        // TODO(pierre): add false images to store.
+        // parses escaped json string(format of the api response) to json object.
+        const gameData: MagicTilesData = JSON.parse(gameInfo.game_data);
+        console.log(gameData);
+        this.correctImage = gameData.gameload1.object1_img;
+        this.falseImages.push(gameData.gameload1.object2_img);
+        this.falseImages.push(gameData.gameload1.object3_img);
+        this.gameMaxLevel = gameInfo.game_max_level;
+        this.coupons = gameInfo.coupon_types;
     }
 
-    get getCoupons(): InternalCoupons {
+    get getCoupons(): Coupons {
         return this.coupons;
     }
 
     get getCorrectImage(): string {
         return this.correctImage;
+    }
+
+    get getFalseImages(): string[] {
+        return this.falseImages;
     }
 }
