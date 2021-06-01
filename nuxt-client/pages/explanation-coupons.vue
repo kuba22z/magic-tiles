@@ -1,37 +1,14 @@
 <template>
     <div>
         <div class="coupon-card">
-            <div
-                v-if="$fetchState.pending"
-                class="display-while-fetching-request"
-            >
-                <!-- TODO(pierre): display loading spinner while pending. -->
-                Loading your available coupons...
-            </div>
-            <div
-                v-else-if="$fetchState.error"
-                class="error-while-fetching-request"
-            >
-                <!-- TODO(pierre): create and display funny image for fetch error -->
-                We got an error loading your coupons :O
-            </div>
-            <div v-else-if="anyCouponsAvailable">
+            <div v-if="anyCouponsAvailable">
                 <div class="fetched">coupons fetched: {{ couponsFetched }}</div>
-                <div class="amount">
-                    amount available coupons: {{ amountAvailableCoupons }}
-                </div>
-                <template v-for="coupon in coupons">
-                    <div :key="coupon.level" class="couponinfo">
-                        <div class="level">
-                            coupon level: {{ coupon.level }}
-                        </div>
-                        <div class="image">
-                            coupon image: {{ coupon.image }}
-                        </div>
-                        <div class="description">
-                            coupon description: {{ coupon.description }}
-                        </div>
-                    </div>
+                <template v-for="(coupon, index) in coupons">
+                    <CouponItem
+                        :key="index"
+                        :image="coupon.image"
+                        :description="coupon.description"
+                    />
                 </template>
             </div>
             <div v-else>
@@ -40,7 +17,7 @@
                     given store anymore...
                 </div>
                 <div class="play">
-                    You can still enjoy this game and try to break the
+                    You can still enjoy this game and try to break your
                     highscore!
                 </div>
             </div>
@@ -74,34 +51,17 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
-import { couponStore } from "~/store";
-import { Coupons } from "~/types/coupons";
+import { gameInfoStore } from "~/store";
+import { Coupons } from "~/types/gameInfo";
 
 @Component
 export default class CouponsExplanation extends Vue {
-    /**
-     * @description queries our api and stores the information inside our store.
-     */
-    async fetch() {
-        await couponStore.fetchCoupons();
-        // sleeps for two seconds to check the pending state. remove later.
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-    }
-
-    get amountAvailableCoupons(): number {
-        return couponStore.getAmountAvailableCoupons;
-    }
-
     get coupons(): Coupons {
-        return couponStore.getAllCoupons;
-    }
-
-    get couponsFetched(): boolean {
-        return couponStore.couponsFetched;
+        return gameInfoStore.getCoupons;
     }
 
     get anyCouponsAvailable(): boolean {
-        return this.amountAvailableCoupons > 0;
+        return this.coupons.length > 0;
     }
 }
 </script>
