@@ -1,16 +1,40 @@
 <template>
     <div>
-        <div class="wrap flex items-center justify-center">
-            <h1>header one</h1>
-            <div class="text">hello world</div>
+        <div class="flex justify-center items-center">
+            <div class="explanation">
+                Tests the timerutils.countDown function.
+            </div>
+            <!-- TODO(pierre): CONTINUE HERE, test the utility! -->
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "nuxt-property-decorator";
+import { TimerUtils } from "~/utils/timerUtils";
+import { CountingUnit } from "~/types/timer";
 
-export default Vue.extend({});
+@Component
+export default class Test extends Vue {
+    startValue: number = 20;
+    endValue: number = 3;
+    countingUnit: CountingUnit = CountingUnit.seconds;
+    countingInterval: number = 2;
+
+    runMe() {
+        TimerUtils.countDown(
+            this.startValue,
+            this.endValue,
+            this.countingUnit,
+            this.countingInterval,
+            this.logStuff
+        );
+    }
+
+    logStuff() {
+        console.log(new Date());
+    }
+}
 </script>
 
 <style scoped></style>

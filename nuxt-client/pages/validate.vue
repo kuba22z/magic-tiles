@@ -120,7 +120,6 @@ export default class Validation extends Vue {
      */
     async countToZero(): Promise<any> {
         while (this.countDownDuration > 0) {
-            console.log("currently in loop :)");
             await new Promise((resolve) => setTimeout(resolve, 1000));
             this.countDownDuration--;
         }

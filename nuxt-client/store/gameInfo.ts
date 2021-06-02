@@ -31,7 +31,6 @@ export default class GameInfoStore extends VuexModule {
         this.userValidated = true;
         // parses escaped json string(format of the api response) to json object.
         const gameData: MagicTilesData = JSON.parse(gameInfo.game_data);
-        console.log(gameData);
         this.correctImage = gameData.gameload1.object1_img;
         this.falseImages.push(gameData.gameload1.object2_img);
         this.falseImages.push(gameData.gameload1.object3_img);
