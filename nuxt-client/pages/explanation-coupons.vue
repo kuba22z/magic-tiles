@@ -6,7 +6,7 @@
                 <template v-for="(coupon, index) in coupons">
                     <CouponItem
                         :key="index"
-                        :image="coupon.image"
+                        :image="coupon.image_url"
                         :description="coupon.description"
                     />
                 </template>
