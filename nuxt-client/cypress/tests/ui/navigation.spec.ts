@@ -8,7 +8,7 @@ describe("Testing if the navigation of our app does work.", () => {
         // visits localhost:3000
         cy.visit("http://localhost:3000");
         // gets first element that has class "button" and clicks on it.
-        cy.get(".button").first().click();
+        cy.get(".button").eq(1).click();
         // after click on the first button we expect to be at the /explanation-coupons page.
         cy.url().should("include", "/explanation-coupons");
     });
@@ -17,7 +17,7 @@ describe("Testing if the navigation of our app does work.", () => {
         // visits localhost:3000
         cy.visit("http://localhost:3000/explanation-coupons");
         // gets first element that has class "button" and clicks on it.
-        cy.get(".button").first().click();
+        cy.get(".button").eq(0).click();
         // after click on the first button we expect to be at the /gaming-screen page.
         cy.url().should("include", "/gaming-screen");
     });
