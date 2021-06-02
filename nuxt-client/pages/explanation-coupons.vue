@@ -2,7 +2,6 @@
     <div>
         <div class="coupon-card">
             <div v-if="anyCouponsAvailable">
-                <div class="fetched">coupons fetched: {{ couponsFetched }}</div>
                 <template v-for="(coupon, index) in coupons">
                     <CouponItem
                         :key="index"
@@ -17,8 +16,8 @@
                     given store anymore...
                 </div>
                 <div class="play">
-                    You can still enjoy this game and try to break your
-                    highscore!
+                    You can still use the time to enjoy this game and try to
+                    break your highscore!
                 </div>
             </div>
         </div>

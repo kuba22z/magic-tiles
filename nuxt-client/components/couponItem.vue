@@ -1,12 +1,16 @@
 <template>
     <div>
         <div
-            class="couponDisplay mt-2 flex justify-center items-center text-center w-full"
+            class="couponDisplay mt-2 flex justify-center items-center text-center w-full h-40"
         >
-            <div class="image">
+            <div
+                class="image flex h-40 w-40 description justify-center items-center text-center"
+            >
                 <img :src="image" alt="image of a coupon." />
             </div>
-            <div class="description">
+            <div
+                class="description flex justify-center items-center text-center"
+            >
                 {{ description }}
             </div>
         </div>
