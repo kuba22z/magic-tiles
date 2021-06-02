@@ -1,48 +1,55 @@
 <template>
     <div>
-        <div class="coupon-card">
-            <div v-if="anyCouponsAvailable">
-                <template v-for="(coupon, index) in coupons">
-                    <CouponItem
-                        :key="index"
-                        :image="coupon.image_url"
-                        :description="coupon.description"
-                    />
-                </template>
-            </div>
-            <div v-else>
-                <div class="sorry">
-                    Sorry, to late! There are no more available coupons for the
-                    given store anymore...
+        <div v-if="anyCouponsAvailable" class="coupon-card">
+            <template v-for="(coupon, index) in coupons">
+                <CouponItem
+                    :key="index"
+                    :image="coupon.image_url"
+                    :description="coupon.description"
+                />
+            </template>
+        </div>
+        <div v-else class="mt-6 no-coupons-card">
+            <div
+                class="flex flex-col justify-center items-center text-center mx-4"
+            >
+                <div class="mt text-lg sorry">
+                    Zu spät! Für dieses Spiel gibt es leider bereits keine
+                    Coupons mehr!
                 </div>
-                <div class="play">
-                    You can still use the time to enjoy this game and try to
-                    break your highscore!
+                <div class="mt-4 text-lg play">
+                    Du kannst die Zeit jedoch trotzdem nutzen um versuchen
+                    deinen aktuellen Highscore zu schlagen!
                 </div>
             </div>
         </div>
+
         <div
-            class="bottom-navigation-buttons flex flex-col justify-center mt-10 items-center border border-red-300 w-full"
+            class="bottom-navigation-buttons flex items-center mt-4 justify-center w-full"
         >
             <div
-                class="next-button border border-red-300 h-12 w-24 flex justify-center items-center text-center"
+                class="flex items-center justify-center w-full buttons space-x-2 mb-6"
             >
-                <MagicTilesButton
-                    text="Verstanden!"
-                    link-to="/gaming-screen"
-                    button-type="nuxtlink"
-                    color="green"
-                />
-            </div>
-            <div
-                class="back-button mt-6 border border-red-300 h-12 w-39 flex justify-center items-center text-center"
-            >
-                <MagicTilesButton
-                    text="Zurück"
-                    link-to="/"
-                    button-type="nuxtlink"
-                    color="green"
-                />
+                <div
+                    class="back-button h-12 w-36 flex justify-center items-center text-center"
+                >
+                    <MagicTilesButton
+                        text="Zurück"
+                        link-to="/"
+                        button-type="nuxtlink"
+                        color="green"
+                    />
+                </div>
+                <div
+                    class="next-button h-12 w-36 flex justify-center items-center text-center"
+                >
+                    <MagicTilesButton
+                        text="Verstanden!"
+                        link-to="/gaming-screen"
+                        button-type="nuxtlink"
+                        color="green"
+                    />
+                </div>
             </div>
         </div>
     </div>

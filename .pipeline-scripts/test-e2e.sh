@@ -12,4 +12,4 @@ cd /nuxt-client || (echo "/nuxt-client not found." && exit 1)
 echo 'HOST_ADDR="localhost"' > .env
 
 echo "Running e2e tests ..."
-exit "$(CYPRESS_CACHE_FOLDER=./.cache/Cypress npm run test:e2e)"
+CYPRESS_CACHE_FOLDER=./.cache/Cypress npm run test:e2e
