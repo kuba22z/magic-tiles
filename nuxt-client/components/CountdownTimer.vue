@@ -1,9 +1,6 @@
 <template>
     <div>
-        <div
-            v-show="timerVisible"
-            class="flex flex-col justify-center items-center"
-        >
+        <div class="flex flex-col justify-center items-center">
             <div class="countdown-test">Testing the countdown timer.</div>
             <div class="running-timer" v-if="runCountdown">
                 <div class="description">shall run the countdown</div>
@@ -47,12 +44,6 @@ export default class CountdownTimer extends Vue {
      * @description Determines if the counter shall run.
      */
     @Prop() runCountdown!: boolean;
-    /**
-     * @description Determines if the counter shall be visible.
-     * Required for pages where we don't display the timer. Since we still
-     * have to count down the users available time.
-     */
-    @Prop() timerVisible!: boolean;
 
     timeLeft: number = this.startValue;
 
@@ -101,6 +92,9 @@ export default class CountdownTimer extends Vue {
         this.$nuxt.$emit("countdownTimerTickHappened", this.timeLeft);
     }
 
+    // NOTE(pierre): these following getters assume that the timer unit
+    // is given in seconds. If milliseconds, minutes etc. is required, adapt
+    // these accordingly.
     get currentMinute(): number {
         return Math.floor(this.timeLeft / 60);
     }

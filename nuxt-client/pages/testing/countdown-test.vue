@@ -3,26 +3,19 @@
         <div class="flex flex-col justify-center text-center">
             Testing the countdown timer :)
         </div>
-        <CountdownTimer
-            :startValue="235"
-            :endValue="0"
-            :countingInterval="1"
-            :countingUnit="countingUnit"
-            :runCountdown="true"
-            :displayTimer="false"
-        />
+        <CountdownTimerWrapper />
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
 import { CountingUnit } from "~/types/timer";
-import CountdownTimer from "~/components/CountdownTimer.vue";
+import CountdownTimerWrapper from "~/components/CountdownTimerWrapper.vue";
 
 @Component({
     name: "CountDownTest",
     components: {
-        CountdownTimer,
+        CountdownTimerWrapper,
     },
 })
 export default class CountDownTest extends Vue {

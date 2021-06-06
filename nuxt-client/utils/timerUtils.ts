@@ -33,6 +33,16 @@ export class TimerUtils {
     }
 
     /**
+     * @description returns the seconds since unix timestamp for a given date
+     * object.
+     * @param date
+     */
+    public static getTimeInSeconds = (date: Date): number => {
+        const dateInMillis: number = date.getTime();
+        return Math.floor(dateInMillis / 1000);
+    };
+
+    /**
      * @description helper function the determine the factor we have to sleep
      * based on the given unit.
      * @param unit the unit we will count in (seconds, milliseconds...)
