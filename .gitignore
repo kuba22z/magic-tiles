@@ -3,3 +3,5 @@
 
 # ignore vim-main-compile
 vim-main-compile.pdf
+
+.idea
