@@ -28,7 +28,7 @@ export class RectRow {
 
     constructor(rectPosY: number = 0) {
         const correctImage: string = gameInfoStore.getCorrectImage;
-        const badImage: string = gameInfoStore.getFalseImages[0];
+        const falseImages: string[] = gameInfoStore.getFalseImages;
         // Number of Rectangles for each Row
         const rectanglesPerRow: number = 4;
 
@@ -38,14 +38,17 @@ export class RectRow {
         // x coordinate of current rectangle
         let rectPosX: number;
         let resultingImage: string;
+        let randomNum;
 
-        // number of correct image -> a number between 1-4
+        // number of correct image -> a number between 0 and 3
         const numOfCorrectImage: number = Math.floor(
             Math.random() * rectanglesPerRow
         );
-
         for (let i = 0; i < rectanglesPerRow; i++) {
-            resultingImage = i === numOfCorrectImage ? correctImage : badImage;
+            // random number between 0 and indexOfLastFalseImage
+            randomNum = Math.floor(Math.random() * falseImages.length);
+            resultingImage =
+                i === numOfCorrectImage ? correctImage : falseImages[randomNum];
             rectPosX = i * rectWitdh;
             this.row.push(new Rect(rectPosX, rectPosY, resultingImage));
         }

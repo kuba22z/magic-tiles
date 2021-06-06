@@ -30,3 +30,6 @@ Datum, Geplante Aufgabe, Zeit geschaetzt, Zeit gebraucht, Erledigte Aufgabe , Pr
 19.05.2021,das Spielende zu Ende implementieren,45min,45min,bug mit dem unzuverlässigen klicken auf ein Rechteck fixen,das klicken auf die Rechtecke war nicht ganz zuverlässig,,,
 26.05.2021,weekly ip meeting,30min,30min,verstehen wie der main server mit den clients kommuniziert,,,,
 26.05.2021,Meeting mit Pierre,1.30h,1.30h,letzten merge request und nächsten Sprint besprechen mit Pierre,,,,
+02.06.2021,weekly ip meeting,30min,30min,"klären wie die api aktuell aussieht, besprechen wie das Design aussehen soll",,,,
+02.06.2021,Meeting mit Pierre,1h,1h,Eva eine Nachricht schreiben welche Bilder wir von Alexander brauchen,,,,
+06.06.2021,Spiel Logik zu Ende implementieren,2h,4h,"sound und level implementieren, neue Bilder hinzufügen und Bilder aus der Datenbank in das Spiel einbinden ",Sound hat am Anfang nicht funktioniert,,,
