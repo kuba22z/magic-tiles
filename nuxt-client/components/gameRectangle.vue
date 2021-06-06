@@ -1,20 +1,9 @@
 <template>
-    <svg :x="rect.x + '%'" :y="rect.y + '%'" @click="checkCorrectRect">
+    <svg :x="rect.x + '%'" :y="rect.y + '%'" @click.stop="checkCorrectRect">
         <rect :fill="rect.color" height="25%" width="25%" />
         <!--    TODO(jakub) BUG: on firefox some images flicker between cook-book.svg and book.svg -->
         <!--    BUG: :href="rect.images" doesnt work properly same bug as with magic tiles button   -->
-        <image
-            v-if="rect.image === 'book.svg'"
-            href="~/assets/book.svg"
-            height="25%"
-            width="25%"
-        />
-        <image
-            v-else-if="rect.image === 'cook-book.svg'"
-            href="~/assets/cook-book.svg"
-            height="25%"
-            width="25%"
-        />
+        <image :href="rect.image" height="25%" width="25%" />
     </svg>
 </template>
 
@@ -22,7 +11,7 @@
 import { Component, Prop, Vue, namespace } from "nuxt-property-decorator";
 import { Rect } from "~/types/game-board";
 import { playCorrectSound, playGameOverSound } from "~/assets/sounds";
-
+import { gameInfoStore } from "~/store";
 const gaming = namespace("gaming-screen");
 const board = namespace("game-board");
 
@@ -52,7 +41,7 @@ export default class gamingRectangle extends Vue {
     checkCorrectRect() {
         if (!this.rect.isClicked) {
             this.setIsClicked([this.rowIndex, this.colIndex]);
-            if (this.rect.image === "book.svg") {
+            if (this.rect.image === gameInfoStore.getCorrectImage) {
                 this.incrementScore();
                 this.setColor(["green", this.rowIndex, this.colIndex]);
                 playCorrectSound();

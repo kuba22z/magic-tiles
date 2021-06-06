@@ -1,3 +1,5 @@
+import { gameInfoStore } from "~/store";
+
 export class Rect {
     image: string;
     x: number;
@@ -19,12 +21,14 @@ export class Rect {
         this.color = color;
     }
 }
-
 export class RectRow {
     public row: Rect[] = [];
+
+    public correctImage!: string;
+
     constructor(rectPosY: number = 0) {
-        const correctImage: string = "book.svg";
-        const badImage: string = "cook-book.svg";
+        const correctImage: string = gameInfoStore.getCorrectImage;
+        const badImage: string = gameInfoStore.getFalseImages[0];
         // Number of Rectangles for each Row
         const rectanglesPerRow: number = 4;
 

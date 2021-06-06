@@ -7,7 +7,15 @@ import { RectBoard, RectRow } from "~/types/game-board";
     namespaced: true,
 })
 export default class GamingBoard extends VuexModule {
-    public rectBoard: RectBoard = new RectBoard(5);
+    public rectBoard: RectBoard = new RectBoard(0);
+
+    /**
+     * @description initialize rectBoard with 5 RectRows above the playing field
+     */
+    @VuexMutation
+    initRectBoard() {
+        this.rectBoard = new RectBoard(5);
+    }
 
     /**
      * @description moves all rectangle rows to the bottom

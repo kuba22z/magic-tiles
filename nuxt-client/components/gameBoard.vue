@@ -33,12 +33,16 @@ import { playGameOverSound } from "~/assets/sounds";
 
 const board = namespace("game-board");
 const gaming = namespace("gaming-screen");
+
 @Component({
     components: { GameRow, Test, GameRectangle },
 })
 export default class gamingBoard extends Vue {
     @board.State
     public rectBoard!: RectBoard;
+
+    @board.Mutation
+    public initRectBoard!: () => void;
 
     @board.Mutation
     public moveRectRowDown!: (stepSize: number) => void;
@@ -59,10 +63,12 @@ export default class gamingBoard extends Vue {
     scoreLevels: number[] = [5, 10, 15, 20, 25];
 
     /**
-     *@description move down all RectRow until the last RectRow
+     * @description initialize rectBoard with 5 RectRows above the
+     * playing field and move down all RectRow until the last RectRow
      * is at the bottom, then it stops the loop and calls startGame()
      */
     public moveRectRowUntilBottom() {
+        this.initRectBoard();
         this.timerRef = setInterval(() => {
             this.moveRectRowDown(this.stepSize);
             this.miniStep++;

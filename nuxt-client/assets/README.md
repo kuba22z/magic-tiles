@@ -1,4 +1,4 @@
 # ASSETS
 
 - images source:
--  https://www.flaticon.com/free-icons/book
+- https://www.flaticon.com/free-icons/book
