@@ -29,7 +29,6 @@ export default class GameInfoStore extends VuexModule {
     initializeGameInfo(gameInfo: GameInfo) {
         this.userValidated = true;
         const gameData: MagicTilesData = gameInfo.game_data;
-        console.log(gameData);
         this.correctImage = gameData.correctImage;
         this.falseImages = gameData.falseImages;
         this.gameMaxLevel = gameInfo.game_max_level;
