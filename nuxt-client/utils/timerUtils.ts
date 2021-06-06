@@ -21,12 +21,13 @@ export class TimerUtils {
         countingInterval: number,
         executionCallback: () => any
     ): Promise<any> {
-        const sleepDurationFactor: number = this.getSleepDurationFactor(
-            countingUnit
-        );
+        const sleepDurationFactor: number =
+            this.getSleepDurationFactor(countingUnit);
         const sleepDuration: number = sleepDurationFactor * countingInterval;
-        while (startValue <= endValue) {
+        while (startValue >= endValue) {
             await new Promise((resolve) => setTimeout(resolve, sleepDuration));
+            // MAYBE(pierre): think about decrease or callback first?
+            startValue = startValue - countingInterval;
             executionCallback();
         }
     }

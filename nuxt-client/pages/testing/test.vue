@@ -1,10 +1,13 @@
 <template>
     <div>
-        <div class="flex justify-center items-center">
-            <div class="explanation">
+        <div class="flex flex-col justify-center items-center">
+            <div class="explanation text-lg">
                 Tests the timerutils.countDown function.
             </div>
-            <!-- TODO(pierre): CONTINUE HERE, test the utility! -->
+            <div class="border border-red-300 text-lg" @click="runMe()">
+                click me to run the countdown!
+            </div>
+            <div>check your console after clicking!</div>
         </div>
     </div>
 </template>
@@ -22,6 +25,7 @@ export default class Test extends Vue {
     countingInterval: number = 2;
 
     runMe() {
+        console.log("function started.");
         TimerUtils.countDown(
             this.startValue,
             this.endValue,
