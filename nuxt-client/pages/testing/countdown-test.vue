@@ -9,6 +9,7 @@
             :countingInterval="1"
             :countingUnit="countingUnit"
             :runCountdown="true"
+            :displayTimer="false"
         />
     </div>
 </template>
@@ -29,13 +30,8 @@ export default class CountDownTest extends Vue {
         return CountingUnit.seconds;
     }
 
-    countdownTimerTickHappened(timeLeft: number) {
-        console.log("countdown-test notified by emit.");
-        console.log(`time left: ${timeLeft}`);
-    }
-
     created() {
-        this.$nuxt.$on("testEmit.", () => console.log("emit worked."));
+        this.$nuxt.$on("runTimerStarted", () => console.log("timer started."));
         this.$nuxt.$on("countdownTimerTickHappened", (timeLeft: number) =>
             console.log(`timer tick emit worked. time left: ${timeLeft}`)
         );

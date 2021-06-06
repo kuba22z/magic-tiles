@@ -1,6 +1,9 @@
 <template>
     <div>
-        <div class="flex flex-col justify-center items-center">
+        <div
+            v-show="timerVisible"
+            class="flex flex-col justify-center items-center"
+        >
             <div class="countdown-test">Testing the countdown timer.</div>
             <div class="running-timer" v-if="runCountdown">
                 <div class="description">shall run the countdown</div>
@@ -44,6 +47,12 @@ export default class CountdownTimer extends Vue {
      * @description Determines if the counter shall run.
      */
     @Prop() runCountdown!: boolean;
+    /**
+     * @description Determines if the counter shall be visible.
+     * Required for pages where we don't display the timer. Since we still
+     * have to count down the users available time.
+     */
+    @Prop() timerVisible!: boolean;
 
     timeLeft: number = this.startValue;
 
@@ -61,7 +70,7 @@ export default class CountdownTimer extends Vue {
      * parameters to test the functionality.
      */
     runTimer() {
-        console.log("function started.");
+        this.$nuxt.$emit("runTimerStarted");
         TimerUtils.countDown(
             this.startValue,
             this.endValue,
