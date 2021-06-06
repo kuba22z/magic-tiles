@@ -24,10 +24,10 @@ export class TimerUtils {
         const sleepDurationFactor: number =
             this.getSleepDurationFactor(countingUnit);
         const sleepDuration: number = sleepDurationFactor * countingInterval;
-        while (startValue >= endValue) {
+        while (startValue > endValue) {
             await new Promise((resolve) => setTimeout(resolve, sleepDuration));
-            // MAYBE(pierre): think about decrease or callback first?
             startValue = startValue - countingInterval;
+            // MAYBE(pierre): can we call async callbacks with this?
             executionCallback();
         }
     }
@@ -35,7 +35,7 @@ export class TimerUtils {
     /**
      * @description helper function the determine the factor we have to sleep
      * based on the given unit.
-     * @param unit the unit we will count int (seconds, milliseconds...)
+     * @param unit the unit we will count in (seconds, milliseconds...)
      */
     private static getSleepDurationFactor = (unit: CountingUnit): number => {
         switch (unit) {
