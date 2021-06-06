@@ -20,9 +20,9 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, namespace } from "nuxt-property-decorator";
-import { useSound } from "@vueuse/sound";
-import guitar from "../assets/acute.mp3";
 import { Rect } from "~/types/game-board";
+import { playCorrectSound, playGameOverSound } from "~/utils/sounds";
+
 const gaming = namespace("gaming-screen");
 const board = namespace("game-board");
 
@@ -45,14 +45,6 @@ export default class gamingRectangle extends Vue {
     @board.Mutation
     public setIsClicked!: (rectIndexes: [number, number]) => void;
 
-    setup() {
-        const { play, stop } = useSound(guitar);
-        return {
-            play,
-            stop,
-        };
-    }
-
     /**
      * @description Check whether the correct rect was clicked if yes increment
      * score and set rect as clicked otherwise Game End
@@ -63,10 +55,11 @@ export default class gamingRectangle extends Vue {
             if (this.rect.image === "book.svg") {
                 this.incrementScore();
                 this.setColor(["green", this.rowIndex, this.colIndex]);
-                this.setup().play();
+                playCorrectSound();
             } else {
                 this.stopGame();
                 this.setColor(["red", this.rowIndex, this.colIndex]);
+                playGameOverSound();
             }
         }
     }

@@ -29,6 +29,7 @@ import Test from "~/pages/testing/test.vue";
 import GameRow from "~/components/gameRow.vue";
 import { RectBoard } from "~/types/game-board";
 import { ScoreBoard } from "~/types/scoreBoard";
+import { playGameOverSound } from "~/utils/sounds";
 
 const board = namespace("game-board");
 const gaming = namespace("gaming-screen");
@@ -91,7 +92,7 @@ export default class gamingBoard extends Vue {
                     this.delay > 0
                 ) {
                     this.levelUp(4);
-                    // necessary so that setInterval notices the change in delay
+                    // necessary so that setInterval notices the change of delay
                     this.stopGame();
                     this.startGame();
                 }
@@ -107,6 +108,14 @@ export default class gamingBoard extends Vue {
     }
 
     /**
+     * @description stop the game and play sound for game over
+     */
+    public gameOver() {
+        this.stopGame();
+        playGameOverSound();
+    }
+
+    /**
      * @description check if a Rectangle was clicked in the last RectRow if no -> game end
      */
     public checkGameEnd() {
@@ -118,7 +127,7 @@ export default class gamingBoard extends Vue {
                 this.rectBoard.board[4].row[3].isClicked
             )
         )
-            this.stopGame();
+            this.gameOver();
     }
 
     /**
