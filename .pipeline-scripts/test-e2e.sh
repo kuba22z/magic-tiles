@@ -13,4 +13,3 @@ echo 'HOST_ADDR="localhost"' > .env
 
 echo "Running e2e tests ..."
 CYPRESS_CACHE_FOLDER=./.cache/Cypress npm run test:e2e
-echo "E2e tests finished."

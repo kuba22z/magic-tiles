@@ -1,26 +1,36 @@
-import { Coupons } from "~/types/coupons";
 /**
  * @file Interfaces which are used to describe the responses we get from the main server.
  */
 
 /**
- * TODO(pierre): Ask Karbush and Rias how this data will look?
- * @description Contains the specific data that is required for the magic
- * tiles game. We get one link to the correct image, that the user has to
- * click on and three links to bad images, that should not be clicked.
+ * @description The Game data that we get from the main backend api after validating.
  */
-export interface MagicTilesInfo {
+export interface GameInfo {
+    game_max_level: number;
+    game_data: MagicTilesData;
+    redirect_url: string;
+    // NOTE(pierre): although it is named coupon types, it contains an array of coupons.
+    coupon_types: Coupons;
+}
+
+/**
+ * @description The Game data that is specific to the magic tiles game.
+ */
+export interface MagicTilesData {
     correctImage: string;
     falseImages: string[];
 }
 
 /**
- * TODO(pierre): Ask Karbush and Rias how this data will look?
- * @description Contains all the infos we get by querying the main server.
+ * @description Contains an array of coupons.
  */
-export interface GameInfo {
-    validUntil: Date;
-    availableCoupons: number;
-    coupons: Coupons;
-    magicTiles: MagicTilesInfo;
+export interface Coupons extends Array<Coupon> {}
+
+/**
+ * @description Describes the structure of a coupon.
+ */
+export interface Coupon {
+    level: number;
+    description: string;
+    image_url: string;
 }
