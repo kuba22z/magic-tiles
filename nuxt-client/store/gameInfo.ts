@@ -15,7 +15,6 @@ export default class GameInfoStore extends VuexModule {
     coupons: Coupons = [];
     correctImage: string = "";
     falseImages: string[] = [];
-    // TODO(pierre): why is this set to four in the api response we get?
     gameMaxLevel: number = 0;
     // TODO(pierre): currently it is hardcoded "{baseUrl}..."? Ask main backend
     // team to fix this.
@@ -29,11 +28,10 @@ export default class GameInfoStore extends VuexModule {
     @VuexMutation
     initializeGameInfo(gameInfo: GameInfo) {
         this.userValidated = true;
-        // parses escaped json string(format of the api response) to json object.
-        const gameData: MagicTilesData = JSON.parse(gameInfo.game_data);
-        this.correctImage = gameData.gameload1.object1_img;
-        this.falseImages.push(gameData.gameload1.object2_img);
-        this.falseImages.push(gameData.gameload1.object3_img);
+        const gameData: MagicTilesData = gameInfo.game_data;
+        console.log(gameData);
+        this.correctImage = gameData.correctImage;
+        this.falseImages = gameData.falseImages;
         this.gameMaxLevel = gameInfo.game_max_level;
         this.coupons = gameInfo.coupon_types;
     }

@@ -7,7 +7,13 @@
         <div v-else>
             <div v-if="validationSuccessful">
                 <div
-                    class="validation-successfull text-green-400 flex flex-col justify-center items-center"
+                    class="
+                        validation-successfull
+                        text-green-400
+                        flex flex-col
+                        justify-center
+                        items-center
+                    "
                 >
                     <div>validation successful!</div>
                     <div>
@@ -18,7 +24,13 @@
             </div>
             <div v-else>
                 <div
-                    class="validation-error text-red-400 flex flex-col justify-center items-center"
+                    class="
+                        validation-error
+                        text-red-400
+                        flex flex-col
+                        justify-center
+                        items-center
+                    "
                 >
                     <div>
                         Validation was not successful! Did you log into the

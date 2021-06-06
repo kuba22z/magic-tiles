@@ -65,7 +65,7 @@ export default {
     proxy: {
         // avoids CORS(Cross Origin Ressource Sharing) error for api calls.
         "/api/": {
-            target: "https://api-dev.back2street.de",
+            target: "https://api.back2street.de",
             pathRewrite: {'^/api/': ''}
         },
         "/test/": {
