@@ -11,7 +11,13 @@
         </div>
         <div v-else class="mt-6 no-coupons-card">
             <div
-                class="flex flex-col justify-center items-center text-center mx-4"
+                class="
+                    flex flex-col
+                    justify-center
+                    items-center
+                    text-center
+                    mx-4
+                "
             >
                 <div class="mt text-lg sorry">
                     Zu spät! Für dieses Spiel gibt es leider bereits keine
@@ -25,13 +31,36 @@
         </div>
 
         <div
-            class="bottom-navigation-buttons flex items-center mt-4 justify-center w-full"
+            class="
+                bottom-navigation-buttons
+                flex
+                items-center
+                mt-4
+                justify-center
+                w-full
+            "
         >
             <div
-                class="flex items-center justify-center w-full buttons space-x-2 mb-6"
+                class="
+                    flex
+                    items-center
+                    justify-center
+                    w-full
+                    buttons
+                    space-x-2
+                    mb-6
+                "
             >
                 <div
-                    class="back-button h-12 w-36 flex justify-center items-center text-center"
+                    class="
+                        back-button
+                        h-12
+                        w-36
+                        flex
+                        justify-center
+                        items-center
+                        text-center
+                    "
                 >
                     <MagicTilesButton
                         text="Zurück"
@@ -41,7 +70,15 @@
                     />
                 </div>
                 <div
-                    class="next-button h-12 w-36 flex justify-center items-center text-center"
+                    class="
+                        next-button
+                        h-12
+                        w-36
+                        flex
+                        justify-center
+                        items-center
+                        text-center
+                    "
                 >
                     <MagicTilesButton
                         text="Verstanden!"
