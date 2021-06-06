@@ -26,10 +26,8 @@ import { TimerUtils } from "~/utils/timerUtils";
 /**
  * @description Component that wraps the generic CountdownTimer component
  * to fit in the magic-tiles use case.
- * This component will be included in every page and update it's values using
- * the countdown store.
- * The events from CountdownTimer are bubbled up to its parent since they are
- * not modified here.
+ * The events from CountdownTimer are bubbled up to its parent if they are
+ * not catched here.
  */
 export default class CountdownTimerWrapper extends Vue {
     get countingUnit(): number {
