@@ -29,7 +29,7 @@ import Test from "~/pages/testing/test.vue";
 import GameRow from "~/components/gameRow.vue";
 import { RectBoard } from "~/types/game-board";
 import { ScoreBoard } from "~/types/scoreBoard";
-import { playGameOverSound } from "~/utils/sounds";
+import { playGameOverSound } from "~/assets/sounds";
 
 const board = namespace("game-board");
 const gaming = namespace("gaming-screen");

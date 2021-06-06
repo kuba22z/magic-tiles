@@ -21,7 +21,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, namespace } from "nuxt-property-decorator";
 import { Rect } from "~/types/game-board";
-import { playCorrectSound, playGameOverSound } from "~/utils/sounds";
+import { playCorrectSound, playGameOverSound } from "~/assets/sounds";
 
 const gaming = namespace("gaming-screen");
 const board = namespace("game-board");
