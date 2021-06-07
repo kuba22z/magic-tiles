@@ -1,9 +1,7 @@
 import { Module, VuexModule, VuexMutation } from "nuxt-property-decorator";
 import { Coupons, GameInfo, MagicTilesData } from "~/types/gameInfo";
-<<<<<<< HEAD
-=======
 import { TimerUtils } from "~/utils/timerUtils";
->>>>>>> development
+import { defaultCorrectBook, defaultFalseImages } from "~/assets/rectImages";
 
 /**
  * @description Store that is used to store all game data that we get from the
