@@ -25,7 +25,6 @@
 <script lang="ts">
 import { Component, Vue, namespace } from "nuxt-property-decorator";
 import GameRectangle from "~/components/gameRectangle.vue";
-import Test from "~/pages/testing/test.vue";
 import GameRow from "~/components/gameRow.vue";
 import { RectBoard } from "~/types/game-board";
 import { ScoreBoard } from "~/types/scoreBoard";
@@ -33,7 +32,7 @@ import { ScoreBoard } from "~/types/scoreBoard";
 const board = namespace("game-board");
 const gaming = namespace("gaming-screen");
 @Component({
-    components: { GameRow, Test, GameRectangle },
+    components: { GameRow, GameRectangle },
 })
 export default class gamingBoard extends Vue {
     @board.State
