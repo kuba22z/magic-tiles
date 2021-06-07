@@ -3,6 +3,17 @@
  */
 
 /**
+ * @description This will in future only be issued by the main backend.
+ * We did need to implement this since the main backend did not get to do it yet.
+ * TODO(pierre): remove this interface once the main backend implements this.
+ */
+export interface CreatedActivity {
+    activity_id: number;
+    token: string;
+    expires_at: string; // string is in datetime format
+}
+
+/**
  * @description The Game data that we get from the main backend api after validating.
  */
 export interface GameInfo {

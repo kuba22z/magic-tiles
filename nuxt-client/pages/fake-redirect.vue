@@ -17,7 +17,7 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
 import { AxiosResponse } from "axios";
-import { CreatedActivity } from "~/types/api";
+import { CreatedActivity } from "~/types/gameInfo";
 
 @Component({
     name: "FakeRedirect",
