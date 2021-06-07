@@ -88,9 +88,11 @@ export default class Validation extends Vue {
                     },
                 }
             );
-            console.log("response from fetch() at validate.vue:");
-            console.log(response.data);
             gameInfoStore.initializeGameInfo(response.data);
+            // NOTE(pierre): have to set token duration on seperate call since
+            // it is not sent by the api response after validating.
+            const validUntil: Date = new Date(this.queryParams.expires_at);
+            gameInfoStore.setTokenDuration(validUntil);
             this.validationSuccessful = true;
             this.redirectToGameStartPage();
         } catch (e) {
@@ -132,7 +134,6 @@ export default class Validation extends Vue {
      */
     async countToZero(): Promise<any> {
         while (this.countDownDuration > 0) {
-            console.log("currently in loop :)");
             await new Promise((resolve) => setTimeout(resolve, 1000));
             this.countDownDuration--;
         }
