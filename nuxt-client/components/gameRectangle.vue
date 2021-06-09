@@ -10,7 +10,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, namespace } from "nuxt-property-decorator";
 import { Rect } from "~/types/game-board";
-import { playCorrectSound, playGameOverSound } from "~/assets/sounds";
+import { playCorrectSound } from "~/assets/sounds";
 import { gameInfoStore } from "~/store";
 const gaming = namespace("gaming-screen");
 const board = namespace("game-board");
@@ -48,7 +48,6 @@ export default class gamingRectangle extends Vue {
             } else {
                 this.stopGame();
                 this.setColor(["red", this.rowIndex, this.colIndex]);
-                playGameOverSound();
             }
         }
     }

@@ -52,6 +52,9 @@ export default class gamingBoard extends Vue {
     @board.Mutation
     public pushFrontAndPop!: () => void;
 
+    @gaming.Mutation
+    public setScore!: (newScore: number) => void;
+
     @gaming.State
     public scoreBoard!: ScoreBoard;
 
@@ -63,7 +66,8 @@ export default class gamingBoard extends Vue {
     miniStep: number = 0;
     readonly stepSize: number = 1;
     readonly bigStep: number = 25 / this.stepSize;
-    timerRef: any;
+    gameTimerRef: any;
+    countDownTimerRef: any;
     delay: number = 30;
     currentLevel: number = 0;
     // for test reasons: Level up in steps of 5
@@ -77,11 +81,12 @@ export default class gamingBoard extends Vue {
      */
     mounted() {
         if (this.runGame === "true") {
+            this.setScore(0);
             this.initRectBoard();
-            this.timerRef = setInterval(() => {
+            this.countDownTimerRef = setInterval(() => {
                 this.decrementCurrentTime();
                 if (this.countDownForGameStart === 0) {
-                    clearInterval(this.timerRef);
+                    clearInterval(this.countDownTimerRef);
                     this.startGame();
                 }
             }, 1000);
@@ -108,12 +113,12 @@ export default class gamingBoard extends Vue {
      * is at the bottom, then it stops the loop and calls mainGameLoop()
      */
     public moveRectRowUntilBottom() {
-        this.timerRef = setInterval(() => {
+        this.gameTimerRef = setInterval(() => {
             this.moveRectRowDown(this.stepSize);
             this.miniStep++;
             if (this.miniStep === this.bigStep * 4) {
                 this.miniStep = 0;
-                clearInterval(this.timerRef);
+                clearInterval(this.gameTimerRef);
                 this.mainGameLoop();
             }
         }, this.delay);
@@ -124,7 +129,7 @@ export default class gamingBoard extends Vue {
      * and creates new rectRows at the top
      */
     public mainGameLoop() {
-        this.timerRef = setInterval(() => {
+        this.gameTimerRef = setInterval(() => {
             this.moveRectRowDown(this.stepSize);
             this.miniStep++;
             if (this.miniStep === this.bigStep) {
@@ -139,7 +144,7 @@ export default class gamingBoard extends Vue {
                     this.levelUp(4);
                     // necessary so that setInterval notices the change of delay
                     this.pauseGame();
-                    this.startGame();
+                    this.mainGameLoop();
                 }
             }
         }, this.delay);
@@ -149,7 +154,7 @@ export default class gamingBoard extends Vue {
      * @description pause the game
      */
     public pauseGame() {
-        clearInterval(this.timerRef);
+        clearInterval(this.gameTimerRef);
     }
 
     /**
