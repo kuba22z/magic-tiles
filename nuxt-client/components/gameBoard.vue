@@ -28,7 +28,7 @@ import GameRectangle from "~/components/gameRectangle.vue";
 import GameRow from "~/components/gameRow.vue";
 import { RectBoard } from "~/types/game-board";
 import { ScoreBoard } from "~/types/scoreBoard";
-import { playGameOverSound } from "~/assets/sounds";
+import { SoundUtils } from "~/utils/soundUtils";
 
 const board = namespace("game-board");
 const gaming = namespace("gaming-screen");
@@ -117,7 +117,7 @@ export default class gamingBoard extends Vue {
      */
     public gameOver() {
         this.stopGame();
-        playGameOverSound();
+        SoundUtils.playGameOverSound();
     }
 
     /**
