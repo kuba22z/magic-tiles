@@ -10,7 +10,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, namespace } from "nuxt-property-decorator";
 import { Rect } from "~/types/game-board";
-import { playCorrectSound } from "~/assets/sounds";
+import { SoundUtils } from "~/utils/soundUtils";
 import { gameInfoStore } from "~/store";
 const gaming = namespace("gaming-screen");
 const board = namespace("game-board");
@@ -39,16 +39,17 @@ export default class gamingRectangle extends Vue {
      * score and set rect as clicked otherwise Game End
      */
     checkCorrectRect() {
-        if (!this.rect.isClicked) {
-            this.setIsClicked([this.rowIndex, this.colIndex]);
-            if (this.rect.image === gameInfoStore.getCorrectImage) {
-                this.incrementScore();
-                this.setColor(["green", this.rowIndex, this.colIndex]);
-                playCorrectSound();
-            } else {
-                this.stopGame();
-                this.setColor(["red", this.rowIndex, this.colIndex]);
-            }
+        if (this.rect.isClicked) return;
+
+        this.setIsClicked([this.rowIndex, this.colIndex]);
+        if (this.rect.image === gameInfoStore.getCorrectImage) {
+            this.incrementScore();
+            this.setColor(["green", this.rowIndex, this.colIndex]);
+            SoundUtils.playCorrectSound();
+        } else {
+            this.stopGame();
+            this.setColor(["red", this.rowIndex, this.colIndex]);
+            SoundUtils.playGameOverSound();
         }
     }
 }
