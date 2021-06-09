@@ -58,18 +58,18 @@ export default {
         headers: {
             common: { "Content-Type": "application/json" },
         },
-        proxy: true
+        proxy: true,
     },
 
     proxy: {
         // avoids CORS(Cross Origin Ressource Sharing) error for api calls.
         "/api/": {
             target: "https://api.back2street.de",
-            pathRewrite: {'^/api/': ''}
+            pathRewrite: { "^/api/": "" },
         },
         "/test/": {
             target: "https://jsonplaceholder.typicode.com",
-            pathRewrite: {'^/test/': ''}
+            pathRewrite: { "^/test/": "" },
         },
     },
 

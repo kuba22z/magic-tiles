@@ -2,7 +2,7 @@
     <div>
         <div
             class="
-                score-board
+                gaming-screen-content
                 flex flex-col
                 justify-center
                 pl-4
@@ -58,7 +58,7 @@
                     items-center
                 "
             >
-                <GameBoard />
+                <GameBoard :run-game="runGame"></GameBoard>
             </div>
         </div>
         <!-- TODO(pierre): maybe keep these. just keep them for debugging purposes right now. -->
@@ -100,19 +100,29 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
+import { Prop } from "nuxt-property-decorator";
 import { ScoreBoard } from "~/types/scoreBoard";
 import CountdownTimerWrapper from "~/components/CountdownTimerWrapper.vue";
+import gameBoard from "~/components/gameBoard.vue";
+import magicTilesButton from "~/components/magicTilesButton.vue";
 
 const gaming = namespace("gaming-screen");
 @Component({
-    name: "GamingScreen",
+    name: "gamingScreen",
     components: {
+        gameBoard,
         CountdownTimerWrapper,
+        magicTilesButton,
     },
 })
 export default class GamingScreen extends Vue {
     @gaming.State
     public scoreBoard!: ScoreBoard;
+
+    /**
+     * @description determines whether the game starts
+     */
+    @Prop({ default: "true" }) public runGame!: string;
 }
 </script>
 
