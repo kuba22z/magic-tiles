@@ -28,15 +28,20 @@ import GameRectangle from "~/components/gameRectangle.vue";
 import GameRow from "~/components/gameRow.vue";
 import { RectBoard } from "~/types/game-board";
 import { ScoreBoard } from "~/types/scoreBoard";
+import { SoundUtils } from "~/utils/soundUtils";
 
 const board = namespace("game-board");
 const gaming = namespace("gaming-screen");
+
 @Component({
     components: { GameRow, GameRectangle },
 })
 export default class gamingBoard extends Vue {
     @board.State
     public rectBoard!: RectBoard;
+
+    @board.Mutation
+    public initRectBoard!: () => void;
 
     @board.Mutation
     public moveRectRowDown!: (stepSize: number) => void;
@@ -48,16 +53,21 @@ export default class gamingBoard extends Vue {
     public scoreBoard!: ScoreBoard;
 
     miniStep: number = 0;
-    readonly stepSize: number = 0.5;
+    readonly stepSize: number = 1;
     readonly bigStep: number = 25 / this.stepSize;
     timerRef: any;
-    delay: number = 15;
+    delay: number = 30;
+    currentLevel: number = 0;
+    // for test reasons: Level up in steps of 5
+    scoreLevels: number[] = [5, 10, 15, 20, 25];
 
     /**
-     *@description move down all RectRow until the last RectRow
+     * @description initialize rectBoard with 5 RectRows above the
+     * playing field and move down all RectRow until the last RectRow
      * is at the bottom, then it stops the loop and calls startGame()
      */
     public moveRectRowUntilBottom() {
+        this.initRectBoard();
         this.timerRef = setInterval(() => {
             this.moveRectRowDown(this.stepSize);
             this.miniStep++;
@@ -81,6 +91,16 @@ export default class gamingBoard extends Vue {
                 this.checkGameEnd();
                 this.pushFrontAndPop();
                 this.miniStep = 0;
+                if (
+                    this.scoreBoard.score >
+                        this.scoreLevels[this.currentLevel] &&
+                    this.delay > 0
+                ) {
+                    this.levelUp(4);
+                    // necessary so that setInterval notices the change of delay
+                    this.stopGame();
+                    this.startGame();
+                }
             }
         }, this.delay);
     }
@@ -90,6 +110,14 @@ export default class gamingBoard extends Vue {
      */
     public stopGame() {
         clearInterval(this.timerRef);
+    }
+
+    /**
+     * @description stop the game and play sound for game over
+     */
+    public gameOver() {
+        this.stopGame();
+        SoundUtils.playGameOverSound();
     }
 
     /**
@@ -104,7 +132,16 @@ export default class gamingBoard extends Vue {
                 this.rectBoard.board[4].row[3].isClicked
             )
         )
-            this.stopGame();
+            this.gameOver();
+    }
+
+    /**
+     * @description decrement delay for a faster game and set next level
+     * @param speedUp determines how much delay gets smaller
+     */
+    public levelUp(speedUp: number) {
+        this.delay -= speedUp;
+        this.currentLevel++;
     }
 }
 </script>

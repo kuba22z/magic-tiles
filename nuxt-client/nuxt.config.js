@@ -15,7 +15,6 @@ export default {
         ],
         link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
-
     // config for node server
     server: {
         // reads value from .env file. If no .env file, use 0.0.0.0 (globally
@@ -75,5 +74,16 @@ export default {
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {},
+    build: {
+        // necessary so that you can access sound files (mp3 etc.)
+        extend(config) {
+            config.module.rules.push({
+                test: /\.(ogg|mp3|wav|mpe?g)$/i,
+                loader: "file-loader",
+                options: {
+                    name: "[path][name].[ext]",
+                },
+            });
+        },
+    },
 };
