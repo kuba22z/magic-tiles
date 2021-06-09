@@ -7,7 +7,15 @@ import { RectBoard, RectRow } from "~/types/game-board";
     namespaced: true,
 })
 export default class GamingBoard extends VuexModule {
-    public rectBoard: RectBoard = new RectBoard(5);
+    public rectBoard: RectBoard = new RectBoard(0);
+
+    /**
+     * @description initialize rectBoard with 5 RectRows above the playing field
+     */
+    @VuexMutation
+    initRectBoard() {
+        this.rectBoard = new RectBoard(5);
+    }
 
     /**
      * @description moves all rectangle rows to the bottom
@@ -35,5 +43,11 @@ export default class GamingBoard extends VuexModule {
     @VuexMutation
     setIsClicked(indexes: [number, number]) {
         this.rectBoard.board[indexes[0]].row[indexes[1]].isClicked = true;
+    }
+
+    @VuexMutation
+    setColor(colorAndIndexes: [string, number, number]) {
+        this.rectBoard.board[colorAndIndexes[1]].row[colorAndIndexes[2]].color =
+            colorAndIndexes[0];
     }
 }

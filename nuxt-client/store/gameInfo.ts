@@ -1,6 +1,7 @@
 import { Module, VuexModule, VuexMutation } from "nuxt-property-decorator";
 import { Coupons, GameInfo, MagicTilesData } from "~/types/gameInfo";
 import { TimerUtils } from "~/utils/timerUtils";
+import { defaultCorrectBook, defaultFalseImages } from "~/assets/rectImages";
 
 /**
  * @description Store that is used to store all game data that we get from the
@@ -14,8 +15,8 @@ import { TimerUtils } from "~/utils/timerUtils";
 export default class GameInfoStore extends VuexModule {
     userValidated: boolean = false;
     coupons: Coupons = [];
-    correctImage: string = "";
-    falseImages: string[] = [];
+    correctImage: string = defaultCorrectBook;
+    falseImages: string[] = defaultFalseImages;
     gameMaxLevel: number = 0;
     // TODO(pierre): currently it is hardcoded "{baseUrl}..."? Ask main backend
     // team to fix this.
