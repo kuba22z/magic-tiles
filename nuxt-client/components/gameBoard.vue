@@ -16,14 +16,17 @@
         >
             Start
         </button>
-        <button class="test-btn border border-black w-20" @click="stopGame">
+        <button class="test-btn border border-black w-20" @click="pauseGame">
             Stop
         </button>
+        <div class="countDown">
+            {{ countDownForGameStart }}
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, namespace } from "nuxt-property-decorator";
+import { Component, Vue, namespace, Prop } from "nuxt-property-decorator";
 import GameRectangle from "~/components/gameRectangle.vue";
 import GameRow from "~/components/gameRow.vue";
 import { RectBoard } from "~/types/game-board";
@@ -52,6 +55,11 @@ export default class gamingBoard extends Vue {
     @gaming.State
     public scoreBoard!: ScoreBoard;
 
+    /**
+     * @description determines whether the game starts
+     */
+    @Prop({ default: "true" }) public runGame!: string;
+
     miniStep: number = 0;
     readonly stepSize: number = 1;
     readonly bigStep: number = 25 / this.stepSize;
@@ -60,21 +68,53 @@ export default class gamingBoard extends Vue {
     currentLevel: number = 0;
     // for test reasons: Level up in steps of 5
     scoreLevels: number[] = [5, 10, 15, 20, 25];
+    countDownForGameStart: number = 3;
 
     /**
-     * @description initialize rectBoard with 5 RectRows above the
-     * playing field and move down all RectRow until the last RectRow
-     * is at the bottom, then it stops the loop and calls startGame()
+     * @description runs the countdown for game start if the prop
+     * runGame is true, initialize rectBoard with 5 RectRows above the
+     * playing field and calls after the countDown startGame()
+     */
+    mounted() {
+        if (this.runGame === "true") {
+            this.initRectBoard();
+            this.timerRef = setInterval(() => {
+                this.decrementCurrentTime();
+                if (this.countDownForGameStart === 0) {
+                    clearInterval(this.timerRef);
+                    this.startGame();
+                }
+            }, 1000);
+        }
+    }
+
+    /**
+     * @description decrement countDownForGameStart
+     */
+    decrementCurrentTime() {
+        this.countDownForGameStart--;
+    }
+
+    /**
+     * @description starts the game, calls moveRectRowUntilBottom(),
+     * and moveRectRowUntilBottom() calls mainGameLoop
+     */
+    public startGame() {
+        this.moveRectRowUntilBottom();
+    }
+
+    /**
+     * @description move down all RectRow until the last RectRow
+     * is at the bottom, then it stops the loop and calls mainGameLoop()
      */
     public moveRectRowUntilBottom() {
-        this.initRectBoard();
         this.timerRef = setInterval(() => {
             this.moveRectRowDown(this.stepSize);
             this.miniStep++;
             if (this.miniStep === this.bigStep * 4) {
                 this.miniStep = 0;
                 clearInterval(this.timerRef);
-                this.startGame();
+                this.mainGameLoop();
             }
         }, this.delay);
     }
@@ -83,7 +123,7 @@ export default class gamingBoard extends Vue {
      *@description endless loop which move all RectRow to the bottom
      * and creates new rectRows at the top
      */
-    public startGame() {
+    public mainGameLoop() {
         this.timerRef = setInterval(() => {
             this.moveRectRowDown(this.stepSize);
             this.miniStep++;
@@ -98,7 +138,7 @@ export default class gamingBoard extends Vue {
                 ) {
                     this.levelUp(4);
                     // necessary so that setInterval notices the change of delay
-                    this.stopGame();
+                    this.pauseGame();
                     this.startGame();
                 }
             }
@@ -106,18 +146,20 @@ export default class gamingBoard extends Vue {
     }
 
     /**
-     * @description stop the game
+     * @description pause the game
      */
-    public stopGame() {
+    public pauseGame() {
         clearInterval(this.timerRef);
     }
 
     /**
-     * @description stop the game and play sound for game over
+     * @description stop the game, play sound for game over and
+     * redirect to score-screen
      */
-    public gameOver() {
-        this.stopGame();
+    public stopGame() {
+        this.pauseGame();
         playGameOverSound();
+        this.redirectToScoreScreen();
     }
 
     /**
@@ -132,7 +174,7 @@ export default class gamingBoard extends Vue {
                 this.rectBoard.board[4].row[3].isClicked
             )
         )
-            this.gameOver();
+            this.stopGame();
     }
 
     /**
@@ -142,6 +184,15 @@ export default class gamingBoard extends Vue {
     public levelUp(speedUp: number) {
         this.delay -= speedUp;
         this.currentLevel++;
+    }
+
+    /**
+     * @description redirect to score-screen
+     */
+    public redirectToScoreScreen() {
+        this.$router.push({
+            path: "/score-screen",
+        });
     }
 }
 </script>
