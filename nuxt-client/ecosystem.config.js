@@ -29,7 +29,7 @@ module.exports = {
             args: "start",
             // watches all files inside the .nuxt folder and auto reloads if
             // any files in this folder change.
-            watch: [".nuxt"]
+            watch: [".nuxt"],
             // delay between first file change and pm2 reload. Assumes it will
             // take maximum 10s to copy all files to the .nuxt folder.
             watch_delay: 10000,
