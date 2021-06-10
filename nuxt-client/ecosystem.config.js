@@ -27,12 +27,12 @@ module.exports = {
             script: "./node_modules/nuxt/bin/nuxt.js",
             // arguments that are be passed to the nuxt server
             args: "start",
-            // auto restarts pm2 when files change
-            watch: true,
-            // delay between first file change -> restart
-            watch_delay: 5000,
-            // ignores changes to node_modules
-            ignore_watch: ["node_modules"],
+            // watches all files inside the .nuxt folder and auto reloads if
+            // any files in this folder change.
+            watch: [".nuxt"]
+            // delay between first file change and pm2 reload. Assumes it will
+            // take maximum 10s to copy all files to the .nuxt folder.
+            watch_delay: 10000,
             // restart every 5s if app crashes
             restart_delay: 5000,
         },

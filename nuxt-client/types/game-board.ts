@@ -1,27 +1,34 @@
+import { gameInfoStore } from "~/store";
+
 export class Rect {
     image: string;
     x: number;
     y: number;
     isClicked: boolean;
+    color: string;
 
     constructor(
         x: number = 0,
         y: number = 0,
         image: string = "",
-        isClicked: boolean = false
+        isClicked: boolean = false,
+        color: string = "black"
     ) {
         this.x = x;
         this.y = y;
         this.image = image;
         this.isClicked = isClicked;
+        this.color = color;
     }
 }
-
 export class RectRow {
     public row: Rect[] = [];
+
+    public correctImage!: string;
+
     constructor(rectPosY: number = 0) {
-        const correctImage: string = "book.svg";
-        const badImage: string = "cook-book.svg";
+        const correctImage: string = gameInfoStore.getCorrectImage;
+        const falseImages: string[] = gameInfoStore.getFalseImages;
         // Number of Rectangles for each Row
         const rectanglesPerRow: number = 4;
 
@@ -31,14 +38,17 @@ export class RectRow {
         // x coordinate of current rectangle
         let rectPosX: number;
         let resultingImage: string;
+        let randomNum;
 
-        // number of correct image -> a number between 1-4
+        // number of correct image -> a number between 0 and 3
         const numOfCorrectImage: number = Math.floor(
             Math.random() * rectanglesPerRow
         );
-
         for (let i = 0; i < rectanglesPerRow; i++) {
-            resultingImage = i === numOfCorrectImage ? correctImage : badImage;
+            // random number between 0 and indexOfLastFalseImage
+            randomNum = Math.floor(Math.random() * falseImages.length);
+            resultingImage =
+                i === numOfCorrectImage ? correctImage : falseImages[randomNum];
             rectPosX = i * rectWitdh;
             this.row.push(new Rect(rectPosX, rectPosY, resultingImage));
         }

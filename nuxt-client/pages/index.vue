@@ -1,45 +1,114 @@
 <template>
     <div>
-        <div
-            class="flex flex-col justify-center items-center border border-red-300"
-        >
+        <div class="flex flex-col justify-center items-center">
             <div
-                class="explanation-top border flex justify-center items-center border-red-300 my-10 w-full text-center"
+                class="
+                    explanation-top
+                    flex flex-col
+                    justify-center
+                    mt-2
+                    w-full
+                    text-center
+                "
             >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Cupiditate, inventore eligendi. Saepe odit consequuntur
-                consectetur iste? Doloremque soluta eius nobis, distinctio,
+                <div class="title text-2xl w-full">magic tiles</div>
+                <div class="mt-4 text-xl w-full px-4">
+                    Bei diesem Spiel fahren die Kacheln von oben nach untern
+                    herunter. Pro Reihe gibt es jeweils eine richtige Kachel,
+                    die angeklickt werden muss.
+                </div>
             </div>
             <div
-                class="flex flex-col justify-center items-center logo-and-hint mt-1 w-full border border-red-300"
+                class="
+                    flex flex-col
+                    justify-center
+                    items-center
+                    logo-and-hint
+                    mt-4
+                    w-full
+                "
             >
-                <div class="image h-20 w-20 bg-green-300"></div>
+                <div
+                    class="
+                        flex
+                        justify-center
+                        items-center
+                        text-center
+                        h-20
+                        w-20
+                        mt-4
+                    "
+                >
+                    <img
+                        :src="correctImage"
+                        alt="Image  you have to click to get points."
+                    />
+                </div>
                 <div class="hint text-center">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Illum totam autem reprehender
+                    Dies ist die korrekte Kachel für die heutige Spielereunde!
+                </div>
+                <div class="text-lg explanation-finish text-center mt-4 px-4">
+                    Pro Klick auf die richtige Kachel gibt es jeweils einen
+                    Punkt. Beim Klick auf eine falsche Kachel ist das Spiel
+                    vorbei.
                 </div>
             </div>
             <div
-                class="bottom-navigation-buttons flex flex-col justify-center mt-10 items-center border border-red-300 w-full"
+                class="
+                    bottom-navigation-buttons
+                    flex
+                    items-center
+                    mt-4
+                    justify-center
+                    w-full
+                "
             >
                 <div
-                    class="next-button border border-red-300 h-12 w-24 flex justify-center items-center text-center"
+                    class="
+                        flex
+                        items-center
+                        justify-center
+                        w-full
+                        buttons
+                        space-x-2
+                        mb-6
+                    "
                 >
-                    <MagicTilesButton
-                        text="Weiter"
-                        link-to="/explanation-coupons"
-                        button-type="nuxtlink"
-                        color="green"
-                    />
-                </div>
-                <div
-                    class="back-button mt-6 border border-red-300 h-12 w-39 flex justify-center items-center text-center"
-                >
-                    <MagicTilesButton
-                        text="back to street!"
-                        button-type="href"
-                        color="green"
-                    />
+                    <div
+                        class="
+                            back-button
+                            h-12
+                            w-36
+                            flex
+                            justify-center
+                            items-center
+                            text-center
+                        "
+                    >
+                        <MagicTilesButton
+                            text="back to street!"
+                            button-type="href"
+                            color="green"
+                        />
+                    </div>
+                    <div
+                        class="
+                            next-button
+                            h-12
+                            w-36
+                            flex
+                            justify-center
+                            items-center
+                            text-center
+                        "
+                    >
+                        <MagicTilesButton
+                            text="Weiter"
+                            link-to="/explanation-coupons"
+                            button-type="nuxtlink"
+                            color="green"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,12 +116,21 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "nuxt-property-decorator";
 import MagicTilesButton from "~/components/magicTilesButton.vue";
+import { gameInfoStore } from "~/store";
 
-export default Vue.extend({
-    components: { MagicTilesButton },
-});
+@Component({
+    name: "GameStartPage",
+    components: {
+        MagicTilesButton,
+    },
+})
+export default class GameStartPage extends Vue {
+    get correctImage(): string {
+        return gameInfoStore.getCorrectImage;
+    }
+}
 </script>
 
 <style scoped></style>

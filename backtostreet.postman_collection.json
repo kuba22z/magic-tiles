@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "82db28ec-a638-42e7-981e-2b50fa03bfc0",
+		"name": "backtostreet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create activity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.back2street.de/user100/activity/create/5",
+					"protocol": "https",
+					"host": [
+						"api",
+						"back2street",
+						"de"
+					],
+					"path": [
+						"user100",
+						"activity",
+						"create",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validate token",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2|FsDfYGNKKLH6zgCVQMElK12EOCHLnU7N84mR5GOx",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"activity_id\": 6 \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.back2street.de/api/v1/activities/validate",
+					"protocol": "https",
+					"host": [
+						"api",
+						"back2street",
+						"de"
+					],
+					"path": [
+						"api",
+						"v1",
+						"activities",
+						"validate"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "auth-token",
+			"value": "uADpqTpRmP91AHRhEaM7Gj7fqNWYUFwkGarkKSwg"
+		}
+	]
+}

@@ -16,4 +16,9 @@ export default class GamingScreen extends VuexModule {
     incrementScore() {
         this.scoreBoard.score++;
     }
+
+    @VuexMutation
+    setScore(newScore: number = 0) {
+        this.scoreBoard.score = newScore;
+    }
 }
