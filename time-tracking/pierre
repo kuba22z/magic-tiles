@@ -45,3 +45,7 @@ corporate design, benotung;;
 02.06.2021; sprint planning and discussion with jakub; 1h; 1h30min;;;;;
 06.06.2021; adapt validation to query master backend and adapt to the final api response data. adapt the activity param that has changes from 1 to 7;1h;2h30min;;;
 06.06.2021; implement the required timer for our game that is based upon the expired_at value that we get from the main backend api. create generic countdownTimer component (possibly for other group members to use it as well).  create wrapper for the magic-tiles use case that accesses our store.;2h;3h15min;;;;
+08.06.2021; merge requests gereviewed;20min;20min;;;
+09.06.2021; weekly meeting;15min;40min;probleme/unklarheiten bezüglich der Abschlusspräsentation besprochen und Fragen notiert.;;;
+09.06.2021; reflexion und ausblick aus magic-tiles perspektive für den Abschlussbericht erstellt.;30min;1h30min;;;
+10.06.2021; sprint review meeting;1h;1h30min;;;

@@ -1,0 +1,45 @@
+REFLEXION MAGIC-TILES:
+
+
+1) Was lief gut?
+- Die Kommunikation und Aufgabenplanung im Zweierteam lief sehr gut. Wenn wir
+Probleme hatten, dann haben wir uns Zeitnah getroffen und diese Zusammen
+geklärt. Durch Merge Requests konnten wir auch einen guten Überblick über die
+Implementierung des jeweils anderen behalten.
+- Trotz Startschwierigkeiten und neuer Technologien (Vue, Nuxt, Typescript,
+Tailwindcss, etc..) konnten wir uns schnell einarbeiten. Bei Problemen konnte
+man den Teampartner immer fragen.
+- Wir haben zu Beginn klare Styleguides für unser Projekt aufgestellt und
+diese über die Entwicklung durchgezogen. Es war Anfangs zwar schwierig, doch
+dadurch haben wir nun ein vollständig kommentiertes Projekt.
+
+
+2) Was lief weniger gut?
+- Die Absprache zwischen Front- und Backend war leider nicht gut geplant.
+Als einziger, jedoch großer Punkt steht die Validierung. Im gemeinsamen
+Review Meeting wurde besprochen, dass wir bei der Implementierung unseres
+ersten Meilensteins (Endergebnis des IPs) auf die Validierung verzichten. Das
+Main Backend Team hat dies jedoch implementiert, was an sich auch okay ist.
+Nur kam es dadurch zu einer sehr späten vollendeten (und im Frontend nutbaren)
+Implementierung der Authentifizierung und der Authorisierung (02.06.2021).
+Dadurch konnten die Spiele im Frontend das erst sehr spät implementieren.  Wir
+haben die Validierung z.b. 4x implementiert.
+
+
+3) Was würden Sie beim nächsten Projekt anders machen?
+- Im Vorhinein gemeinsam überlegen ob es wiederverwertbare Komponenten gibt,
+die jedes einzelne Spiel bzw. jede Codebase benötigt. Als Beispiele: Die Timer
+Komponente und die Button Komponente. Diese würde dann ein Team implementieren
+und alle anderen verwenden diese Komponente. Dadurch kommt es zu einem
+einheitlichen Design, weniger Aufwand und einer einheitlichen Funktionalität.
+- Klarer Features ablehnen bzw. reduzieren und den Arbeitsaufwand aufzeigen in
+den Review Meetings. Das Aufsetzen eines separaten Servers sowie die
+Implementierung von GitLab CiCd (continious development & continious
+deployment) hat viel Zeit gekostet. Jedoch haben wir deswegen nicht unsere
+geplanten Features reduziert.
+- Bei der Planung und Zeitabschätzung der Features mehr Zeit bzw. einen
+Zeitpuffer einplanen. Wir haben uns ziemlich übernommen.
+
+
+Ausblick:
+- Implementierung von weiteren Spielen, damit die Nutzer mehr Auswahl haben.
