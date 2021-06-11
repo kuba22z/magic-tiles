@@ -88,6 +88,10 @@ export default class Validation extends Vue {
                     },
                 }
             );
+            // TODO(pierre): make this an action instead and emove the set
+            // bearer token method. and set activity id method
+            gameInfoStore.setActivityId(this.queryParams.activity_id);
+            gameInfoStore.setAuthToken(this.queryParams.token);
             gameInfoStore.initializeGameInfo(response.data);
             // NOTE(pierre): have to set token duration on seperate call since
             // it is not sent by the api response after validating.

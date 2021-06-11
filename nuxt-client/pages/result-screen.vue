@@ -8,7 +8,7 @@
             <div v-else-if="$fetchState.error">
                 Sending your highscore did throw an error! Contact the support.
             </div>
-            <div v-else-if="$fetchState.done" class="finished-loading">
+            <div v-else class="finished-loading">
                 <div
                     v-if="wonACoupon"
                     class="
@@ -22,8 +22,9 @@
                         congrats, you did win the following coupon!
                     </div>
                     <CouponItem
-                        :image="coupon.image_url"
-                        :description="coupon.description"
+                        v-if="couponTheUserWon !== null"
+                        :image="couponTheUserWon.image_url"
+                        :description="couponTheUserWon.description"
                     />
                 </div>
                 <div v-else>
@@ -49,6 +50,7 @@
 import { Component, Vue } from "nuxt-property-decorator";
 import magicTilesButton from "~/components/magicTilesButton.vue";
 import CouponItem from "~/components/couponItem.vue";
+import { gameInfoStore } from "~/store";
 
 @Component({
     name: "ResultScreen",
@@ -59,9 +61,19 @@ import CouponItem from "~/components/couponItem.vue";
 })
 export default class ResultScreen extends Vue {
     async fetch() {
-        // debug fetch 2 seconds. TODO(pierre): delete this once finished.
+        // debug fetch 2 seconds. TODO(pierre): delete this once finished with testing.
         await new Promise((resolve) => setTimeout(resolve, 2000));
         console.log("fetched.");
+        await gameInfoStore.sendHighscore();
+        console.log("highscore sent and response received.");
+    }
+
+    get couponTheUserWon() {
+        return gameInfoStore.getCouponTheUserWon;
+    }
+
+    get wonACoupon(): boolean {
+        return this.couponTheUserWon !== null;
     }
 }
 </script>

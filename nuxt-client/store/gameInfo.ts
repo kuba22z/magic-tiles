@@ -4,7 +4,13 @@ import {
     VuexModule,
     VuexMutation,
 } from "nuxt-property-decorator";
-import { Coupon, Coupons, GameInfo, MagicTilesData } from "~/types/gameInfo";
+import {
+    Coupon,
+    Coupons,
+    GameInfo,
+    MagicTilesData,
+    resultingCoupon,
+} from "~/types/gameInfo";
 import { TimerUtils } from "~/utils/timerUtils";
 import { defaultCorrectBook, defaultFalseImages } from "~/assets/rectImages";
 import { AxiosResponse } from "axios";
@@ -31,6 +37,9 @@ export default class GameInfoStore extends VuexModule {
     redirectUrl: string = "";
     // used for our countdown timer
     validUntil: Date | null = null;
+    // used to authenticate with the main backend
+    authToken: string | null = null;
+    activityId: number | null = null;
 
     /**
      * @description Initializes the game data that we got from the main
@@ -60,18 +69,32 @@ export default class GameInfoStore extends VuexModule {
         this.validUntil = validUntil;
     }
 
+    @VuexMutation
+    setAuthToken(token: string) {
+        this.authToken = token;
+    }
+
+    @VuexMutation
+    setActivityId(id: number) {
+        this.activityId = id;
+    }
+
     @VuexAction({ commit: "setWinningCoupon" })
     async sendHighscore() {
         try {
             // throw new Error("test error case.");
-            const response: AxiosResponse = await $axios.post(
-                "/api/api/v1/activities/validate",
+            const response: AxiosResponse = await $axios.put(
+                "/api/api/v1/activities",
                 {
-                    activity_id: Number(this.queryParams.activity_id),
+                    activity_id: Number(this.activityId),
+                    // TODO(pierre): ask jakub where/how to get score here.
+                    score: 30,
+                    // TODO(pierre): ask jakub where/how to get reached_level here.
+                    reached_level: 3,
                 },
                 {
                     headers: {
-                        Authorization: `Bearer ${this.queryParams.token}`,
+                        Authorization: `Bearer ${this.authToken}`,
                     },
                 }
             );
@@ -80,6 +103,7 @@ export default class GameInfoStore extends VuexModule {
             console.log("Error when calling fetch() on validate.vue.");
             console.log("error:");
             console.log(e);
+            return e;
         }
     }
 
@@ -88,9 +112,10 @@ export default class GameInfoStore extends VuexModule {
      * to the main backend.
      */
     @VuexMutation
-    setWinningCoupon(backendResponse: any) {
+    setWinningCoupon(backendResponse: resultingCoupon) {
         console.log("setWinningCoupon response:");
         console.log(backendResponse);
+        this.couponTheUserWon = backendResponse.coupon;
     }
 
     get getSecondsLeft(): number {
@@ -120,5 +145,9 @@ export default class GameInfoStore extends VuexModule {
 
     get getFalseImages(): string[] {
         return this.falseImages;
+    }
+
+    get getCouponTheUserWon(): Coupon | null {
+        return this.couponTheUserWon;
     }
 }
