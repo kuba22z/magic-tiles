@@ -1,7 +1,14 @@
-import { Module, VuexModule, VuexMutation } from "nuxt-property-decorator";
-import { Coupons, GameInfo, MagicTilesData } from "~/types/gameInfo";
+import {
+    Module,
+    VuexAction,
+    VuexModule,
+    VuexMutation,
+} from "nuxt-property-decorator";
+import { Coupon, Coupons, GameInfo, MagicTilesData } from "~/types/gameInfo";
 import { TimerUtils } from "~/utils/timerUtils";
 import { defaultCorrectBook, defaultFalseImages } from "~/assets/rectImages";
+import { AxiosResponse } from "axios";
+import { $axios } from "~/utils/api";
 
 /**
  * @description Store that is used to store all game data that we get from the
@@ -15,6 +22,7 @@ import { defaultCorrectBook, defaultFalseImages } from "~/assets/rectImages";
 export default class GameInfoStore extends VuexModule {
     userValidated: boolean = false;
     coupons: Coupons = [];
+    couponTheUserWon: Coupon | null = null;
     correctImage: string = defaultCorrectBook;
     falseImages: string[] = defaultFalseImages;
     gameMaxLevel: number = 0;
@@ -50,6 +58,39 @@ export default class GameInfoStore extends VuexModule {
     @VuexMutation
     setTokenDuration(validUntil: Date) {
         this.validUntil = validUntil;
+    }
+
+    @VuexAction({ commit: "setWinningCoupon" })
+    async sendHighscore() {
+        try {
+            // throw new Error("test error case.");
+            const response: AxiosResponse = await $axios.post(
+                "/api/api/v1/activities/validate",
+                {
+                    activity_id: Number(this.queryParams.activity_id),
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${this.queryParams.token}`,
+                    },
+                }
+            );
+            return response.data;
+        } catch (e) {
+            console.log("Error when calling fetch() on validate.vue.");
+            console.log("error:");
+            console.log(e);
+        }
+    }
+
+    /**
+     * @description Sets the coupon that we have won after sending our highscore
+     * to the main backend.
+     */
+    @VuexMutation
+    setWinningCoupon(backendResponse: any) {
+        console.log("setWinningCoupon response:");
+        console.log(backendResponse);
     }
 
     get getSecondsLeft(): number {
