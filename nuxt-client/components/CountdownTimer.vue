@@ -1,14 +1,33 @@
 <template>
     <div>
         <div class="flex flex-col justify-center items-center">
-            <div class="countdown-test">Testing the countdown timer.</div>
             <div class="running-timer" v-if="runCountdown">
-                <div class="description">shall run the countdown</div>
-                <div class="time">{{ currentTime }}</div>
+                <!-- MAYBE(pierre): figure out why prettier formats these class attributes so weirdly -->
+                <div
+                    class="
+                        time
+                        px-3
+                        py-3
+                        border-solid border-black border-2
+                        rounded-full
+                    "
+                >
+                    {{ currentTime }}
+                </div>
             </div>
             <div class="timer-not-running" v-else>
-                <div class="description">not running the countdown.</div>
-                <div class="time">{{ currentTime }}</div>
+                <div class="description circle">not running the countdown.</div>
+                <div
+                    class="
+                        time
+                        px-3
+                        py-3
+                        border-solid border-black border-2
+                        rounded-full
+                    "
+                >
+                    {{ currentTime }}
+                </div>
             </div>
         </div>
     </div>
@@ -109,4 +128,9 @@ export default class CountdownTimer extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.circle {
+    border: 1px solid black;
+    border-radius: 50%;
+}
+</style>
