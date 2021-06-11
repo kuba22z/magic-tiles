@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 403 478" style="enable-background:new 0 0 403 478;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;stroke:#142A52;stroke-width:3;stroke-miterlimit:10;}
+	.st1{fill:none;}
+	.st2{fill:#142A52;}
+	.st3{font-family:'AmaticSC-Bold';}
+	.st4{font-size:54px;}
+	.st5{font-size:55px;}
+	.st6{fill:#FFFFFF;stroke:#142A52;stroke-width:2.8031;stroke-miterlimit:10;}
+</style>
+<path class="st0" d="M381.9,122.1h-353c-6.6,0-12-5.4-12-12v-68c0-6.6,5.4-12,12-12h353c6.6,0,12,5.4,12,12v68
+	C393.9,116.7,388.5,122.1,381.9,122.1z"/>
+<rect x="25.4" y="58" class="st1" width="171.4" height="45.9"/>
+<text transform="matrix(1 0 0 1 25.562 93.7244)" class="st2 st3 st4">High score:</text>
+<path class="st0" d="M376.9,252.1h-353c-6.6,0-12-5.4-12-12v-68c0-6.6,5.4-12,12-12h353c6.6,0,12,5.4,12,12v68
+	C388.9,246.7,383.5,252.1,376.9,252.1z"/>
+<rect x="8.4" y="186" class="st1" width="250.4" height="45.9"/>
+<text transform="matrix(1 0 0 1 25.4673 222.3856)" class="st2 st3 st5">Punktestand:</text>
+<path class="st6" d="M214.9,453.6h-190c-6.6,0-12-5.4-12-12V324.1c0-6.6,5.4-12,12-12h190c6.6,0,12,5.4,12,12v117.5
+	C226.9,448.2,221.5,453.6,214.9,453.6z"/>
+</svg>
