@@ -1,7 +1,5 @@
 <!-- Component serves a generic styling template for all buttons -->
 <template>
-    <!-- TODO(pierre): define own class for color
-            backtostreet-blue' and backtostreet-blue-hover -->
     <NuxtLink
         v-if="buttonType === 'nuxtlink'"
         class="
