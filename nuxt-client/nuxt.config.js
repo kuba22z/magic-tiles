@@ -50,6 +50,17 @@ export default {
     // https://tailwindcss.nuxtjs.org/releases/#v4.0.0
     tailwindcss: {
         jit: true,
+        config: {
+            theme: {
+                extend: {
+                    colors: {
+                        "backtostreet-blue": "#142a52",
+                        // TODO(pierre): ask alexamder samsz for lightblue/hover color.
+                        "backtostreet-lightblue": "#60a5fa",
+                    },
+                },
+            },
+        },
     },
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
