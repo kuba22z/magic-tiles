@@ -2,45 +2,42 @@
 <template>
     <NuxtLink
         v-if="buttonType === 'nuxtlink'"
+        class="
+            button
+            rounded-2xl
+            h-full
+            w-full
+            items-center
+            justify-center
+            flex
+            text-lg text-white
+            bg-backtostreet-blue
+            hover:bg-backtostreet-lightblue
+        "
         :to="linkTo"
-        :class="[
-            'rounded-2xl',
-            'h-full',
-            'w-' + fixedWidth,
-            'items-center',
-            'justify-center',
-            'text-lg',
-            /*MAYBE(jakub)  'bg-'+color+'-600',*/
-            'ring-2',
-            //TODO(jakub) -> BUG: setting the color doesnt work
-            'ring-' + color + '-600',
-            'hover:bg-' + color + '-600',
-        ]"
-        class="button"
     >
-        <div class="mx-1 mt-2.5 mb-3 text-center font-bold shadow-md">
+        <div class="flex justify-center items-center text-center font-bold">
             {{ text }}
         </div>
     </NuxtLink>
 
     <button
         v-else-if="buttonType === 'href'"
-        :class="[
-            'rounded-2xl',
-            'h-full',
-            'w-' + fixedWidth,
-            'items-center',
-            'justify-center',
-            'text-lg',
-            /*MAYBE(jakub)  'bg-'+color+'-600',*/
-            'ring-2',
-            'ring-' + color + '-600',
-            'hover:bg-' + color + '-600',
-        ]"
-        class="button"
+        class="
+            button
+            rounded-2xl
+            h-full
+            w-full
+            items-center
+            justify-center
+            flex
+            text-lg text-white
+            bg-backtostreet-blue
+            hover:bg-backtostreet-lightblue
+        "
     >
         <a :href="href">
-            <div class="mx-1 mt-2.5 mb-2 text-center font-bold shadow-md">
+            <div>
                 {{ text }}
             </div>
         </a>
@@ -54,9 +51,7 @@ import { Component, Prop, Vue } from "nuxt-property-decorator";
 export default class magicTilesButton extends Vue {
     @Prop({ default: "/" }) linkTo!: string;
     @Prop({ default: "http://back2street.de/" }) href!: string;
-    @Prop({ default: "green" }) color!: string;
     @Prop(String) text!: string;
-    @Prop({ default: "full" }) fixedWidth!: string;
     @Prop({ default: "nuxtlink" }) buttonType!: string;
 }
 </script>

@@ -67,8 +67,9 @@
                 >
                     <div class="flex flex-col self-center mt-4 w-5/6">
                         <magic-tiles-button
-                            text="Back to Street!"
-                            button-type="href"
+                            text="Highscore abschicken!"
+                            button-type="nuxtlink"
+                            link-to="/result-screen"
                         ></magic-tiles-button>
                     </div>
                     <div class="flex flex-col mt-6">

@@ -4,6 +4,9 @@
             Testing the countdown timer :)
         </div>
         <CountdownTimerWrapper />
+        <div class="class text-backtostreet-lightblue bg-backtostreet-blue">
+            hello
+        </div>
     </div>
 </template>
 
