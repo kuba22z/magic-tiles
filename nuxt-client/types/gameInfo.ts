@@ -45,3 +45,10 @@ export interface Coupon {
     description: string;
     image_url: string;
 }
+
+/**
+ * @description Contains the response we get after sending our highscore
+ */
+export interface resultingCoupon {
+    coupon: Coupon;
+}
