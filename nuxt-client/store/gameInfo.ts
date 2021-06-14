@@ -4,6 +4,7 @@ import {
     VuexModule,
     VuexMutation,
 } from "nuxt-property-decorator";
+import { AxiosResponse } from "axios";
 import {
     Coupon,
     Coupons,
@@ -12,8 +13,10 @@ import {
     resultingCoupon,
 } from "~/types/gameInfo";
 import { TimerUtils } from "~/utils/timerUtils";
-import { defaultCorrectBook, defaultFalseImages } from "~/assets/rectImages";
-import { AxiosResponse } from "axios";
+import {
+    defaultCorrectBook,
+    defaultFalseImages,
+} from "~/assets/rectImages/rectImages";
 import { $axios } from "~/utils/api";
 
 /**

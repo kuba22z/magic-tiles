@@ -1,28 +1,29 @@
 <template>
-    <div>
-        <svg height="426" width="282" class="border border-blue-600">
-            <GameRow
-                v-for="(rectRow, index) in rectBoard.board"
-                :key="index"
-                :row-index="index"
-                :rect-row="rectRow"
-                :stop-game="stopGame"
-            />
-        </svg>
-
-        <button
-            class="test-btn border border-black w-40"
-            @click="moveRectRowUntilBottom"
-        >
-            Start
-        </button>
-        <button class="test-btn border border-black w-20" @click="pauseGame">
-            Stop
-        </button>
-        <div class="countDown">
-            {{ countDownForGameStart }}
-        </div>
-    </div>
+    <svg
+        class="border-l-2 border-r-2 border-backtostreet-blue"
+        style="width: 100%; height: 100%"
+    >
+        <GameRow
+            v-for="(rectRow, index) in rectBoard.board"
+            :key="index"
+            :row-index="index"
+            :rect-row="rectRow"
+            :stop-game="stopGame"
+        />
+    </svg>
+    <!--
+    <button
+        class="test-btn border border-black w-40"
+        @click="moveRectRowUntilBottom"
+    >
+        Start
+    </button>
+    <button class="test-btn border border-black w-20" @click="pauseGame">
+        Stop
+    </button>
+    <div class="countDown">
+        {{ countDownForGameStart }}
+    </div>-->
 </template>
 
 <script lang="ts">

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="app">
         <Nuxt />
     </div>
 </template>
@@ -51,5 +51,8 @@ html {
 .button--grey:hover {
     color: #fff;
     background-color: #35495e;
+}
+.app {
+    background-image: url("../assets/backgroundImage.svg");
 }
 </style>
