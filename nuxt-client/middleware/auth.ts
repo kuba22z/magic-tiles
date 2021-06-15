@@ -5,17 +5,20 @@
  * is authenticated nothing happens.
  */
 
-import { Middleware } from "@nuxt/types";
+import { Context, Middleware } from "@nuxt/types";
 import { gameInfoStore } from "~/store";
 
-const auth: Middleware = ({ redirect }) => {
-    if (gameInfoStore.userValidated) {
+const auth: Middleware = (context) => {
+    console.log("auth middleware fired.");
+
+    // only let the user continue if he is validated or he is trying to validate.
+    if (gameInfoStore.userValidated || context.route.path === "/validate") {
         return;
     }
 
     // TODO(pierre): redirect to main-backend page once we have an account there
     // and can test the app
-    redirect("/fake-redirect");
+    context.redirect("/fake-redirect");
 };
 
 export default auth;
