@@ -31,6 +31,12 @@ export default {
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,
 
+    // src: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-router
+    router: {
+        // runs the middleware/auth.ts on every page
+        middleware: "auth",
+    },
+
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
         // https://go.nuxtjs.dev/typescript

@@ -65,8 +65,7 @@ export default class Validation extends Vue {
     /**
      * @description gets route params on initial page load.
      */
-    async asyncData({ route }: Context) {
-        console.log(route);
+    asyncData({ route }: Context) {
         return {
             queryParams: route.query,
         };
