@@ -1,11 +1,11 @@
 // src: https://typescript.nuxtjs.org/cookbook/middlewares/
 /**
- * @file Will be called on every page visit. If the user is not authenticated he
- * will the redirected to the page where he can log in and/or register.  If he
- * is authenticated nothing happens.
+ * @file Will be called on every page visit. Redirects user to the page where he
+ * can log in/register.  Only exceptions: a) user is validated b) user tries to
+ * validate
  */
 
-import { Context, Middleware } from "@nuxt/types";
+import { Middleware } from "@nuxt/types";
 import { gameInfoStore } from "~/store";
 
 const auth: Middleware = (context) => {
