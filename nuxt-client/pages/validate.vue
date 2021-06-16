@@ -60,7 +60,7 @@ export default class Validation extends Vue {
     validationSuccessful: boolean = false;
     // time it will take to redirect the user to the main page after bad
     // validation
-    countDownDuration: number = 5;
+    countDownDuration: number = 3;
 
     /**
      * @description gets route params on initial page load.
@@ -111,8 +111,7 @@ export default class Validation extends Vue {
      * @description Redirects the user to the first page of our game. User will only
      * be redirected if he did validate with his token before.
      */
-    async redirectToGameStartPage() {
-        await this.countToZero();
+    redirectToGameStartPage() {
         this.$router.push({
             path: "/",
         });
