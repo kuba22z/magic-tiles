@@ -11,8 +11,8 @@
 import { Component, Prop, Vue, namespace } from "nuxt-property-decorator";
 import { Rect } from "~/types/game-board";
 import { SoundUtils } from "~/utils/soundUtils";
-import { gameInfoStore } from "~/store";
-const gaming = namespace("gaming-screen");
+import { gameInfoStore, gamingScreenStore } from "~/store";
+
 const board = namespace("game-board");
 
 @Component
@@ -24,9 +24,6 @@ export default class gamingRectangle extends Vue {
     @Prop() public rowIndex!: number;
 
     @Prop() public stopGame!: any;
-
-    @gaming.Mutation
-    public incrementScore!: () => void;
 
     @board.Mutation
     public setColor!: (colorAndIndexes: [string, number, number]) => void;
@@ -43,7 +40,7 @@ export default class gamingRectangle extends Vue {
 
         this.setIsClicked([this.rowIndex, this.colIndex]);
         if (this.rect.image === gameInfoStore.getCorrectImage) {
-            this.incrementScore();
+            gamingScreenStore.incrementScore();
             this.setColor(["green", this.rowIndex, this.colIndex]);
             SoundUtils.playCorrectSound();
         } else {
