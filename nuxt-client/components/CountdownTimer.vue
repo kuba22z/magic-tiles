@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="flex flex-col justify-center items-center">
-            <div class="running-timer" v-if="runCountdown">
+            <div v-if="runCountdown" class="running-timer">
                 <!-- MAYBE(pierre): figure out why prettier formats these class attributes so weirdly -->
                 <div
                     class="
@@ -10,12 +10,25 @@
                         py-3
                         border-solid border-black border-2
                         rounded-full
+                        bg-white
+                        justify-center
                     "
+                    style="width: 55px"
                 >
-                    {{ currentTime }}
+                    <div
+                        class="
+                            flex
+                            justify-center
+                            font-extrabold
+                            text-xl text-backtostreet-blue
+                        "
+                        style="font-family: Amatic SC, serif"
+                    >
+                        {{ currentTime }}
+                    </div>
                 </div>
             </div>
-            <div class="timer-not-running" v-else>
+            <div v-else class="timer-not-running">
                 <div class="description circle">not running the countdown.</div>
                 <div
                     class="
@@ -24,9 +37,22 @@
                         py-3
                         border-solid border-black border-2
                         rounded-full
+                        bg-white
+                        justify-center
                     "
+                    style="width: 55px"
                 >
-                    {{ currentTime }}
+                    <div
+                        class="
+                            flex
+                            justify-center
+                            font-bold
+                            text-backtostreet-blue
+                        "
+                        style="font-family: Amatic SC, serif"
+                    >
+                        {{ currentTime }}
+                    </div>
                 </div>
             </div>
         </div>
