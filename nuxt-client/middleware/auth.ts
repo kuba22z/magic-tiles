@@ -9,8 +9,6 @@ import { Middleware } from "@nuxt/types";
 import { gameInfoStore } from "~/store";
 
 const auth: Middleware = (context) => {
-    console.log("auth middleware fired.");
-
     // only let the user continue if he is validated or he is trying to validate.
     if (gameInfoStore.userValidated || context.route.path === "/validate") {
         return;
