@@ -54,7 +54,7 @@ export default class FakeRedirect extends Vue {
                 "got null as response data from axios request to create an activity."
             );
         }
-        this.$router.push({
+        this.$nuxt.$router.push({
             path: "/validate",
             query: {
                 activity_id: this.activityData.activity_id.toString(),
