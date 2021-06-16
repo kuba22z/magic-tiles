@@ -20,7 +20,7 @@
         </div>
     </div>
     <!--
-        TODO(pierre): maybe keep these. just keep them for debugging purposes
+       //this button disturbs when I'm styling
         right now.
         <div
             class="
@@ -76,7 +76,7 @@ export default class GamingScreen extends Vue {
     /**
      * @description determines whether the game starts
      */
-    @Prop({ default: "false" }) public runGame!: string;
+    @Prop({ default: "true" }) public runGame!: string;
 }
 </script>
 

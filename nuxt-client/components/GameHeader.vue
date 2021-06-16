@@ -10,19 +10,19 @@
         "
         style="height: 20%"
     >
-        <div class="timer-test px-2">
+        <div class="timer-test px-2 flex">
             <CountdownTimerWrapper />
         </div>
         <div
             class="scorePoints flex flex-col border border-red-300"
-            style="width: 41%"
+            style="width: 40%"
         >
-            <div class="highscore border border-red-300 flex py-1.5">
-                <HeaderLine :text="'Highscore:' + scoreBoard.highscore" />
+            <div class="highscore border border-red-300 flex mb-1.5">
+                <HeaderLine :text="'Highscore: ' + highscore" />
             </div>
 
             <div class="score border border-red-300 flex">
-                <HeaderLine :text="'Punktestand:' + scoreBoard.score" />
+                <HeaderLine :text="'Punktestand: ' + score" />
             </div>
         </div>
         <div
@@ -43,10 +43,11 @@
                     border border-red-300
                     bg-red-500
                     ml-auto
+                    font-bold
                 "
-                style="font-size: small"
+                style="font-size: small; width: 100%"
             >
-                BACK 2 STREET
+                <a href="http://back2street.de"> BACK 2 STREET</a>
             </div>
 
             <div
@@ -54,11 +55,11 @@
                     border-solid border-red border-2
                     bg-white
                     h-2/5
-                    w-2/3
                     mt-4
                     flex
+                    justify-center
                 "
-                style="border-radius: 0.4rem"
+                style="border-radius: 0.4rem; width: 60%; height: 45%"
             >
                 <img :src="correctImage" alt="Fehler" />
             </div>
@@ -68,12 +69,9 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { namespace } from "vuex-class";
-import { ScoreBoard } from "~/types/scoreBoard";
+import { gamingScreenStore, gameInfoStore } from "~/store";
 import CountdownTimerWrapper from "~/components/CountdownTimerWrapper.vue";
 import HeaderLine from "~/components/HeaderLine.vue";
-import { gameInfoStore } from "~/store";
-const gaming = namespace("gaming-screen");
 
 @Component({
     name: "GameHeader",
@@ -83,11 +81,16 @@ const gaming = namespace("gaming-screen");
     },
 })
 export default class gameHeader extends Vue {
-    @gaming.State
-    public scoreBoard!: ScoreBoard;
-
     get correctImage(): string {
         return gameInfoStore.getCorrectImage;
+    }
+
+    get score() {
+        return gamingScreenStore.getScore;
+    }
+
+    get highscore() {
+        return gamingScreenStore.getHighscore;
     }
 }
 </script>

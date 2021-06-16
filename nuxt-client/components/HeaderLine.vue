@@ -1,7 +1,13 @@
 <template>
     <div
-        class="border-solid border-red border-2 w-full bg-white"
-        style="border-radius: 0.4rem"
+        class="
+            border-solid border-red border-2
+            w-full
+            bg-white
+            font-extrabold
+            text-backtostreet-blue
+        "
+        style="border-radius: 0.4rem; font-family: Amatic SC, serif"
     >
         {{ text }}
     </div>

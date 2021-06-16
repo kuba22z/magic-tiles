@@ -11,9 +11,21 @@
                         border-solid border-black border-2
                         rounded-full
                         bg-white
+                        justify-center
                     "
+                    style="width: 55px"
                 >
-                    {{ currentTime }}
+                    <div
+                        class="
+                            flex
+                            justify-center
+                            font-extrabold
+                            text-xl text-backtostreet-blue
+                        "
+                        style="font-family: Amatic SC, serif"
+                    >
+                        {{ currentTime }}
+                    </div>
                 </div>
             </div>
             <div v-else class="timer-not-running">
@@ -26,9 +38,21 @@
                         border-solid border-black border-2
                         rounded-full
                         bg-white
+                        justify-center
                     "
+                    style="width: 55px"
                 >
-                    {{ currentTime }}
+                    <div
+                        class="
+                            flex
+                            justify-center
+                            font-bold
+                            text-backtostreet-blue
+                        "
+                        style="font-family: Amatic SC, serif"
+                    >
+                        {{ currentTime }}
+                    </div>
                 </div>
             </div>
         </div>

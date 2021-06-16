@@ -10,7 +10,30 @@
             :rect-row="rectRow"
             :stop-game="stopGame"
         />
+        <g v-show="showCountdown">
+            <circle
+                cx="50%"
+                cy="50%"
+                r="45"
+                stroke="black"
+                stroke-width="3"
+                fill="white"
+            />
+            <text
+                class="countDownText font-extrabold text-backtostreet-blue"
+                x="50%"
+                y="50%"
+                text-anchor="middle"
+                stroke-width="2px"
+                font-size="40"
+                dy=".3em"
+                font-family="Amatic SC"
+            >
+                {{ countDownForGameStart }}
+            </text>
+        </g>
     </svg>
+
     <!--
     <button
         class="test-btn border border-black w-40"
@@ -20,10 +43,7 @@
     </button>
     <button class="test-btn border border-black w-20" @click="pauseGame">
         Stop
-    </button>
-    <div class="countDown">
-        {{ countDownForGameStart }}
-    </div>-->
+    </button>-->
 </template>
 
 <script lang="ts">
@@ -31,11 +51,10 @@ import { Component, Vue, namespace, Prop } from "nuxt-property-decorator";
 import GameRectangle from "~/components/gameRectangle.vue";
 import GameRow from "~/components/gameRow.vue";
 import { RectBoard } from "~/types/game-board";
-import { ScoreBoard } from "~/types/scoreBoard";
 import { SoundUtils } from "~/utils/soundUtils";
+import { gamingScreenStore } from "~/store";
 
 const board = namespace("game-board");
-const gaming = namespace("gaming-screen");
 
 @Component({
     components: { GameRow, GameRectangle },
@@ -53,12 +72,6 @@ export default class gamingBoard extends Vue {
     @board.Mutation
     public pushFrontAndPop!: () => void;
 
-    @gaming.Mutation
-    public setScore!: (newScore: number) => void;
-
-    @gaming.State
-    public scoreBoard!: ScoreBoard;
-
     /**
      * @description determines whether the game starts
      */
@@ -72,8 +85,9 @@ export default class gamingBoard extends Vue {
     delay: number = 30;
     currentLevel: number = 0;
     // for test reasons: Level up in steps of 5
-    scoreLevels: number[] = [5, 10, 15, 20, 25];
+    scoreLevels: number[] = [10, 20, 30, 40, 50];
     countDownForGameStart: number = 3;
+    showCountdown: boolean = true;
 
     /**
      * @description runs the countdown for game start if the prop
@@ -82,12 +96,13 @@ export default class gamingBoard extends Vue {
      */
     mounted() {
         if (this.runGame === "true") {
-            this.setScore(0);
+            gamingScreenStore.setScore(0);
             this.initRectBoard();
             this.countDownTimerRef = setInterval(() => {
                 this.decrementCurrentTime();
                 if (this.countDownForGameStart === 0) {
                     clearInterval(this.countDownTimerRef);
+                    this.showCountdown = false;
                     this.startGame();
                 }
             }, 1000);
@@ -138,11 +153,10 @@ export default class gamingBoard extends Vue {
                 this.pushFrontAndPop();
                 this.miniStep = 0;
                 if (
-                    this.scoreBoard.score >
-                        this.scoreLevels[this.currentLevel] &&
+                    this.score > this.scoreLevels[this.currentLevel] &&
                     this.delay > 0
                 ) {
-                    this.levelUp(4);
+                    this.levelUp(2);
                     // necessary so that setInterval notices the change of delay
                     this.pauseGame();
                     this.mainGameLoop();
@@ -165,7 +179,16 @@ export default class gamingBoard extends Vue {
     public stopGame() {
         this.pauseGame();
         SoundUtils.playGameOverSound();
+        this.computeSessionHighscore();
         this.redirectToScoreScreen();
+    }
+
+    /**
+     * @description determines new session Highscore
+     */
+    public computeSessionHighscore() {
+        if (this.score > this.sessionHighscore)
+            gamingScreenStore.setSessionHighscore(this.score);
     }
 
     /**
@@ -200,5 +223,14 @@ export default class gamingBoard extends Vue {
             path: "/score-screen",
         });
     }
+
+    get score(): number {
+        return gamingScreenStore.getScore;
+    }
+
+    get sessionHighscore(): number {
+        return gamingScreenStore.getSessionHighscore;
+    }
 }
 </script>
+<style scoped></style>

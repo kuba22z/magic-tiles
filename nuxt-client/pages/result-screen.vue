@@ -50,7 +50,7 @@
 import { Component, Vue } from "nuxt-property-decorator";
 import magicTilesButton from "~/components/magicTilesButton.vue";
 import CouponItem from "~/components/couponItem.vue";
-import { gameInfoStore } from "~/store";
+import { gameInfoStore, gamingScreenStore } from "~/store";
 
 @Component({
     name: "ResultScreen",
@@ -61,6 +61,7 @@ import { gameInfoStore } from "~/store";
 })
 export default class ResultScreen extends Vue {
     async fetch() {
+        console.log(gamingScreenStore.getSessionHighscore);
         // debug fetch 2 seconds. TODO(pierre): delete this once finished with testing.
         await new Promise((resolve) => setTimeout(resolve, 2000));
         console.log("fetched.");

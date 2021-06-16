@@ -6,8 +6,9 @@ import { ScoreBoard } from "~/types/scoreBoard";
     stateFactory: true,
     namespaced: true,
 })
-export default class GamingScreen extends VuexModule {
+export default class GamingScreenStore extends VuexModule {
     public scoreBoard: ScoreBoard = new ScoreBoard();
+    public sessionHighscore: number = 0;
 
     /**
      *@description increments the score
@@ -20,5 +21,22 @@ export default class GamingScreen extends VuexModule {
     @VuexMutation
     setScore(newScore: number = 0) {
         this.scoreBoard.score = newScore;
+    }
+
+    @VuexMutation
+    setSessionHighscore(newHighscore: number = 0) {
+        this.sessionHighscore = newHighscore;
+    }
+
+    get getSessionHighscore(): number {
+        return this.sessionHighscore;
+    }
+
+    get getScore(): number {
+        return this.scoreBoard.score;
+    }
+
+    get getHighscore(): number {
+        return this.scoreBoard.highscore;
     }
 }

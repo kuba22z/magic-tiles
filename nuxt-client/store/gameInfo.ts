@@ -5,6 +5,7 @@ import {
     VuexMutation,
 } from "nuxt-property-decorator";
 import { AxiosResponse } from "axios";
+import { gamingScreenStore } from "~/store";
 import {
     Coupon,
     Coupons,
@@ -90,10 +91,8 @@ export default class GameInfoStore extends VuexModule {
                 "/api/api/v1/activities",
                 {
                     activity_id: Number(this.activityId),
-                    // TODO(pierre): ask jakub where/how to get score here.
-                    score: 30,
-                    // TODO(pierre): ask jakub where/how to get reached_level here.
-                    reached_level: 3,
+                    score: gamingScreenStore.getSessionHighscore,
+                    reached_level: this.computeReachedLevel(),
                 },
                 {
                     headers: {
@@ -108,6 +107,17 @@ export default class GameInfoStore extends VuexModule {
             console.log(e);
             return e;
         }
+    }
+
+    /**
+     * @description determine reached Level
+     */
+    computeReachedLevel(): number {
+        const reachedLevel = Math.floor(
+            gamingScreenStore.getSessionHighscore / 10
+        );
+        if (reachedLevel > 4) return 5;
+        else return reachedLevel;
     }
 
     /**
