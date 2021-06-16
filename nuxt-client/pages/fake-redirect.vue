@@ -54,7 +54,6 @@ export default class FakeRedirect extends Vue {
                 "got null as response data from axios request to create an activity."
             );
         }
-        console.log("redirect :)");
         this.$nuxt.$router.push({
             path: "/validate",
             query: {
@@ -63,7 +62,6 @@ export default class FakeRedirect extends Vue {
                 expires_at: this.activityData.expires_at,
             },
         });
-        console.log("redirect finished??");
     }
 }
 </script>
