@@ -41,7 +41,7 @@ import GameRectangle from "~/components/gameRectangle.vue";
 import GameRow from "~/components/gameRow.vue";
 import { RectBoard } from "~/types/game-board";
 import { SoundUtils } from "~/utils/soundUtils";
-import { gamingScreenStore } from "~/store";
+import { gamingScreenStore, gameInfoStore } from "~/store";
 
 const board = namespace("game-board");
 
@@ -71,10 +71,11 @@ export default class gamingBoard extends Vue {
     readonly bigStep: number = 25 / this.stepSize;
     gameTimerRef: any;
     countDownTimerRef: any;
-    delay: number = 30;
+    delay: number = 28;
     currentLevel: number = 0;
-    // for test reasons: Level up in steps of 5
-    scoreLevels: number[] = [10, 20, 30, 40, 50];
+    scoreLevels: number[] = [];
+    // Level up in steps of 10
+    levelUpStep: number = 10;
     countDownForGameStart: number = 3;
     showCountdown: boolean = true;
 
@@ -85,6 +86,7 @@ export default class gamingBoard extends Vue {
      */
     mounted() {
         if (this.runGame === "true") {
+            this.computeScoreLevels();
             gamingScreenStore.setScore(0);
             this.initRectBoard();
             this.countDownTimerRef = setInterval(() => {
@@ -145,7 +147,7 @@ export default class gamingBoard extends Vue {
                     this.score > this.scoreLevels[this.currentLevel] &&
                     this.delay > 0
                 ) {
-                    this.levelUp(2);
+                    this.levelUp(3);
                     // necessary so that setInterval notices the change of delay
                     this.pauseGame();
                     this.mainGameLoop();
@@ -178,6 +180,17 @@ export default class gamingBoard extends Vue {
     public computeSessionHighscore() {
         if (this.score > this.sessionHighscore)
             gamingScreenStore.setSessionHighscore(this.score);
+    }
+
+    /**
+     * @description compute score level they determine from which score there is a new level
+     */
+    public computeScoreLevels() {
+        const maxLevel = gameInfoStore.getGameMaxLevel;
+        for (let level = 1; level <= maxLevel; level++) {
+            if (level > 5) return;
+            this.scoreLevels.push(level * this.levelUpStep);
+        }
     }
 
     /**
