@@ -38,7 +38,7 @@ export default class GameInfoStore extends VuexModule {
     correctImage: string = defaultCorrectBook;
     falseImages: string[] = defaultFalseImages;
     currentSponsor: string = "no sponsor was given.";
-    gameMaxLevel: number = 0;
+    gameMaxLevel: number = 5;
     // TODO(pierre): currently it is hardcoded "{baseUrl}..."? Ask main backend
     // team to fix this.
     redirectUrl: string = "";
@@ -161,5 +161,9 @@ export default class GameInfoStore extends VuexModule {
 
     get getCouponTheUserWon(): Coupon | null {
         return this.couponTheUserWon;
+    }
+
+    get getGameMaxLevel(): number {
+        return this.gameMaxLevel;
     }
 }

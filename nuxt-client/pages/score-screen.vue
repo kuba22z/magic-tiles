@@ -41,6 +41,20 @@
                 </div>
                 <div
                     class="
+                        sessionHighscore
+                        border border-red-300
+                        w-full
+                        flex flex-col
+                        relative
+                        items-center
+                        text-xl
+                    "
+                    style="top: 2%"
+                >
+                    Highscore: {{ sessionHighscore }}
+                </div>
+                <div
+                    class="
                         score-result
                         border border-red-300
                         w-full
@@ -51,7 +65,7 @@
                     "
                     style="top: 5%"
                 >
-                    Score: {{ score }}
+                    Punktestand: {{ score }}
                 </div>
                 <div
                     class="
@@ -113,6 +127,10 @@ import GamingScreen from "~/pages/gaming-screen.vue";
 export default class scoreScreen extends Vue {
     get score() {
         return gamingScreenStore.getScore;
+    }
+
+    get sessionHighscore() {
+        return gamingScreenStore.getSessionHighscore;
     }
 }
 </script>
