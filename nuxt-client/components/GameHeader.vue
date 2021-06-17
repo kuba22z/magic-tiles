@@ -13,38 +13,21 @@
         <div class="timer-test px-2 flex">
             <CountdownTimerWrapper />
         </div>
-        <div
-            class="scorePoints flex flex-col border border-red-300"
-            style="width: 40%"
-        >
-            <div class="highscore border border-red-300 flex mb-1.5">
+        <div class="scorePoints flex flex-col" style="width: 40%">
+            <div class="highscore flex mb-1.5">
                 <HeaderLine :text="'Highscore: ' + sessionHighscore" />
             </div>
 
-            <div class="score border border-red-300 flex">
+            <div class="score flex">
                 <HeaderLine :text="'Punktestand: ' + score" />
             </div>
         </div>
         <div
-            class="
-                score
-                border border-red-300
-                h-full
-                flex flex-col
-                items-center
-                ml-auto
-            "
+            class="score h-full flex flex-col items-center ml-auto"
             style="width: 35%"
         >
             <div
-                class="
-                    backToStreet
-                    h-1/4
-                    border border-red-300
-                    bg-red-500
-                    ml-auto
-                    font-bold
-                "
+                class="backToStreet h-1/4 bg-red-500 ml-auto font-bold"
                 style="font-size: small; width: 100%"
             >
                 <a href="http://back2street.de"> BACK 2 STREET</a>
