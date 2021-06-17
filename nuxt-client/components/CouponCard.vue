@@ -18,14 +18,31 @@
                 />
             </div>
         </div>
-        <div v-else>
-            <div class="caption">Zu spät!</div>
-            <div class="description">
-                Leider waren die Coupons für unseren Sponsor
-                <div class="sponsor font-semibold">
-                    {{ sponsorName }}
+        <div v-else class="flex flex-col justify-start items-center">
+            <div class="caption text-center text-lg font-semibold">
+                Zu spät!
+            </div>
+            <div
+                class="
+                    description
+                    flex flex-col
+                    justify-center
+                    items-center
+                    text-center
+                    mt-8
+                "
+            >
+                <div class="text">
+                    Leider waren die Coupons für unseren Sponsor
+                    <div class="sponsor font-semibold">
+                        {{ sponsorName }}
+                    </div>
+                    zu begehrt. Sie sind schon alle aufgebraucht!
                 </div>
-                zu begehrt. Sie sind schon alle aufgebraucht!
+                <div class="still-play mt-8">
+                    Du kannst jedoch trotzdem unser Spiel spielen und versuchen
+                    einen neuen Highscore zu erreichen!
+                </div>
             </div>
         </div>
     </div>

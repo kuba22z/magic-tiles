@@ -1,7 +1,7 @@
 <template>
     <!-- @file page that will be displayed after we sent our result to the main backend server  -->
     <div>
-        <div class="p-4 flex flex-col h-screen justify-center items-center">
+        <div class="p-4 flex flex-col h-screen justify-start items-center">
             <div v-if="$fetchState.pending" class="loading-result">
                 <!-- TODO(pierre): add loading-spinner component here -->
                 Das Ergebnis wird geladen...
