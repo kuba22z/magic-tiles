@@ -28,6 +28,11 @@ export default class GamingScreenStore extends VuexModule {
         this.sessionHighscore = newHighscore;
     }
 
+    @VuexMutation
+    incrementSessionHighscore() {
+        this.sessionHighscore++;
+    }
+
     get getSessionHighscore(): number {
         return this.sessionHighscore;
     }

@@ -41,6 +41,11 @@ export default class gamingRectangle extends Vue {
         this.setIsClicked([this.rowIndex, this.colIndex]);
         if (this.rect.image === gameInfoStore.getCorrectImage) {
             gamingScreenStore.incrementScore();
+            if (
+                gamingScreenStore.getScore >
+                gamingScreenStore.getSessionHighscore
+            )
+                gamingScreenStore.incrementSessionHighscore();
             this.setColor(["green", this.rowIndex, this.colIndex]);
             SoundUtils.playCorrectSound();
         } else {
