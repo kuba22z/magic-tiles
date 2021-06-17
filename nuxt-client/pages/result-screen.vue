@@ -19,29 +19,35 @@
                     "
                 >
                     <div class="success-text">
-                        congrats, you did win the following coupon!
+                        Glückwunsch! Du konntest den folgenden Coupon gewinnen!
                     </div>
                     <CouponItem
                         v-if="couponTheUserWon !== null"
                         :image="couponTheUserWon.image_url"
                         :description="couponTheUserWon.description"
                     />
+                    <div class="redirect-notification">
+                        Du kannst nun auf back2street.de den Couponcode
+                        auslesen. Mit dem Code kannst du nun bei
+                        {{ currentSponsor }} einkaufen!
+                    </div>
                 </div>
                 <div v-else>
                     <div class="no-coupon-text">
-                        To bad! You did not win a coupon with your score!
+                        Schade! Mit deinem Score hast du keinen Coupon gewinnen
+                        können.
+                    </div>
+                    <div class="redirect-notification">
+                        Leider hat es heute nicht geklappt. Wenn noch Coupons
+                        vorhanden sind, kannst du jedoch direkt erneut versuchen
+                        bei {{ currentSponsor }} einen Coupon zu gewinnen!
                     </div>
                 </div>
+                <div class="redirect-timer">
+                    Wir leiten dich automatisch zurück in
+                    {{ countDownDuration }}...
+                </div>
             </div>
-            <nav>
-                <!-- TODO(pierre): redirect to main page once testing finished. -->
-                <MagicTilesButton
-                    text="Backtostreet"
-                    link-to="/fake-redirect"
-                    button-type="nuxtlink"
-                    color="green"
-                />
-            </nav>
         </div>
     </div>
 </template>
@@ -50,7 +56,7 @@
 import { Component, Vue } from "nuxt-property-decorator";
 import magicTilesButton from "~/components/magicTilesButton.vue";
 import CouponItem from "~/components/couponItem.vue";
-import { gameInfoStore, gamingScreenStore } from "~/store";
+import { gameInfoStore } from "~/store";
 
 @Component({
     name: "ResultScreen",
@@ -60,13 +66,17 @@ import { gameInfoStore, gamingScreenStore } from "~/store";
     },
 })
 export default class ResultScreen extends Vue {
+    // time it will take the user to be redirected to either the landing or the
+    // main page
+    countDownDuration: number = 5;
+
     async fetch() {
-        console.log(gamingScreenStore.getSessionHighscore);
-        // debug fetch 2 seconds. TODO(pierre): delete this once finished with testing.
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        console.log("fetched.");
         await gameInfoStore.sendHighscore();
-        console.log("highscore sent and response received.");
+    }
+
+    async mounted() {
+        await this.countToZero();
+        window.location.href = "http://back2street.de";
     }
 
     get couponTheUserWon() {
@@ -75,6 +85,21 @@ export default class ResultScreen extends Vue {
 
     get wonACoupon(): boolean {
         return this.couponTheUserWon !== null;
+    }
+
+    get currentSponsor() {
+        return gameInfoStore.currentSponsor;
+    }
+
+    /**
+     * @description Counts from the starting value down to zero.
+     * Counting unit is in seconds.
+     */
+    async countToZero(): Promise<any> {
+        while (this.countDownDuration > 0) {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            this.countDownDuration--;
+        }
     }
 }
 </script>

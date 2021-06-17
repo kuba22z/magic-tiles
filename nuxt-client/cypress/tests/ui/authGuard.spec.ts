@@ -4,32 +4,32 @@
  */
 
 describe("Testing if the auth guard of our app does work.", () => {
-    describe("Testing without being validated", () => {
-        it("should get redirected to the /fake-redirect page when browsing /", () => {
-            cy.visit("");
-            cy.url().should("include", "/fake-redirect");
-        });
+    // describe("Testing without being validated", () => {
+    //     it("should get redirected to the /fake-redirect page when browsing /", () => {
+    //         cy.visit("");
+    //         cy.url().should("include", "/fake-redirect");
+    //     });
 
-        it("should get redirected to the /fake-redirect page when browsing /explanation-coupons", () => {
-            cy.visit("/explanation-coupons");
-            cy.url().should("include", "/fake-redirect");
-        });
+    //     it("should get redirected to the /fake-redirect page when browsing /explanation-coupons", () => {
+    //         cy.visit("/explanation-coupons");
+    //         cy.url().should("include", "/fake-redirect");
+    //     });
 
-        it("should get redirected to the /fake-redirect page when browsing /gaming-screen", () => {
-            cy.visit("/gaming-screen");
-            cy.url().should("include", "/fake-redirect");
-        });
+    //     it("should get redirected to the /fake-redirect page when browsing /gaming-screen", () => {
+    //         cy.visit("/gaming-screen");
+    //         cy.url().should("include", "/fake-redirect");
+    //     });
 
-        it("should get redirected to the /fake-redirect page when browsing /score-screen", () => {
-            cy.visit("/score-screen");
-            cy.url().should("include", "/fake-redirect");
-        });
+    //     it("should get redirected to the /fake-redirect page when browsing /score-screen", () => {
+    //         cy.visit("/score-screen");
+    //         cy.url().should("include", "/fake-redirect");
+    //     });
 
-        it("should get redirected to the /fake-redirect page when browsing /result-screen", () => {
-            cy.visit("/result-screen");
-            cy.url().should("include", "/fake-redirect");
-        });
-    });
+    //     it("should get redirected to the /fake-redirect page when browsing /result-screen", () => {
+    //         cy.visit("/result-screen");
+    //         cy.url().should("include", "/fake-redirect");
+    //     });
+    // });
 
     describe("Testing while being validated.", () => {
         // validate before each test
@@ -38,7 +38,7 @@ describe("Testing if the auth guard of our app does work.", () => {
         });
 
         it("can validate the user", () => {
-            cy.visit("http://localhost:3000/fake-redirect");
+            cy.visit("http://localhost:3000/testing/fake-redirect");
             // redirects to validate page
             cy.get("div").contains("magic-tiles").click();
             // expects to successfully validate and land at starting page
@@ -46,7 +46,7 @@ describe("Testing if the auth guard of our app does work.", () => {
         });
 
         it("can navigate through the app after being validated.", () => {
-            cy.visit("http://localhost:3000/fake-redirect");
+            cy.visit("http://localhost:3000/testing/fake-redirect");
             // redirects to validate page
             cy.get("div").contains("magic-tiles").click();
             // expects to successfully validate and land at starting page

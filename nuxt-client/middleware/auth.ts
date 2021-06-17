@@ -10,13 +10,15 @@ import { gameInfoStore } from "~/store";
 
 const auth: Middleware = (context) => {
     // only let the user continue if he is validated or he is trying to validate.
-    if (gameInfoStore.userValidated || context.route.path === "/validate") {
+    if (
+        gameInfoStore.userValidated ||
+        context.route.path === "/validate" ||
+        context.route.path === "/testing/fake-redirect"
+    ) {
         return;
     }
 
-    // TODO(pierre): redirect to main-backend page once we have an account there
-    // and can test the app
-    context.redirect("/fake-redirect");
+    context.redirect("https://back2street.de");
 };
 
 export default auth;

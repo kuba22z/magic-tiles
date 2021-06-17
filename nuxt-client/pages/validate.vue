@@ -1,7 +1,5 @@
 <template>
     <div>
-        <div class="test">Here we will validate the data we just got.</div>
-        <div>{{ queryParams }}</div>
         <div v-if="$fetchState.pending" class="validate">Validating...</div>
         <!-- validation done -->
         <div v-else>
@@ -58,8 +56,8 @@ import { gameInfoStore } from "~/store";
 export default class Validation extends Vue {
     queryParams: any;
     validationSuccessful: boolean = false;
-    // time it will take to redirect the user to the main page after bad
-    // validation
+    // time it will take the user to be redirected to either the landing or the
+    // main page
     countDownDuration: number = 3;
 
     /**
@@ -72,10 +70,7 @@ export default class Validation extends Vue {
     }
 
     async fetch() {
-        // sleep one second to mimic delay
-        await new Promise((resolve) => setTimeout(resolve, 1000));
         try {
-            // throw new Error("test error case.");
             const response: AxiosResponse = await this.$axios.post(
                 "/api/api/v1/activities/validate",
                 {
@@ -97,14 +92,18 @@ export default class Validation extends Vue {
             const validUntil: Date = new Date(this.queryParams.expires_at);
             gameInfoStore.setTokenDuration(validUntil);
             this.validationSuccessful = true;
-            this.redirectToGameStartPage();
         } catch (e) {
             console.log("Error when calling fetch() on validate.vue.");
-            console.log("error:");
             console.log(e);
             this.validationSuccessful = false;
-            this.redirectToGameStartPage();
         }
+    }
+
+    async mounted() {
+        await this.countToZero();
+        this.validationSuccessful
+            ? this.redirectToGameStartPage()
+            : this.redirectToMainPage();
     }
 
     /**
@@ -120,14 +119,9 @@ export default class Validation extends Vue {
     /**
      * @description Redirects the user to the main page after the validation
      * failed.
-     * MAYBE(pierre): we could create toast message for this.
      */
-    async redirectToMainPage() {
-        await this.countToZero();
-        // TODO(pierre): redirect to main backend main page once it is implemented.
-        this.$router.push({
-            path: "/fake-redirect",
-        });
+    redirectToMainPage() {
+        window.location.href = "https://back2street.de";
     }
 
     /**
