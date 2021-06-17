@@ -33,17 +33,6 @@
             </text>
         </g>
     </svg>
-
-    <!--
-    <button
-        class="test-btn border border-black w-40"
-        @click="moveRectRowUntilBottom"
-    >
-        Start
-    </button>
-    <button class="test-btn border border-black w-20" @click="pauseGame">
-        Stop
-    </button>-->
 </template>
 
 <script lang="ts">

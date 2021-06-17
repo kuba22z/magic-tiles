@@ -114,3 +114,4 @@ deploy:
       - docker-compose run nuxt-client /pipeline-scripts/deploy.sh "$DOCKER_ENV_CI_COMMIT_BRANCH" "$DOCKER_ENV_CI_COMMIT_MESSAGE" "$DOCKER_ENV_CI_PROJECT_NAME"
 
 
+

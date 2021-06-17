@@ -22,6 +22,8 @@ export interface GameInfo {
     redirect_url: string;
     // NOTE(pierre): although it is named coupon types, it contains an array of coupons.
     coupon_types: Coupons;
+    sponsor_name: string;
+    sponsor_description: string;
 }
 
 /**
@@ -50,5 +52,6 @@ export interface Coupon {
  * @description Contains the response we get after sending our highscore
  */
 export interface resultingCoupon {
-    coupon: Coupon;
+    coupon?: Coupon;
+    message?: string;
 }

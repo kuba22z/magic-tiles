@@ -29,10 +29,11 @@ module.exports = {
             args: "start",
             // watches all files inside the .nuxt folder and auto reloads if
             // any files in this folder change.
-            watch: [".nuxt"],
-            // delay between first file change and pm2 reload. Assumes it will
-            // take maximum 10s to copy all files to the .nuxt folder.
-            watch_delay: 10000,
+            watch: true,
+            // ignores changes to node_modules and cypress
+            ignore_watch: ["node_modules", ".cache"],
+            // delay between first file change and pm2 reload
+            watch_delay: 3000,
             // restart every 5s if app crashes
             restart_delay: 5000,
         },
