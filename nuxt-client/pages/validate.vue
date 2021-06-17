@@ -1,40 +1,68 @@
 <template>
     <div>
-        <div>
-            <div v-if="validationSuccessful">
-                <div
-                    class="
-                        validation-successfull
-                        text-green-400
-                        flex flex-col
-                        justify-center
-                        items-center
-                    "
-                >
-                    <div>validation successful!</div>
-                    <div>
-                        Redirecting to the starting page of the magic-tiles game
-                        in {{ countDownDuration }}
+        <div class="p-4 flex h-screen justify-center items-center">
+            <div class="flex justify-center-items-center">
+                <div v-if="!validationFetched">
+                    <div class="loadng-spinner">
+                        <!-- TODO(pierre): add loading spinner component here. -->
+                        Validating...
                     </div>
                 </div>
-            </div>
-            <div v-else>
-                <div
-                    class="
-                        validation-error
-                        text-red-400
-                        flex flex-col
-                        justify-center
-                        items-center
-                    "
-                >
-                    <div>
-                        Validation was not successful! Did you log into the
-                        backtostreet main page?
-                    </div>
-                    <div>
-                        Redirecting to the main backtostreet page in
-                        {{ countDownDuration }}
+                <div v-else-if="!validationSuccessful">
+                    <div
+                        class="
+                            flex flex-col
+                            justify-center
+                            items-center
+                            text-center
+                        "
+                    >
+                        <div
+                            class="
+                                caption
+                                text-lg
+                                font-semibold
+                                text-backtostreet-blue
+                            "
+                        >
+                            Die Validierung war nicht erfolgreich.
+                        </div>
+                        <div
+                            class="
+                                redirection-counter
+                                time
+                                mt-4
+                                px-3
+                                py-3
+                                border-solid border-black border-2
+                                rounded-full
+                                bg-white
+                                justify-center
+                            "
+                            style="width: 55px"
+                        >
+                            <div
+                                class="
+                                    flex
+                                    justify-center
+                                    font-extrabold
+                                    text-xl text-backtostreet-blue
+                                "
+                                style="font-family: Amatic SC, serif"
+                            >
+                                {{ countDownDuration }}
+                            </div>
+                        </div>
+                        <div class="description text-backtostreet-blue">
+                            <section class="text-center mt-8">
+                                Du musst eingeloggt sein um einen Coupon
+                                gewinnen zu können.
+                            </section>
+                            <section class="mt-4">
+                                Wir leiten dich auf die Hauptseite zurück, dort
+                                kannst du dich einloggen.
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,13 +78,16 @@ import { gameInfoStore } from "~/store";
 
 @Component({
     name: "Validation",
+    layout: "default.vue",
 })
 export default class Validation extends Vue {
     queryParams: any;
+    // whether the validation request was already sent and received.
+    validationFetched: boolean = false;
     validationSuccessful: boolean = false;
     // time it will take the user to be redirected to either the landing or the
     // main page
-    countDownDuration: number = 3;
+    countDownDuration: number = 5;
 
     /**
      * @description gets route params on initial page load.
@@ -95,10 +126,15 @@ export default class Validation extends Vue {
             console.log(e);
             this.validationSuccessful = false;
         }
+        this.validationFetched = true;
+
+        if (this.validationSuccessful) {
+            this.redirectToGameStartPage();
+            return;
+        }
+
         await this.countToZero();
-        this.validationSuccessful
-            ? this.redirectToGameStartPage()
-            : this.redirectToMainPage();
+        this.redirectToMainPage();
     }
 
     /**

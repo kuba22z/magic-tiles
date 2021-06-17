@@ -1,52 +1,92 @@
 <template>
     <!-- @file page that will be displayed after we sent our result to the main backend server  -->
     <div>
-        <div class="page flex flex-col justify-center items-center text-center">
+        <div class="p-4 flex flex-col h-screen justify-center items-center">
             <div v-if="$fetchState.pending" class="loading-result">
-                loading the result...
+                <!-- TODO(pierre): add loading-spinner component here -->
+                Das Ergebnis wird geladen...
             </div>
             <div v-else-if="$fetchState.error">
                 Sending your highscore did throw an error! Contact the support.
             </div>
-            <div v-else class="finished-loading">
+            <div
+                v-else
+                class="
+                    finished-loading
+                    flex flex-col
+                    justify-center
+                    items-center
+                    text-center
+                "
+            >
                 <div
                     v-if="wonACoupon"
                     class="
                         flex flex-col
                         justify-center
-                        items-cetner
+                        items-center
                         text-center
                     "
                 >
-                    <div class="success-text">
-                        Glückwunsch! Du konntest den folgenden Coupon gewinnen!
-                    </div>
-                    <CouponItem
-                        v-if="couponTheUserWon !== null"
-                        :image="couponTheUserWon.image_url"
-                        :description="couponTheUserWon.description"
+                    <div class="title font-semibold text-lg">Gewonnen!</div>
+                    <div class="text mt-8"></div>
+                    <CouponCard
+                        :coupons="coupons"
+                        :caption="`Glückwunsch! Du hast dir den folgenden Coupon erspielt!`"
+                        :sponsor-name="sponsorName"
                     />
-                    <div class="redirect-notification">
-                        Du kannst nun auf back2street.de den Couponcode
-                        auslesen. Mit dem Code kannst du nun bei
-                        {{ currentSponsor }} einkaufen!
+                    <div class="redirect-notification mt-4">
+                        Diesen Coupon kannst du bei {{ sponsorName }} einlösen!
+                        Auslesen kannst du den Code auf unserer Hauptseite.
                     </div>
                 </div>
-                <div v-else>
-                    <div class="no-coupon-text">
-                        Schade! Mit deinem Score hast du keinen Coupon gewinnen
-                        können.
+                <div v-else class="flex flex-col justify-center text-center">
+                    <div class="title font-semibold text-lg">Schade!</div>
+                    <div class="text mt-8">
+                        Dein Score war leider zu niedrig um einen Coupon bei
+
+                        <div class="sponsor font-semibold">
+                            {{ sponsorName }}
+                        </div>
+
+                        zu gewinnen!
                     </div>
-                    <div class="redirect-notification">
+                    <div class="redirect-notification mt-8">
                         Leider hat es heute nicht geklappt. Wenn noch Coupons
                         vorhanden sind, kannst du jedoch direkt erneut versuchen
-                        bei {{ currentSponsor }} einen Coupon zu gewinnen!
+                        bei einen Coupon zu gewinnen!
                     </div>
                 </div>
-                <div class="redirect-timer">
-                    Wir leiten dich automatisch zurück in
-                    {{ countDownDuration }}...
+
+                <div
+                    class="
+                        redirection-counter
+                        time
+                        mt-8
+                        px-3
+                        py-3
+                        border-solid border-black border-2
+                        rounded-full
+                        bg-white
+                        justify-center
+                    "
+                    style="width: 55px"
+                >
+                    <div
+                        class="
+                            flex
+                            justify-center
+                            font-extrabold
+                            text-xl text-backtostreet-blue
+                        "
+                        style="font-family: Amatic SC, serif"
+                    >
+                        {{ countDownDuration }}
+                    </div>
                 </div>
+                <section class="mt-4">
+                    Wir leiten dich auf die Hauptseite zurück.
+                </section>
             </div>
         </div>
     </div>
@@ -54,8 +94,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
-import magicTilesButton from "~/components/magicTilesButton.vue";
-import CouponItem from "~/components/couponItem.vue";
+import magicTilesButton from "~/components/MagicTilesButton.vue";
+import CouponItem from "~/components/CouponItem.vue";
 import { gameInfoStore } from "~/store";
 
 @Component({
@@ -68,7 +108,7 @@ import { gameInfoStore } from "~/store";
 export default class ResultScreen extends Vue {
     // time it will take the user to be redirected to either the landing or the
     // main page
-    countDownDuration: number = 5;
+    countDownDuration: number = 10;
 
     async fetch() {
         await gameInfoStore.sendHighscore();
@@ -79,6 +119,15 @@ export default class ResultScreen extends Vue {
         window.location.href = "http://back2street.de";
     }
 
+    /**
+     * @description Using this function to be able to reuse the CouponCard component.
+     */
+    get coupons() {
+        const arrayWithOneCoupon = [];
+        arrayWithOneCoupon.push(this.couponTheUserWon);
+        return arrayWithOneCoupon;
+    }
+
     get couponTheUserWon() {
         return gameInfoStore.getCouponTheUserWon;
     }
@@ -87,7 +136,7 @@ export default class ResultScreen extends Vue {
         return this.couponTheUserWon !== null;
     }
 
-    get currentSponsor() {
+    get sponsorName() {
         return gameInfoStore.currentSponsor;
     }
 
