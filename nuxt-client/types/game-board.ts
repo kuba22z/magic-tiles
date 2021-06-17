@@ -12,7 +12,7 @@ export class Rect {
         y: number = 0,
         image: string = "",
         isClicked: boolean = false,
-        color: string = "black"
+        color: string = "white"
     ) {
         this.x = x;
         this.y = y;

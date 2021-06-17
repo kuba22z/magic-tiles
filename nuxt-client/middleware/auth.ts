@@ -9,7 +9,7 @@ import { Middleware } from "@nuxt/types";
 import { gameInfoStore } from "~/store";
 
 const auth: Middleware = (context) => {
-    // only let the user continue if he is validated or he is trying to validate.
+    /*    // only let the user continue if he is validated or he is trying to validate.
     if (
         gameInfoStore.userValidated ||
         context.route.path === "/validate" ||
@@ -18,7 +18,7 @@ const auth: Middleware = (context) => {
         return;
     }
 
-    context.redirect("https://back2street.de");
+    context.redirect("https://back2street.de"); */
 };
 
 export default auth;

@@ -18,7 +18,7 @@
             style="width: 40%"
         >
             <div class="highscore border border-red-300 flex mb-1.5">
-                <HeaderLine :text="'Highscore: ' + highscore" />
+                <HeaderLine :text="'Highscore: ' + sessionHighscore" />
             </div>
 
             <div class="score border border-red-300 flex">
@@ -91,6 +91,10 @@ export default class gameHeader extends Vue {
 
     get highscore() {
         return gamingScreenStore.getHighscore;
+    }
+
+    get sessionHighscore() {
+        return gamingScreenStore.getSessionHighscore;
     }
 }
 </script>
