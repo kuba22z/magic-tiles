@@ -57,8 +57,6 @@ sed -i "s/changeThisNameWithSed/$GAME-$TARGET_DIR/g" \
 sed -i "s/changeThisPortWithSed/$TARGET_PORT/g" \
     /nuxt-client/ecosystem.config.js
 
-# remove previously built files
-rm -R /deploy/$TARGET_DIR/.nuxt
 echo "copying from /nuxt-client to /deploy/$TARGET_DIR.."
 cp -RT /nuxt-client "/deploy/$TARGET_DIR"
 echo "finished copying!"
