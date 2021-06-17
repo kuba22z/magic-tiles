@@ -39,3 +39,4 @@ Datum, Geplante Aufgabe, Zeit geschaetzt, Zeit gebraucht, Erledigte Aufgabe , Pr
 10.06.2021,review meeting,1.30h,1.30h,präsentation der Ergebnisse und besprechen was als alles noch bis 22 juni fertig sein muss,,,,
 16.06.2021,weekly ip meeting,1h,1h,aktuelle Probleme innerhalb der Spiele besprochen und die kommunikation mit dem Backend gefixt,,,,
 16.06.2021,Gaming-screen stylen und reached level berechnen,4h,5h,das ganze gaming-screen gestylt und bugs gefixt,,,,
+17.06.2021,score-screen anpassen,1h,1h,"Farbe der Rechtecke auf weiß geändert, gameMaxLevels aus der datenbank in die Spiellogik eingebaut, session highscore eingebaut",,,,
