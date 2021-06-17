@@ -69,7 +69,7 @@ export default class Validation extends Vue {
         };
     }
 
-    async fetch() {
+    async mounted() {
         try {
             const response: AxiosResponse = await this.$axios.post(
                 "/api/api/v1/activities/validate",
@@ -97,9 +97,6 @@ export default class Validation extends Vue {
             console.log(e);
             this.validationSuccessful = false;
         }
-    }
-
-    async mounted() {
         await this.countToZero();
         this.validationSuccessful
             ? this.redirectToGameStartPage()
