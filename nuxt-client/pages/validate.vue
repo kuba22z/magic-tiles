@@ -1,8 +1,6 @@
 <template>
     <div>
-        <div v-if="$fetchState.pending" class="validate">Validating...</div>
-        <!-- validation done -->
-        <div v-else>
+        <div>
             <div v-if="validationSuccessful">
                 <div
                     class="
@@ -69,7 +67,7 @@ export default class Validation extends Vue {
         };
     }
 
-    async fetch() {
+    async mounted() {
         try {
             const response: AxiosResponse = await this.$axios.post(
                 "/api/api/v1/activities/validate",
@@ -97,9 +95,6 @@ export default class Validation extends Vue {
             console.log(e);
             this.validationSuccessful = false;
         }
-    }
-
-    async mounted() {
         await this.countToZero();
         this.validationSuccessful
             ? this.redirectToGameStartPage()

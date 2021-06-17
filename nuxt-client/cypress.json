@@ -1,5 +1,0 @@
-{
-    "ignoreTestFiles": "*.spec.js",
-    "integrationFolder": "cypress/tests",
-    "baseUrl": "http://localhost:3000"
-}
