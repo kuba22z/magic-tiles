@@ -51,7 +51,7 @@
                     "
                     style="top: 5%"
                 >
-                    Score: {{ scoreBoard.score }}
+                    Score: {{ score }}
                 </div>
                 <div
                     class="
@@ -67,8 +67,9 @@
                 >
                     <div class="flex flex-col self-center mt-4 w-5/6">
                         <magic-tiles-button
-                            text="Back to Street!"
-                            button-type="href"
+                            text="Highscore abschicken!"
+                            button-type="nuxtlink"
+                            link-to="/result-screen"
                         ></magic-tiles-button>
                     </div>
                     <div class="flex flex-col mt-6">
@@ -98,12 +99,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { namespace } from "vuex-class";
-import { ScoreBoard } from "~/types/scoreBoard";
+import { gamingScreenStore } from "~/store";
 import magicTilesButton from "~/components/magicTilesButton.vue";
 import GamingScreen from "~/pages/gaming-screen.vue";
 
-const gaming = namespace("gaming-screen");
 @Component({
     name: "scoreScreen",
     components: {
@@ -112,8 +111,9 @@ const gaming = namespace("gaming-screen");
     },
 })
 export default class scoreScreen extends Vue {
-    @gaming.State
-    public scoreBoard!: ScoreBoard;
+    get score() {
+        return gamingScreenStore.getScore;
+    }
 }
 </script>
 

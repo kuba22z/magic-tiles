@@ -31,6 +31,12 @@ export default {
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,
 
+    // src: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-router
+    router: {
+        // runs the middleware/auth.ts on every page
+        middleware: "auth",
+    },
+
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
         // https://go.nuxtjs.dev/typescript
@@ -50,6 +56,17 @@ export default {
     // https://tailwindcss.nuxtjs.org/releases/#v4.0.0
     tailwindcss: {
         jit: true,
+        config: {
+            theme: {
+                extend: {
+                    colors: {
+                        "backtostreet-blue": "#142a52",
+                        // TODO(pierre): ask alexamder samsz for lightblue/hover color.
+                        "backtostreet-lightblue": "#60a5fa",
+                    },
+                },
+            },
+        },
     },
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios

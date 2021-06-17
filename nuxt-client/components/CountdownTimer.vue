@@ -1,14 +1,59 @@
 <template>
     <div>
         <div class="flex flex-col justify-center items-center">
-            <div class="countdown-test">Testing the countdown timer.</div>
-            <div class="running-timer" v-if="runCountdown">
-                <div class="description">shall run the countdown</div>
-                <div class="time">{{ currentTime }}</div>
+            <div v-if="runCountdown" class="running-timer">
+                <!-- MAYBE(pierre): figure out why prettier formats these class attributes so weirdly -->
+                <div
+                    class="
+                        time
+                        px-3
+                        py-3
+                        border-solid border-black border-2
+                        rounded-full
+                        bg-white
+                        justify-center
+                    "
+                    style="width: 55px"
+                >
+                    <div
+                        class="
+                            flex
+                            justify-center
+                            font-extrabold
+                            text-xl text-backtostreet-blue
+                        "
+                        style="font-family: Amatic SC, serif"
+                    >
+                        {{ currentTime }}
+                    </div>
+                </div>
             </div>
-            <div class="timer-not-running" v-else>
-                <div class="description">not running the countdown.</div>
-                <div class="time">{{ currentTime }}</div>
+            <div v-else class="timer-not-running">
+                <div class="description circle">not running the countdown.</div>
+                <div
+                    class="
+                        time
+                        px-3
+                        py-3
+                        border-solid border-black border-2
+                        rounded-full
+                        bg-white
+                        justify-center
+                    "
+                    style="width: 55px"
+                >
+                    <div
+                        class="
+                            flex
+                            justify-center
+                            font-bold
+                            text-backtostreet-blue
+                        "
+                        style="font-family: Amatic SC, serif"
+                    >
+                        {{ currentTime }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -109,4 +154,9 @@ export default class CountdownTimer extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.circle {
+    border: 1px solid black;
+    border-radius: 50%;
+}
+</style>
