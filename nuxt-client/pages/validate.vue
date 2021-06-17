@@ -1,8 +1,6 @@
 <template>
     <div>
-        <div v-if="$fetchState.pending" class="validate">Validating...</div>
-        <!-- validation done -->
-        <div v-else>
+        <div>
             <div v-if="validationSuccessful">
                 <div
                     class="
