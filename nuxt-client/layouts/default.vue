@@ -1,10 +1,11 @@
 <template>
-    <div>
+    <div class="app">
         <Nuxt />
     </div>
 </template>
 
 <style>
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC");
 html {
     font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont,
         "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -51,5 +52,8 @@ html {
 .button--grey:hover {
     color: #fff;
     background-color: #35495e;
+}
+.app {
+    background-image: url("../assets/backgroundImage.svg");
 }
 </style>
