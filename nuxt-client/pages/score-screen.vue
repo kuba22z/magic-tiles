@@ -15,7 +15,6 @@
                 class="
                     score-screen-content
                     flex flex-col
-                    border border-red-300
                     justify-center
                     self-center
                     h-full
@@ -25,45 +24,46 @@
                 <div
                     class="
                         coupon-result
-                        border border-red-300
                         h-1/4
                         flex
                         text-center
-                        bg-gray-500
+                        bg-white
                         relative
                     "
-                    style="bottom: 11%"
+                    style="bottom: 11%; border-radius: 0.4rem"
                 >
                     <div class="mt-4 text-xl w-full px-4">
-                        Es haben 30 Punkte gefehlt für den 10% Gutschein
-                        gefehlt!
+                        Versuchen Sie es erneut oder schicken Sie das beste
+                        Ergebnis ab
                     </div>
                 </div>
                 <div
                     class="
                         sessionHighscore
-                        border border-red-300
-                        w-full
+                        w-3/4
+                        self-center
                         flex flex-col
                         relative
                         items-center
                         text-xl
+                        bg-white
                     "
-                    style="top: 2%"
+                    style="top: 2%; border-radius: 0.4rem"
                 >
                     Highscore: {{ sessionHighscore }}
                 </div>
                 <div
                     class="
                         score-result
-                        border border-red-300
-                        w-full
+                        w-3/4
+                        self-center
                         flex flex-col
                         relative
                         items-center
                         text-xl
+                        bg-white
                     "
-                    style="top: 5%"
+                    style="top: 5%; border-radius: 0.4rem"
                 >
                     Punktestand: {{ score }}
                 </div>
@@ -72,21 +72,19 @@
                         button-container
                         flex flex-col
                         w-3/4
-                        border border-red-300
-                        justify-center
                         self-center
                         relative
                     "
                     style="top: 10%"
                 >
-                    <div class="flex flex-col self-center mt-4 w-5/6">
+                    <div class="flex flex-col self-center mt-4">
                         <magic-tiles-button
                             text="Highscore abschicken!"
                             button-type="nuxtlink"
                             link-to="/result-screen"
                         ></magic-tiles-button>
                     </div>
-                    <div class="flex flex-col mt-6">
+                    <div class="flex flex-col self-center mt-6">
                         <magic-tiles-button
                             text="Nochmal Spielen!"
                             button-type="nuxtlink"
@@ -96,13 +94,7 @@
                 </div>
             </div>
             <div
-                class="
-                    gaming-screen
-                    flex flex-col
-                    border border-red-300
-                    w-full
-                    absolute
-                "
+                class="gaming-screen flex flex-col w-full absolute"
                 style="z-index: -1"
             >
                 <gaming-screen run-game="false"></gaming-screen>
