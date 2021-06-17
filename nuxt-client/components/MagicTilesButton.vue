@@ -5,8 +5,8 @@
         class="
             button
             rounded-2xl
-            h-full
-            w-full
+            h-12
+            w-36
             items-center
             justify-center
             flex
@@ -16,7 +16,7 @@
         "
         :to="linkTo"
     >
-        <div class="flex justify-center items-center text-center font-bold">
+        <div class="text-center font-bold">
             {{ text }}
         </div>
     </NuxtLink>
@@ -26,8 +26,8 @@
         class="
             button
             rounded-2xl
-            h-full
-            w-full
+            h-12
+            w-36
             items-center
             justify-center
             flex
@@ -36,8 +36,8 @@
             hover:bg-backtostreet-lightblue
         "
     >
-        <a :href="href">
-            <div>
+        <a :href="linkTo">
+            <div class="text-center font-bold">
                 {{ text }}
             </div>
         </a>
@@ -50,7 +50,6 @@ import { Component, Prop, Vue } from "nuxt-property-decorator";
 @Component
 export default class magicTilesButton extends Vue {
     @Prop({ default: "/" }) linkTo!: string;
-    @Prop({ default: "http://back2street.de/" }) href!: string;
     @Prop(String) text!: string;
     @Prop({ default: "nuxtlink" }) buttonType!: string;
 }

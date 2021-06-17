@@ -1,21 +1,20 @@
 <template>
     <div>
-        <div class="flex flex-col justify-center items-center">
+        <div class="p-4 flex flex-col h-screen justify-center items-center">
             <div
                 class="
                     explanation-top
                     flex flex-col
                     justify-center
-                    mt-2
                     w-full
                     text-center
                 "
             >
-                <div class="title text-2xl w-full">magic tiles</div>
-                <div class="mt-4 text-xl w-full px-4">
-                    Bei diesem Spiel fahren die Kacheln von oben nach untern
-                    herunter. Pro Reihe gibt es jeweils eine richtige Kachel,
-                    die angeklickt werden muss.
+                <div class="title text-xl font-semibold">magic-tiles</div>
+                <div class="mt-4 text-lg w-full">
+                    Bei diesem Spiel fahren Bilder von oben nach untern
+                    herunter. Pro Reihe gibt es jeweils eine richtiges Bild, das
+                    angeklickt werden muss.
                 </div>
             </div>
             <div
@@ -36,7 +35,7 @@
                         text-center
                         h-20
                         w-20
-                        mt-4
+                        mt-8
                     "
                 >
                     <img
@@ -45,71 +44,38 @@
                     />
                 </div>
                 <div class="hint text-center">
-                    Dies ist die korrekte Kachel für die heutige Spielereunde!
+                    Dies ist das korrekte Bild für die heutige Spielereunde!
                 </div>
-                <div class="text-lg explanation-finish text-center mt-4 px-4">
-                    Pro Klick auf die richtige Kachel gibt es jeweils einen
-                    Punkt. Beim Klick auf eine falsche Kachel ist das Spiel
-                    vorbei.
+                <div class="text-lg explanation-finish text-center mt-8">
+                    <div class="font-semibold">Spielende</div>
+                    <div class="text-base">
+                        Beim Klick auf ein falsches Bild ist das Spiel vorbei.
+                    </div>
                 </div>
             </div>
             <div
                 class="
                     bottom-navigation-buttons
                     flex
-                    items-center
                     mt-4
                     justify-center
+                    items-end
+                    align-bottom
                     w-full
+                    h-full
+                    space-x-2
                 "
             >
-                <div
-                    class="
-                        flex
-                        items-center
-                        justify-center
-                        w-full
-                        buttons
-                        space-x-2
-                        mb-6
-                    "
-                >
-                    <div
-                        class="
-                            back-button
-                            h-12
-                            w-36
-                            flex
-                            justify-center
-                            items-center
-                            text-center
-                        "
-                    >
-                        <MagicTilesButton
-                            text="back to street!"
-                            button-type="href"
-                            color="green"
-                        />
-                    </div>
-                    <div
-                        class="
-                            next-button
-                            h-12
-                            w-36
-                            flex
-                            justify-center
-                            items-center
-                            text-center
-                        "
-                    >
-                        <MagicTilesButton
-                            text="Weiter"
-                            link-to="/explanation-coupons"
-                            button-type="nuxtlink"
-                            color="green"
-                        />
-                    </div>
-                </div>
+                <MagicTilesButton
+                    text="Back to street!"
+                    button-type="href"
+                    link-to="https://back2street.de"
+                />
+                <MagicTilesButton
+                    text="Weiter"
+                    link-to="/explanation-coupons"
+                    button-type="nuxtlink"
+                />
             </div>
         </div>
     </div>
@@ -117,7 +83,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
-import MagicTilesButton from "~/components/magicTilesButton.vue";
+import MagicTilesButton from "~/components/MagicTilesButton.vue";
 import { gameInfoStore } from "~/store";
 
 @Component({

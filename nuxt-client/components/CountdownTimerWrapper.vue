@@ -1,11 +1,11 @@
 <template>
     <div>
         <CountdownTimer
-            :startValue="secondsLeft"
-            :endValue="0"
-            :countingInterval="1"
-            :countingUnit="countingUnit"
-            :runCountdown="true"
+            :start-value="secondsLeft"
+            :end-value="0"
+            :counting-interval="1"
+            :counting-unit="countingUnit"
+            :run-countdown="true"
         />
     </div>
 </template>

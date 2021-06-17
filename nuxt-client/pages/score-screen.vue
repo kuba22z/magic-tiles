@@ -114,7 +114,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { gamingScreenStore } from "~/store";
-import magicTilesButton from "~/components/magicTilesButton.vue";
+import magicTilesButton from "~/components/MagicTilesButton.vue";
 import GamingScreen from "~/pages/gaming-screen.vue";
 
 @Component({
