@@ -135,50 +135,25 @@ export default class gamingBoard extends Vue {
      *@description endless loop which move all RectRow to the bottom
      * and creates new rectRows at the top
      */
-    // public mainGameLoop() {
-    //     this.gameTimerRef = setInterval(() => {
-    //         this.moveRectRowDown(this.stepSize);
-    //         this.miniStep++;
-    //         if (this.miniStep === this.bigStep) {
-    //             this.checkGameEnd();
-    //             this.pushFrontAndPop();
-    //             this.miniStep = 0;
-    //             if (
-    //                 this.score > this.scoreLevels[this.currentLevel] &&
-    //                 this.delay > 0
-    //             ) {
-    //                 this.levelUp(3);
-    //                 // necessary so that setInterval notices the change of delay
-    //                 this.pauseGame();
-    //                 this.mainGameLoop();
-    //             }
-    //         }
-    //     }, this.delay);
-    // }
-
-    public async mainGameLoop() {
-        await new Promise((resolve) => setTimeout(resolve, this.delay));
-        this.moveRectRowDown(this.stepSize);
-        this.miniStep++;
-
-        if (this.gameEndReached()) {
-            SoundUtils.playGameOverSound();
-            this.computeSessionHighscore();
-            this.redirectToScoreScreen();
-            return;
-        }
-
-        if (this.miniStep === this.bigStep) {
-            this.pushFrontAndPop();
-            this.miniStep = 0;
-            if (
-                this.score > this.scoreLevels[this.currentLevel] &&
-                this.delay > 0
-            ) {
-                this.levelUp(3);
+    public mainGameLoop() {
+        this.gameTimerRef = setInterval(() => {
+            this.moveRectRowDown(this.stepSize);
+            this.miniStep++;
+            if (this.miniStep === this.bigStep) {
+                this.checkGameEnd();
+                this.pushFrontAndPop();
+                this.miniStep = 0;
+                if (
+                    this.score > this.scoreLevels[this.currentLevel] &&
+                    this.delay > 0
+                ) {
+                    this.levelUp(3);
+                    // necessary so that setInterval notices the change of delay
+                    this.pauseGame();
+                    this.mainGameLoop();
+                }
             }
-        }
-        await this.mainGameLoop();
+        }, this.delay);
     }
 
     /**
@@ -216,18 +191,6 @@ export default class gamingBoard extends Vue {
             if (level > 5) return;
             this.scoreLevels.push(level * this.levelUpStep);
         }
-    }
-
-    /**
-     * @description check if a Rectangle was clicked in the last RectRow if no -> game end
-     */
-    public gameEndReached(): boolean {
-        return !(
-            this.rectBoard.board[4].row[0].isClicked ||
-            this.rectBoard.board[4].row[1].isClicked ||
-            this.rectBoard.board[4].row[2].isClicked ||
-            this.rectBoard.board[4].row[3].isClicked
-        );
     }
 
     /**
