@@ -37,10 +37,9 @@ export default class CountdownTimerWrapper extends Vue {
     get validUntil(): Date {
         const tokenValidUntil: Date | null = gameInfoStore.getValidUntil;
         if (tokenValidUntil === null) {
-            // TODO(pierre): for now return current that instead of error.
-            // This case will later be handled by our auth guard instead.
-            // throw new Error("CountdownTimerWrapper error. ValidUntil is null.");
-            return new Date();
+            // TODO(pierre): remove once finished developing.
+            return new Date(Date.now() + 1000 * 60 * 5);
+            throw new Error("CountdownTimerWrapper error. ValidUntil is null.");
         }
         return tokenValidUntil;
     }

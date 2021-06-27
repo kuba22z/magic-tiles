@@ -5,7 +5,6 @@
             flex flex-col
             justify-center
             items-center
-            border border-red-300
             w-full
         "
         style="height: 100vh"
@@ -31,6 +30,7 @@ import GameHeader from "~/components/GameHeader.vue";
 
 @Component({
     name: "gamingScreen",
+    layout: "blank",
     components: {
         gameBoard,
         CountdownTimerWrapper,

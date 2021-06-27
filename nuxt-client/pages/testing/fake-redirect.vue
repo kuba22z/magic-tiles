@@ -21,6 +21,7 @@ import { CreatedActivity } from "~/types/gameInfo";
 
 @Component({
     name: "FakeRedirect",
+    layout: "blank",
 })
 export default class FakeRedirect extends Vue {
     activityData: CreatedActivity | null = null;

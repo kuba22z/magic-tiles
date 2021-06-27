@@ -12,6 +12,7 @@ import { Component, Prop, Vue, namespace } from "nuxt-property-decorator";
 import { Rect } from "~/types/game-board";
 import { SoundUtils } from "~/utils/soundUtils";
 import { gameInfoStore, gamingScreenStore } from "~/store";
+import { GameInfoStorage } from "~/utils/GameInfoStorage";
 
 const board = namespace("game-board");
 
@@ -46,6 +47,9 @@ export default class gamingRectangle extends Vue {
                 gamingScreenStore.getSessionHighscore
             )
                 gamingScreenStore.incrementSessionHighscore();
+            GameInfoStorage.updateStorageWithHighscore(
+                gamingScreenStore.sessionHighscore
+            );
             this.setColor(["green", this.rowIndex, this.colIndex]);
             SoundUtils.playCorrectSound();
         } else {

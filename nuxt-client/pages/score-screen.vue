@@ -111,6 +111,7 @@ import GamingScreen from "~/pages/gaming-screen.vue";
 
 @Component({
     name: "scoreScreen",
+    layout: "blank",
     components: {
         GamingScreen,
         magicTilesButton,

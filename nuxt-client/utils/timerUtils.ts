@@ -19,17 +19,20 @@ export class TimerUtils {
         endValue: number,
         countingUnit: CountingUnit,
         countingInterval: number,
-        executionCallback: () => any
+        onTickCallback: () => any,
+        endValueReachedCallback: () => any
     ): Promise<any> {
         const sleepDurationFactor: number =
             this.getSleepDurationFactor(countingUnit);
         const sleepDuration: number = sleepDurationFactor * countingInterval;
+
         while (startValue > endValue) {
             await new Promise((resolve) => setTimeout(resolve, sleepDuration));
             startValue = startValue - countingInterval;
             // MAYBE(pierre): can we call async callbacks with this?
-            executionCallback();
+            onTickCallback();
         }
+        endValueReachedCallback();
     }
 
     /**
