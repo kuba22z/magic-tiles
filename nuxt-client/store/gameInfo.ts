@@ -12,6 +12,7 @@ import {
     GameInfo,
     MagicTilesData,
     resultingCoupon,
+    ValidationInfo,
 } from "~/types/gameInfo";
 import { TimerUtils } from "~/utils/timerUtils";
 import {
@@ -38,6 +39,8 @@ export default class GameInfoStore extends VuexModule {
     correctImage: string = defaultCorrectBook;
     falseImages: string[] = defaultFalseImages;
     currentSponsor: string = "no sponsor was given.";
+    currentSponsorDescription: string = "no sponsor description was given.";
+    currentSponsorImage: string = "no sponsor image was given.";
     gameMaxLevel: number = 5;
     // TODO(pierre): currently it is hardcoded "{baseUrl}..."? Ask main backend
     // team to fix this.
@@ -54,14 +57,22 @@ export default class GameInfoStore extends VuexModule {
      * validation did succeed.
      */
     @VuexMutation
-    initializeGameInfo(gameInfo: GameInfo) {
+    initializeGameInfo(data: any) {
+        const gameInfo: GameInfo = data.gameInfo;
+        const validationInfo: ValidationInfo = data.validationInfo;
+
         this.userValidated = true;
         const gameData: MagicTilesData = gameInfo.game_data;
         this.correctImage = gameData.correctImage;
         this.currentSponsor = gameInfo.sponsor_name;
+        this.currentSponsorDescription = gameInfo.sponsor_description;
         this.falseImages = gameData.falseImages;
         this.gameMaxLevel = gameInfo.game_max_level;
         this.coupons = gameInfo.coupon_types;
+
+        this.activityId = validationInfo.activityId;
+        this.authToken = validationInfo.authToken;
+        this.validUntil = new Date(validationInfo.tokenDuration);
     }
 
     /**
@@ -92,7 +103,6 @@ export default class GameInfoStore extends VuexModule {
         const highscore = gamingScreenStore.getSessionHighscore;
         const reachedLevel = GameLogic.computeReachedLevel(highscore);
         try {
-            // throw new Error("test error case.");
             const response: AxiosResponse = await $axios.put(
                 "/api/api/v1/activities",
                 {
@@ -165,5 +175,35 @@ export default class GameInfoStore extends VuexModule {
 
     get getGameMaxLevel(): number {
         return this.gameMaxLevel;
+    }
+
+    get getCurrentSponsorDescription(): string {
+        return this.currentSponsorDescription;
+    }
+
+    get getCurrentSponsorImage(): string {
+        return this.currentSponsorImage;
+    }
+
+    get getValidationInfo(): ValidationInfo {
+        return {
+            activityId: this.activityId ?? -1,
+            authToken: this.authToken ?? "",
+            tokenDuration: this.validUntil ?? new Date(Date.now()),
+        };
+    }
+
+    get getGameInfo(): GameInfo {
+        return {
+            game_max_level: this.gameMaxLevel,
+            game_data: {
+                correctImage: this.correctImage,
+                falseImages: this.falseImages,
+            },
+            redirect_url: this.redirectUrl,
+            coupon_types: this.coupons,
+            sponsor_name: this.currentSponsor,
+            sponsor_description: this.currentSponsorDescription,
+        };
     }
 }

@@ -5,14 +5,14 @@
                 class="
                     h-12
                     game-title
-                    text-xl
+                    text-lg
                     flex
                     justify-center
                     items-center
                     font-semibold
                 "
             >
-                magic-tiles
+                Zeitliche Begrenzung
             </div>
             <div
                 class="
@@ -24,47 +24,28 @@
                 "
             >
                 <div class="mt-4 w-full">
-                    Bei diesem Spiel fahren Kacheln mit Bildern von oben nach
-                    unten herunter. Pro Reihe gibt es jeweils ein richtiges
-                    Bild, das angeklickt werden muss.
+                    Sobald du mit dem Spielen beginnst wirst du links oben einen
+                    Timer sehen. Das ist deine Spielzeit. Sobald der Timer auf
+                    0:00 steht, wird dein Highscore automatisch abgeschickt.
                 </div>
             </div>
             <div
                 class="
-                    logo-and-hint
-                    mt-4
-                    w-full
-                    flex flex-col
-                    justify-center
-                    items-center
-                "
-            >
-                <div class="h-20 w-20 mt-2 items-center flex justify-center">
-                    <img
-                        :src="correctImage"
-                        alt="Image  you have to click to get points."
-                    />
-                </div>
-                <div class="hint text-center">
-                    Das ist das korrekte Bild für die heutige Spielereunde!
-                </div>
-            </div>
-            <div
-                class="
+                    text-lg
                     explanation-finish
                     text-center
                     mt-8
-                    h-1/6
                     flex flex-col
                     justify-center
                     items-center
                 "
             >
-                <div class="font-semibold text-lg">Score</div>
-                <div class="mt-2">
-                    Pro Klick auf eine Kachel mit dem richtigen Bild erhöht sich
-                    dein Score. Je höher dein Highscore, desto höher ist deine
-                    Chance auf einen tollen Gewinn!
+                <div class="font-semibold">Spielende</div>
+                <div class="text-base mt-2">
+                    Bei einem Klick auf ein falsches Bild wird dein aktueller
+                    Score wieder auf 0 gesetzt und das Spiel startet von vorne.
+                    Dein Highscore bleibt jedoch für die gesamte Sitzung
+                    bestehen.
                 </div>
             </div>
             <div
@@ -81,13 +62,13 @@
                 "
             >
                 <MagicTilesButton
-                    text="Back to street!"
-                    button-type="href"
-                    link-to="https://back2street.de"
+                    text="Zurück"
+                    button-type="nuxtlink"
+                    link-to="/"
                 />
                 <MagicTilesButton
                     text="Weiter"
-                    link-to="/explanation-timer"
+                    link-to="/sponsor"
                     button-type="nuxtlink"
                 />
             </div>
@@ -102,7 +83,6 @@ import { gameInfoStore } from "~/store";
 
 @Component({
     name: "GameStartPage",
-    layout: "gaming",
     components: {
         MagicTilesButton,
     },

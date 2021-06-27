@@ -98,6 +98,9 @@ export default class gamingBoard extends Vue {
                 }
             }, 1000);
         }
+        // makes sure that we stop the game once our play time hit the end value
+        // (0:00). Event is bubbled up from countdownTimer.vue component.
+        this.$nuxt.$on("countdownTimerStopped", () => this.endGame());
     }
 
     /**
@@ -170,16 +173,17 @@ export default class gamingBoard extends Vue {
     public stopGame() {
         this.pauseGame();
         SoundUtils.playGameOverSound();
-        this.computeSessionHighscore();
-        this.redirectToScoreScreen();
+        this.redirectTo("/score-screen");
     }
 
     /**
-     * @description determines new session Highscore
+     * @description Gets called when the timer hit it's end value (0:00).
+     * Ends the game. Redirects to result-screen.
      */
-    public computeSessionHighscore() {
-        if (this.score > this.sessionHighscore)
-            gamingScreenStore.setSessionHighscore(this.score);
+    public endGame() {
+        this.pauseGame();
+        SoundUtils.playGameOverSound();
+        this.redirectTo("/result-screen");
     }
 
     /**
@@ -218,11 +222,11 @@ export default class gamingBoard extends Vue {
     }
 
     /**
-     * @description redirect to score-screen
+     * @description redirects to given path
      */
-    public redirectToScoreScreen() {
+    public redirectTo(page: string) {
         this.$router.push({
-            path: "/score-screen",
+            path: page,
         });
     }
 

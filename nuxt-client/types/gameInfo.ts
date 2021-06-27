@@ -55,3 +55,13 @@ export interface resultingCoupon {
     coupon?: Coupon;
     message?: string;
 }
+
+/**
+ * @description The data that we get via the query params on the validate page.
+ */
+export interface ValidationInfo {
+    activityId: number;
+    authToken: string;
+    // string in datetime format
+    tokenDuration: Date;
+}

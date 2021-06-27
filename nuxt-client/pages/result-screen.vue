@@ -97,17 +97,18 @@ import { Component, Vue } from "nuxt-property-decorator";
 import magicTilesButton from "~/components/MagicTilesButton.vue";
 import CouponItem from "~/components/CouponItem.vue";
 import { gameInfoStore } from "~/store";
+import { GameInfoStorage } from "~/utils/GameInfoStorage";
 
 @Component({
     name: "ResultScreen",
+    layout: "result",
     components: {
         magicTilesButton,
         CouponItem,
     },
 })
 export default class ResultScreen extends Vue {
-    // time it will take the user to be redirected to either the landing or the
-    // main page
+    // time it will take the user to be redirected to the main server page
     countDownDuration: number = 10;
 
     async fetch() {
@@ -115,6 +116,7 @@ export default class ResultScreen extends Vue {
     }
 
     async mounted() {
+        GameInfoStorage.cleanUpStorage();
         await this.countToZero();
         window.location.href = "http://back2street.de";
     }

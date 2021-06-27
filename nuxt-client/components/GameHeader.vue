@@ -27,10 +27,16 @@
             style="width: 35%"
         >
             <div
-                class="backToStreet h-1/4 bg-red-500 ml-auto font-bold"
+                class="backToStreet h-1/4 mt-2 ml-auto font-bold"
                 style="font-size: small; width: 100%"
             >
-                <a href="http://back2street.de"> BACK 2 STREET</a>
+                <a href="http://back2street.de">
+                    <img
+                        src="../assets/back2street-logo.svg"
+                        alt="Back2street logo"
+                        class="object-fit h-full w-full"
+                    />
+                </a>
             </div>
 
             <div

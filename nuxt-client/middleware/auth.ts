@@ -7,17 +7,33 @@
 
 import { Middleware } from "@nuxt/types";
 import { gameInfoStore } from "~/store";
+import { GameInfoStorage } from "~/utils/GameInfoStorage";
 
 const auth: Middleware = (context) => {
-    // only let the user continue if he is validated or he is trying to validate.
+    // allow user to continue if he wants to validate or if we are testing with
+    // cypress
     if (
-        gameInfoStore.userValidated ||
         context.route.path === "/validate" ||
         context.route.path === "/testing/fake-redirect"
     ) {
         return;
     }
 
+    // allow user if he is validated and has time left
+    if (gameInfoStore.userValidated && gameInfoStore.getSecondsLeft > 0) {
+        return;
+    }
+
+    // allow user if his validation is stored in localstorage and he has time
+    // left
+    if (GameInfoStorage.storageInitialized()) {
+        GameInfoStorage.initStoreFromStorage();
+        if (gameInfoStore.getSecondsLeft > 0) {
+            return;
+        }
+    }
+
+    // redirect to main page if we don't allow user to our page.
     context.redirect("https://back2street.de");
 };
 
