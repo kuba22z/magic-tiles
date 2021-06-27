@@ -1,58 +1,28 @@
 <template>
     <div>
         <div class="flex flex-col justify-center items-center">
-            <div v-if="runCountdown" class="running-timer">
-                <!-- MAYBE(pierre): figure out why prettier formats these class attributes so weirdly -->
+            <div
+                class="
+                    time
+                    px-3
+                    py-3
+                    border-solid border-black border-2
+                    rounded-full
+                    bg-white
+                    justify-center
+                "
+                style="width: 55px"
+            >
                 <div
                     class="
-                        time
-                        px-3
-                        py-3
-                        border-solid border-black border-2
-                        rounded-full
-                        bg-white
+                        flex
                         justify-center
+                        font-extrabold
+                        text-xl text-backtostreet-blue
                     "
-                    style="width: 55px"
+                    style="font-family: Amatic SC, serif"
                 >
-                    <div
-                        class="
-                            flex
-                            justify-center
-                            font-extrabold
-                            text-xl text-backtostreet-blue
-                        "
-                        style="font-family: Amatic SC, serif"
-                    >
-                        {{ currentTime }}
-                    </div>
-                </div>
-            </div>
-            <div v-else class="timer-not-running">
-                <div class="description circle">not running the countdown.</div>
-                <div
-                    class="
-                        time
-                        px-3
-                        py-3
-                        border-solid border-black border-2
-                        rounded-full
-                        bg-white
-                        justify-center
-                    "
-                    style="width: 55px"
-                >
-                    <div
-                        class="
-                            flex
-                            justify-center
-                            font-bold
-                            text-backtostreet-blue
-                        "
-                        style="font-family: Amatic SC, serif"
-                    >
-                        {{ currentTime }}
-                    </div>
+                    {{ currentTime }}
                 </div>
             </div>
         </div>
@@ -112,8 +82,17 @@ export default class CountdownTimer extends Vue {
             this.endValue,
             this.countingUnit,
             this.countingInterval,
-            this.handleTimerTick
+            this.handleTimerTick,
+            this.emitStopSignal
         );
+    }
+
+    /**
+     * @description Callback that will be called when the timer reaches the
+     * endvalue.
+     */
+    emitStopSignal() {
+        this.$nuxt.$emit("countdownTimerStopped");
     }
 
     /**
@@ -132,7 +111,6 @@ export default class CountdownTimer extends Vue {
      * @description Notifies parent component that a timer tick has happened.
      * Also passes the time that is left to the parent.
      */
-    // MAYBE(Pierre): find out why @Emit() decorator does not work
     countdownTimerTickHappened() {
         this.$nuxt.$emit("countdownTimerTickHappened", this.timeLeft);
     }
@@ -149,7 +127,11 @@ export default class CountdownTimer extends Vue {
     }
 
     get currentTime(): string {
-        return `${this.currentMinute}:${this.currentSecond}`;
+        if (this.currentSecond >= 10) {
+            return `${this.currentMinute}:${this.currentSecond}`;
+        }
+
+        return `${this.currentMinute}:0${this.currentSecond}`;
     }
 }
 </script>
