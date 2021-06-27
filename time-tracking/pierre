@@ -57,3 +57,6 @@ corporate design, benotung;;
 22.06.2021; abschlussbericht konzept überlegen, beispiele ausarbeiten, struktur beginnen ausarbeiten;2h;2h30min;; Unklar wie genau wir erklären müssen. e.g. wie genau die verwendete Technik erklären, muss alles mit text erklärt werden?;
 23.06.2021; weekly meeting; 30min;1h; Probleme bei magic tiles mit Safari auf dem Handy besprochen, wiederverwertung von componenten von magic tiles in den anderen beiden Spielen besprochen.;;;
 23.06.2021; abschlussbericht magic-tiles anfangen mit jakub;1h45min;1h45min;;;;;
+27.06.2021; design and add new page with sponsor image, sponsor name and sponsor description. add description for our timer and for the case the game ends adapt the validUntil time. It will now default to be 6 minutes instead of 20 (or less if the user is validated for only 4 minutes etc..);3h;4h;;;
+27.06.2021; create header that does display timer and backtostreet logo and will be displayed on all pages. add the correct logo for the gaming-screen 'back2street' start implementing ending game when timer hits 0:00. is now buggy for the new header.;4h;3h;;;;
+27.06.2021; end implementation of end game when timer hits 0:00. implement localstorage inside middlewhere so we can refresh anywhere on the page and still have the correct game state.
