@@ -13,8 +13,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "nuxt-property-decorator";
-import GameRectangle from "~/components/gameRectangle.vue";
-import { RectRow } from "~/types/game-board";
+import GameRectangle from "~/components/GameRectangle.vue";
+import { RectRow } from "~/types/gameBoard";
 
 @Component({
     components: { GameRectangle },

@@ -30,7 +30,7 @@
                 class="backToStreet h-1/4 mt-2 ml-auto font-bold"
                 style="font-size: small; width: 100%"
             >
-                <a href="http://back2street.de">
+                <a href="https://back2street.de">
                     <img
                         src="../assets/back2street-logo.svg"
                         alt="Back2street logo"

@@ -37,10 +37,13 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "nuxt-property-decorator";
+import CountdownTimerWrapper from "~/components/CountdownTimerWrapper.vue";
 
 @Component({
     name: "HeaderCard",
-    components: {},
+    components: {
+        CountdownTimerWrapper,
+    },
 })
 export default class HeaderCard extends Vue {
     // determines whether we are displaying the countdown.

@@ -24,7 +24,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Prop } from "nuxt-property-decorator";
 import CountdownTimerWrapper from "~/components/CountdownTimerWrapper.vue";
-import gameBoard from "~/components/gameBoard.vue";
+import GameBoard from "~/components/GameBoard.vue";
 import magicTilesButton from "~/components/MagicTilesButton.vue";
 import GameHeader from "~/components/GameHeader.vue";
 
@@ -32,7 +32,7 @@ import GameHeader from "~/components/GameHeader.vue";
     name: "gamingScreen",
     layout: "blank",
     components: {
-        gameBoard,
+        GameBoard,
         CountdownTimerWrapper,
         magicTilesButton,
         GameHeader,

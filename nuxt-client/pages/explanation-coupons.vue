@@ -2,7 +2,7 @@
     <div>
         <div class="p-4 flex flex-col h-screen items-center">
             <CouponCard
-                :caption="`Die folgenden Coupons gibt es zu Gewinnen`"
+                :caption="`Die folgenden Coupons gibt es zu gewinnen`"
                 :coupons="coupons"
                 :sponsor-name="sponsorName"
             />

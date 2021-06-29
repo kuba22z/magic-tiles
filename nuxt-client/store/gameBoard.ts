@@ -1,5 +1,5 @@
 import { Module, VuexModule, VuexMutation } from "nuxt-property-decorator";
-import { RectBoard, RectRow } from "~/types/game-board";
+import { RectBoard, RectRow } from "~/types/gameBoard";
 
 @Module({
     name: "gamingBoard",

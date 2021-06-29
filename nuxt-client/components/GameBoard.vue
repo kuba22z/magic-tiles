@@ -37,13 +37,13 @@
 
 <script lang="ts">
 import { Component, Vue, namespace, Prop } from "nuxt-property-decorator";
-import GameRectangle from "~/components/gameRectangle.vue";
-import GameRow from "~/components/gameRow.vue";
-import { RectBoard } from "~/types/game-board";
+import GameRectangle from "~/components/GameRectangle.vue";
+import GameRow from "~/components/GameRow.vue";
+import { RectBoard } from "~/types/gameBoard";
 import { SoundUtils } from "~/utils/soundUtils";
 import { gamingScreenStore, gameInfoStore } from "~/store";
 
-const board = namespace("game-board");
+const board = namespace("gameBoard");
 
 @Component({
     components: { GameRow, GameRectangle },
@@ -74,8 +74,8 @@ export default class gamingBoard extends Vue {
     delay: number = 28;
     currentLevel: number = 0;
     scoreLevels: number[] = [];
-    // Level up in steps of 10
-    levelUpStep: number = 10;
+    // Level up in steps of 1Level:10, 2Level: 25, 3Level: 50, 4Level: 100, Level5: 150
+    levelUpSteps: number[] = [10, 25, 50, 100, 150];
     countDownForGameStart: number = 3;
     showCountdown: boolean = true;
 
@@ -193,7 +193,7 @@ export default class gamingBoard extends Vue {
         const maxLevel = gameInfoStore.getGameMaxLevel;
         for (let level = 1; level <= maxLevel; level++) {
             if (level > 5) return;
-            this.scoreLevels.push(level * this.levelUpStep);
+            this.scoreLevels.push(this.levelUpSteps[level - 1]);
         }
     }
 

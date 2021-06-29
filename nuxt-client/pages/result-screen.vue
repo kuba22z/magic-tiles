@@ -43,7 +43,7 @@
                 <div v-else class="flex flex-col justify-center text-center">
                     <div class="title font-semibold text-lg">Schade!</div>
                     <div class="text mt-8">
-                        Dein Score war leider zu niedrig um einen Coupon bei
+                        Dein Score war leider zu niedrig, um einen Coupon bei
 
                         <div class="sponsor font-semibold">
                             {{ sponsorName }}
@@ -53,8 +53,8 @@
                     </div>
                     <div class="redirect-notification mt-8">
                         Leider hat es heute nicht geklappt. Wenn noch Coupons
-                        vorhanden sind, kannst du jedoch direkt erneut versuchen
-                        bei einen Coupon zu gewinnen!
+                        vorhanden sind, kannst du jedoch direkt erneut
+                        versuchen, einen Coupon zu gewinnen!
                     </div>
                 </div>
 
@@ -94,17 +94,19 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
-import magicTilesButton from "~/components/MagicTilesButton.vue";
+import MagicTilesButton from "~/components/MagicTilesButton.vue";
 import CouponItem from "~/components/CouponItem.vue";
 import { gameInfoStore } from "~/store";
-import { GameInfoStorage } from "~/utils/GameInfoStorage";
+import { GameInfoStorage } from "~/utils/gameInfoStorage";
+import CouponCard from "~/components/CouponCard.vue";
 
 @Component({
     name: "ResultScreen",
     layout: "result",
     components: {
-        magicTilesButton,
+        MagicTilesButton,
         CouponItem,
+        CouponCard,
     },
 })
 export default class ResultScreen extends Vue {
@@ -118,7 +120,7 @@ export default class ResultScreen extends Vue {
     async mounted() {
         GameInfoStorage.cleanUpStorage();
         await this.countToZero();
-        window.location.href = "http://back2street.de";
+        window.location.href = "https://back2street.de";
     }
 
     /**
