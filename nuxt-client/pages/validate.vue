@@ -73,7 +73,7 @@ import { Component, Vue } from "nuxt-property-decorator";
 import { AxiosResponse } from "axios";
 import { gameInfoStore } from "~/store";
 import { ValidationInfo } from "~/types/gameInfo";
-import { GameInfoStorage } from "~/utils/GameInfoStorage";
+import { GameInfoStorage } from "~/utils/gameInfoStorage";
 
 @Component({
     name: "Validation",

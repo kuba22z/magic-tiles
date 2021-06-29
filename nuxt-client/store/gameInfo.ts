@@ -20,7 +20,7 @@ import {
     defaultFalseImages,
 } from "~/assets/rectImages/rectImages";
 import { $axios } from "~/utils/api";
-import { GameLogic } from "~/utils/GameLogic";
+import { GameLogic } from "~/utils/gameLogic";
 
 /**
  * @description Store that is used to store all game data that we get from the

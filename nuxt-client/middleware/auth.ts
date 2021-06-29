@@ -7,7 +7,7 @@
 
 import { Middleware } from "@nuxt/types";
 import { gameInfoStore } from "~/store";
-import { GameInfoStorage } from "~/utils/GameInfoStorage";
+import { GameInfoStorage } from "~/utils/gameInfoStorage";
 
 const auth: Middleware = (context) => {
     // allow user to continue if he wants to validate or if we are testing with
