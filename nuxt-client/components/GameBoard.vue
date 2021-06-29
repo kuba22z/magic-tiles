@@ -74,8 +74,8 @@ export default class gamingBoard extends Vue {
     delay: number = 28;
     currentLevel: number = 0;
     scoreLevels: number[] = [];
-    // Level up in steps of 1Level:10, 2Level: 15, 3Level: 25, 4Level: 50, Level5: 50
-    levelUpSteps: number[] = [10, 15, 25, 50, 50];
+    // Level up in steps of 1Level:10, 2Level: 25, 3Level: 50, 4Level: 100, Level5: 150
+    levelUpSteps: number[] = [10, 25, 50, 100, 150];
     countDownForGameStart: number = 3;
     showCountdown: boolean = true;
 
@@ -193,7 +193,7 @@ export default class gamingBoard extends Vue {
         const maxLevel = gameInfoStore.getGameMaxLevel;
         for (let level = 1; level <= maxLevel; level++) {
             if (level > 5) return;
-            this.scoreLevels.push(level * this.levelUpSteps[level - 1]);
+            this.scoreLevels.push(this.levelUpSteps[level - 1]);
         }
     }
 
