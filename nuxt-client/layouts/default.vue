@@ -7,8 +7,13 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
+import HeaderCard from "~/components/HeaderCard.vue";
 
-@Component({})
+@Component({
+    components: {
+        HeaderCard,
+    },
+})
 export default class gamingRectangle extends Vue {
     mounted() {
         // makes sure user will be redirected to result screen when the

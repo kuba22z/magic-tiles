@@ -43,7 +43,7 @@ import { RectBoard } from "~/types/gameBoard";
 import { SoundUtils } from "~/utils/soundUtils";
 import { gamingScreenStore, gameInfoStore } from "~/store";
 
-const board = namespace("game-board");
+const board = namespace("gameBoard");
 
 @Component({
     components: { GameRow, GameRectangle },

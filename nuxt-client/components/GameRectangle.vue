@@ -14,7 +14,7 @@ import { SoundUtils } from "~/utils/soundUtils";
 import { gameInfoStore, gamingScreenStore } from "~/store";
 import { GameInfoStorage } from "~/utils/gameInfoStorage";
 
-const board = namespace("game-board");
+const board = namespace("gameBoard");
 
 @Component
 export default class gamingRectangle extends Vue {
