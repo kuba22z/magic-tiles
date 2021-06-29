@@ -37,9 +37,9 @@
 
 <script lang="ts">
 import { Component, Vue, namespace, Prop } from "nuxt-property-decorator";
-import GameRectangle from "~/components/gameRectangle.vue";
-import GameRow from "~/components/gameRow.vue";
-import { RectBoard } from "~/types/game-board";
+import GameRectangle from "~/components/GameRectangle.vue";
+import GameRow from "~/components/GameRow.vue";
+import { RectBoard } from "~/types/gameBoard";
 import { SoundUtils } from "~/utils/soundUtils";
 import { gamingScreenStore, gameInfoStore } from "~/store";
 

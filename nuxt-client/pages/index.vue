@@ -46,7 +46,7 @@
                     />
                 </div>
                 <div class="hint text-center">
-                    Das ist das korrekte Bild für die heutige Spielereunde!
+                    Das ist das korrekte Bild für die heutige Spielrunde!
                 </div>
             </div>
             <div

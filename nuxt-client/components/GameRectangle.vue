@@ -9,10 +9,10 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, namespace } from "nuxt-property-decorator";
-import { Rect } from "~/types/game-board";
+import { Rect } from "~/types/gameBoard";
 import { SoundUtils } from "~/utils/soundUtils";
 import { gameInfoStore, gamingScreenStore } from "~/store";
-import { GameInfoStorage } from "~/utils/GameInfoStorage";
+import { GameInfoStorage } from "~/utils/gameInfoStorage";
 
 const board = namespace("game-board");
 

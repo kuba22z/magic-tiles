@@ -1,12 +1,17 @@
 import { gameInfoStore } from "~/store";
 
+/**
+ * @description represents a rectangle with the coordinates and a image
+ */
 export class Rect {
     image: string;
     x: number;
     y: number;
     isClicked: boolean;
     color: string;
-
+    /**
+     * @description initializes a rectangle
+     */
     constructor(
         x: number = 0,
         y: number = 0,
@@ -21,11 +26,20 @@ export class Rect {
         this.color = color;
     }
 }
+
+/**
+ * @description this type contains 4 rectangles which are arranged horizontally.
+ */
 export class RectRow {
     public row: Rect[] = [];
 
     public correctImage!: string;
 
+    /**
+     * @description initializes a RectRow, the correct image is assigned to a random place in the RectRow.
+     * false images are also assigned to a other random location
+     * @param rectPosY y Coordinates where the RectRow should be initialized
+     */
     constructor(rectPosY: number = 0) {
         const correctImage: string = gameInfoStore.getCorrectImage;
         const falseImages: string[] = gameInfoStore.getFalseImages;
@@ -54,6 +68,11 @@ export class RectRow {
         }
     }
 }
+
+/**
+ * @description The type contains 5 RectRow in an array. This class represents
+ * the game board and contains the necessary coordinates for the rectangles
+ */
 export class RectBoard {
     public board: RectRow[] = [];
 

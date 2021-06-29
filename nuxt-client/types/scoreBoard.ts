@@ -1,3 +1,6 @@
+/**
+ * @description represents the score information during the game
+ */
 export class ScoreBoard {
     highscore: number;
     score: number;
