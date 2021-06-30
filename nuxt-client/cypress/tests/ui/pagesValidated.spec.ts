@@ -47,9 +47,6 @@ beforeEach(() => {
     ).click();
 });
 
-// maybe log out after each
-// afterEach
-
 describe("Testing contents of each page", () => {});
 
 it("tests contents and buttons of the landing page", () => {
