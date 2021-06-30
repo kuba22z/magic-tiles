@@ -33,8 +33,8 @@
                     style="bottom: 11%; border-radius: 0.4rem"
                 >
                     <div class="mt-4 text-xl w-full px-4">
-                        Versuchen Sie es erneut oder schicken Sie das beste
-                        Ergebnis ab
+                        Schade! Versuche es erneut, oder schicke deinen
+                        aktuellen Highscore ab!
                     </div>
                 </div>
                 <div
