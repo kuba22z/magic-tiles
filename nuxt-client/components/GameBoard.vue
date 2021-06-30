@@ -48,7 +48,7 @@ const board = namespace("gameBoard");
 @Component({
     components: { GameRow, GameRectangle },
 })
-export default class gamingBoard extends Vue {
+export default class GamingBoard extends Vue {
     @board.State
     public rectBoard!: RectBoard;
 

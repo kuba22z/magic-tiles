@@ -17,7 +17,7 @@ import { GameInfoStorage } from "~/utils/gameInfoStorage";
 const board = namespace("gameBoard");
 
 @Component
-export default class gamingRectangle extends Vue {
+export default class GamingRectangle extends Vue {
     @Prop() public rect!: Rect;
 
     @Prop() public colIndex!: number;

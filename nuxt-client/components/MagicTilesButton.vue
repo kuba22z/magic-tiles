@@ -48,7 +48,7 @@
 import { Component, Prop, Vue } from "nuxt-property-decorator";
 
 @Component
-export default class magicTilesButton extends Vue {
+export default class MagicTilesButton extends Vue {
     @Prop({ default: "/" }) linkTo!: string;
     @Prop(String) text!: string;
     @Prop({ default: "nuxtlink" }) buttonType!: string;

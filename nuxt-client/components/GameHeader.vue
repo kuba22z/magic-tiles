@@ -70,7 +70,7 @@ import HeaderLine from "~/components/HeaderLine.vue";
         HeaderLine,
     },
 })
-export default class gameHeader extends Vue {
+export default class GameHeader extends Vue {
     get correctImage(): string {
         return gameInfoStore.getCorrectImage;
     }

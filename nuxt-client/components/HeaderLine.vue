@@ -18,7 +18,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 @Component({
     name: "HeaderLine",
 })
-export default class headerLine extends Vue {
+export default class HeaderLine extends Vue {
     /**
      * @description determines whether the game starts
      */
