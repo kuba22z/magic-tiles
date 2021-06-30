@@ -54,8 +54,7 @@ it("tests contents and buttons of the landing page", () => {
     // make sure we are on the magic tiles game by checking the game-title "magic-tiles"
     cy.get("div .game-title").contains("magic-tiles");
     // makes sure we have a header on the page
-    // TODO(pierre): adapt this once the change is live on master
-    // cy.get(".header").should("be.visible");
+    cy.get(".header").should("be.visible");
     // makes sure the countdown is visible
     cy.get(".countdown").should("be.visible");
     // makes sure we see a logo
@@ -85,8 +84,7 @@ it("tests contents and buttons of the explanation-timer page", () => {
     cy.url().should("eq", `${Cypress.config().baseUrl}/explanation-timer`);
 
     // makes sure we have a header on the page
-    // TODO(pierre): adapt this once the change is live on master
-    // cy.get(".header").should("be.visible");
+    cy.get(".header").should("be.visible");
     // makes sure the countdown is visible
     cy.get(".countdown").should("be.visible");
     // makes sure we see a logo
@@ -129,8 +127,7 @@ it("tests contents and buttons of the sponsor page", () => {
     cy.url().should("eq", `${Cypress.config().baseUrl}/sponsor`);
 
     // makes sure we have a header on the page
-    // TODO(pierre): adapt this once the change is live on master
-    // cy.get(".header").should("be.visible");
+    cy.get(".header").should("be.visible");
     // makes sure the countdown is visible
     cy.get(".countdown").should("be.visible");
     // makes sure we see a logo
@@ -175,22 +172,19 @@ it("tests contents and buttons of the explanation-coupons page", () => {
     cy.url().should("eq", `${Cypress.config().baseUrl}/explanation-coupons`);
 
     // makes sure we have a header on the page
-    // TODO(pierre): adapt this once the change is live on master
-    // cy.get(".header").should("be.visible");
+    cy.get(".header").should("be.visible");
     // makes sure the countdown is visible
     cy.get(".countdown").should("be.visible");
     // makes sure we see a logo
     cy.get(".logo").should("be.visible");
     // clicking on "Zurück" will navigate to "/sponsor" page
-    /* TODO(pierre): uncomment this after fix is on master.
-    // cy.scrollTo("bottom");
-    // cy.wait(300);
-    // cy.get(".button").contains("Zurück").click();
-    // cy.url().should("eq", `${Cypress.config().baseUrl}/sponsor`);
+    cy.scrollTo("bottom");
+    cy.wait(300);
+    cy.get(".button").contains("Zurück").click();
+    cy.url().should("eq", `${Cypress.config().baseUrl}/sponsor`);
     // uses router history to go back to the previous page
-    // cy.go("back");
-    // cy.url().should("eq", `${Cypress.config().baseUrl}/explanation-coupons`);
-    */
+    cy.go("back");
+    cy.url().should("eq", `${Cypress.config().baseUrl}/explanation-coupons`);
     // clicking on "Verstanden" will navigate to /gaming-screen page
     cy.scrollTo("bottom");
     cy.wait(300);
