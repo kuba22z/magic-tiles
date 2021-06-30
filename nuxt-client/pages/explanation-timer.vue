@@ -24,9 +24,9 @@
                 "
             >
                 <div class="mt-4 w-full">
-                    Sobald du mit dem Spielen beginnst, wirst du links oben
-                    einen Timer sehen. Das ist deine Spielzeit. Sobald der Timer
-                    auf 0:00 steht, wird dein Highscore automatisch abgeschickt.
+                    Links oben siehst du einen Timer. Das ist deine Spielzeit.
+                    Sobald der Timer auf 0:00 steht, wird dein Highscore
+                    automatisch abgeschickt.
                 </div>
             </div>
             <div

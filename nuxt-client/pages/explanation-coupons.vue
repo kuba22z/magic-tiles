@@ -21,7 +21,7 @@
             >
                 <MagicTilesButton
                     text="Zurück"
-                    link-to="/explanation-timer"
+                    link-to="/sponsor"
                     button-type="nuxtlink"
                 />
                 <MagicTilesButton
