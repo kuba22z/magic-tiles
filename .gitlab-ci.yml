@@ -11,6 +11,7 @@
 # stages in the order we are going through them
 stages:
   - build
+  - test
   - deploy
 
 variables:
@@ -60,6 +61,42 @@ build:
   # retries running script section maximum two times, if it fails.
   retry:
     max: 2
+
+# runs e2e tests with cypress
+test:e2e:
+
+  stage: test
+
+  # makes sure tests are ran sequentially instead of concurrently.
+  # concurrent execution did lead to errors with the docker registry.
+  resource_group: test
+
+  script:
+      - docker pull "$CI_REGISTRY_IMAGE:latest"
+      - docker-compose run nuxt-client /pipeline-scripts/test-e2e.sh
+  # retries running script section maximum two times, if it fails.
+  retry:
+    max: 2
+
+
+# runs bdd unit tests with moccha && chai
+test:unit:
+
+  stage: test
+
+  # makes sure tests are ran sequentially instead of concurrently.
+  # concurrent execution did lead to errors with the docker registry.
+  resource_group: test
+
+  script:
+      - docker pull "$CI_REGISTRY_IMAGE:latest"
+      # invokes a mocked test script. TODO(pierre): create tests and run them
+      # here
+      - docker-compose run nuxt-client /pipeline-scripts/test-unit.sh
+  # retries running script section maximum two times, if it fails.
+  retry:
+    max: 2
+
 
 # copies/deploys files to the deploy dir
 deploy:

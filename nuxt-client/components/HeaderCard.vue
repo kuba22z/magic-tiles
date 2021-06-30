@@ -2,6 +2,7 @@
     <div>
         <div
             class="
+                header
                 flex
                 h-20
                 w-full
