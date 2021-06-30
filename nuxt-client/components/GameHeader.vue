@@ -27,7 +27,7 @@
             style="width: 35%"
         >
             <div
-                class="backToStreet h-1/4 mt-2 ml-auto font-bold"
+                class="backToStreet logo h-1/4 mt-2 ml-auto font-bold"
                 style="font-size: small; width: 100%"
             >
                 <a href="https://back2street.de">
@@ -42,6 +42,7 @@
             <div
                 class="
                     border-solid border-red border-2
+                    correct-image
                     bg-white
                     h-2/5
                     mt-4
