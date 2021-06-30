@@ -64,7 +64,6 @@ export default {
                 extend: {
                     colors: {
                         "backtostreet-blue": "#142a52",
-                        // TODO(pierre): ask alexamder samsz for lightblue/hover color.
                         "backtostreet-lightblue": "#60a5fa",
                     },
                 },
@@ -86,10 +85,6 @@ export default {
         "/api/": {
             target: "https://api.back2street.de",
             pathRewrite: { "^/api/": "" },
-        },
-        "/test/": {
-            target: "https://jsonplaceholder.typicode.com",
-            pathRewrite: { "^/test/": "" },
         },
     },
 

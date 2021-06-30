@@ -77,7 +77,7 @@ import { GameInfoStorage } from "~/utils/gameInfoStorage";
 
 @Component({
     name: "Validation",
-    layout: "blank",
+    layout: "result",
 })
 export default class Validation extends Vue {
     queryParams: any;
@@ -125,7 +125,9 @@ export default class Validation extends Vue {
             });
             this.validationSuccessful = true;
         } catch (e) {
-            console.log("Error when calling fetch() on validate.vue.");
+            console.log(
+                "Error when trying to validate the user in validate.vue."
+            );
             console.log(e);
             this.validationSuccessful = false;
         }
@@ -141,6 +143,11 @@ export default class Validation extends Vue {
         this.redirectToMainPage();
     }
 
+    /**
+     * @param validUntil: Date object until the given token will be accepted by
+     * the main backend api.
+     * @description calculates the duration we allow the player to play our game.
+     */
     calculatePlayTime(validUntil: Date): Date {
         const sixMinutesInMillis: number = 1000 * 60 * 6;
         const tenSecondsInMillis: number = 1000 * 10;

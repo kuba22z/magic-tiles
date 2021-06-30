@@ -3,37 +3,30 @@
  * being validated.
  **/
 
-describe("Testing if the auth guard of our app does work.", () => {
-    beforeEach(() => {
-        cy.visit("https://back2street.de", {
-            auth: {
-                username: "b2s",
-                password: "secretb2s",
-            },
+const createTestDescription = (route: string) => {
+    return `browsing /${route} of magic-tiles game should trigger the auth guard and redirect to /validate with negative result.`;
+};
+
+const pagesToTest: string[] = [
+    "",
+    "/explanation-coupons",
+    "/gaming-screen",
+    "/score-screen",
+    "/result-screen",
+];
+
+/**
+ * @description Actions required to successfully test the validate page.
+ */
+const testValidatePage = () => {
+    cy.url().should("eq", `${Cypress.config().baseUrl}/validate`);
+};
+
+describe("Testing if the auth guard of our app does work. Navigating to pages without being validated.", () => {
+    pagesToTest.forEach((page) => {
+        it(createTestDescription(page), () => {
+            cy.visit(page);
+            testValidatePage();
         });
-    });
-    it("should redirect to the back2street main page page when browsing / of magic-tiles game", () => {
-        cy.visit("");
-        cy.url().should("eq", "https://back2street.de/");
-    });
-
-    it("should get redirected to the back2street main page page when browsing /explanation-coupons of magic-tiles game", () => {
-        cy.visit("/explanation-coupons");
-        cy.url().should("eq", "https://back2street.de/");
-    });
-
-    it("should get redirected to the back2street main page page when browsing /gaming-screen of magic-tiles game", () => {
-        cy.visit("/gaming-screen");
-        cy.url().should("eq", "https://back2street.de/");
-    });
-
-    it("should get redirected to the back2street main page page when browsing /score-screen of magic-tiles game", () => {
-        cy.visit("/score-screen");
-        cy.url().should("eq", "https://back2street.de/");
-    });
-
-    it("should get redirected to the back2street main page page when browsing /result-screen of magic-tiles game", () => {
-        cy.visit("/result-screen");
-        cy.url().should("eq", "https://back2street.de/");
     });
 });

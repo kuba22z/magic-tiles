@@ -5,11 +5,12 @@
  * validate
  */
 
-import { Middleware } from "@nuxt/types";
+import { Context, Middleware } from "@nuxt/types";
+
 import { gameInfoStore } from "~/store";
 import { GameInfoStorage } from "~/utils/gameInfoStorage";
 
-const auth: Middleware = (context) => {
+const auth: Middleware = (context: Context) => {
     // allow user to continue if he wants to validate or if we are testing with
     // cypress
     if (
@@ -33,8 +34,8 @@ const auth: Middleware = (context) => {
         }
     }
 
-    // redirect to main page if we don't allow user to our page.
-    context.redirect("https://back2street.de");
+    // redirects user to validate page
+    context.redirect("/validate");
 };
 
 export default auth;
