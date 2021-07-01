@@ -1,6 +1,7 @@
 <template>
     <div
         class="
+            coupon
             flex flex-col
             justify-center
             items-center

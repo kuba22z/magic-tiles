@@ -1,7 +1,7 @@
 {
     "ignoreTestFiles": "*.spec.js",
     "integrationFolder": "cypress/tests",
-    "baseUrl": "https://magic-tiles-master.back2street.de",
+    "baseUrl": "http://localhost:3000",
     "viewportHeight": 568,
     "viewportWidth": 320
 }
