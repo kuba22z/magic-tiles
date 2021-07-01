@@ -30,38 +30,36 @@
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace Cypress {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         interface Chainable<Subject> {
-            google(): Chainable<Window>;
             navigate(pageName: string): void;
+            saveLocalStorage(): Chainable<any>;
+            restoreLocalStorage(): Chainable<any>;
         }
     }
 }
 
 /**
- * Goes to google site
+ * @description Helper functions to include usage of locastorage for multiple
+ * test cases since this is not configurable by default by cypress.
+ * @src Credit who credit is due:
+ * https://github.com/cypress-io/cypress/issues/461
  */
-Cypress.Commands.add("google", () => cy.visit("https://google.com"));
+const LOCAL_STORAGE_MEMORY: any = {};
 
-/**
- * @description Goes to main backtostreet page
- */
-Cypress.Commands.add("b2s", (pageName) =>
-    cy.visit(`https://back2street.de/${pageName}`)
-);
+Cypress.Commands.add("saveLocalStorage", () => {
+    Object.keys(localStorage).forEach((key) => {
+        LOCAL_STORAGE_MEMORY[key] = localStorage[key];
+    });
+    cy.log("saving the localstorage inside cypress variable.");
+});
 
-/**
- * @description Goes to magic-tiles page
- */
-Cypress.Commands.add("b2sTiles", (pageName) =>
-    cy.visit(`https://magic-tiles-master.back2street.de/${pageName}`, {
-        auth: {
-            username: "b2s",
-            password: "secretb2s",
-            // username: Cypress.env("credentials").username,
-            // password: Cypress.env("credentials").password,
-        },
-    })
-);
+Cypress.Commands.add("restoreLocalStorage", () => {
+    Object.keys(LOCAL_STORAGE_MEMORY).forEach((key) => {
+        localStorage.setItem(key, LOCAL_STORAGE_MEMORY[key]);
+    });
+    cy.log("loading the localstorage from cypress variable.");
+});
 
 /**
  * Navigates to page with pageName
