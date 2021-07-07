@@ -26,7 +26,9 @@
 
 ## Architektur
 
+### Startseite
 - ![Bild der Startseite](/abschlussbericht/systemDocumentation/indexDiagram.png)
+### Spieleseite
 - ![Bild der Spieleseite](/abschlussbericht/systemDocumentation/gamingScreenDiagram.png)
 
 ## Styleguide
@@ -35,5 +37,8 @@
 
 ## Spieleansichten
 
+### Mobile Ansicht
 - ![Mobile Ansicht](/abschlussbericht/mobileAnsicht.png)
+
+### Desktop Ansicht
 - ![Desktop Ansicht](/abschlussbericht/desktopAnsicht.png)
