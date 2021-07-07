@@ -27,7 +27,6 @@ import { Component, Vue, Prop } from "nuxt-property-decorator";
 
 @Component
 export default class CouponItem extends Vue {
-    // TODO(pierre): read about prop validator, and type checks.
     /**
      * The image that will be displayed.
      */

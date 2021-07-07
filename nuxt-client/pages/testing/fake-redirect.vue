@@ -1,5 +1,7 @@
 <template>
-    <!-- fakes redirect because the main backend does not link to the validate page yet -->
+    <!-- @file This page is used to test the local development state. Since we have no
+    local database etc.. we are using this trick to be able to test our current
+    state with a local server.-->
     <div class="flex flex-col justify-center text-center">
         <div class="text-xl">
             Hey ! I am a fake page. I act as the main backend main page. Click
@@ -28,10 +30,8 @@ export default class FakeRedirect extends Vue {
 
     /**
      * @description Creates an activity. Will create a valid token, and the
-     * corresponding activity id and the expiration timestamp. This will be sent
-     * to our /validate page in the future. Currently we have to create this
-     * ourselves because the main backend does not have this implemented yet.
-     * TODO(pierre): delete onces main backend has this implemented.
+     * corresponding activity id and the expiration timestamp. Will then
+     * redirect to the /validate page.
      */
     async createActivity() {
         try {
@@ -45,7 +45,6 @@ export default class FakeRedirect extends Vue {
         }
     }
 
-    // instant redirect for testing.
     async mounted() {
         await this.createActivity();
     }
