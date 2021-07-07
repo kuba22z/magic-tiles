@@ -1,7 +1,7 @@
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: "magic-tiles",
+        title: "SCHNAPPEN ODER RAUS!",
         htmlAttrs: {
             lang: "en",
         },

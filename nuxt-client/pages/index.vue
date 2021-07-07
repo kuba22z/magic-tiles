@@ -12,7 +12,7 @@
                     font-semibold
                 "
             >
-                magic-tiles
+            SCHNAPPEN ODER RAUS!
             </div>
             <div
                 class="
