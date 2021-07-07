@@ -59,9 +59,6 @@ describe("Testing the contents and navigation behaviour of all our pages.", () =
      * which will then be loaded before every test in this suite.
      */
     before(() => {
-        // logIntoMainPage();
-        // selectMagicTilesFromSponsorLavalle();
-        // cy.url().should("eq", "https://magic-tiles-master.back2street.de/");
         validateWithTestPage();
         cy.url().should("eq", `${Cypress.config().baseUrl}/`);
         cy.saveLocalStorage();
@@ -74,7 +71,9 @@ describe("Testing the contents and navigation behaviour of all our pages.", () =
     it("tests contents and buttons of the '/' (the landing) page", () => {
         cy.url().should("eq", `${Cypress.config().baseUrl}/`);
         // make sure we are on the magic tiles game by checking the game-title "magic-tiles"
-        cy.get("div .game-title").contains("magic-tiles").should("exist");
+        cy.get("div .game-title")
+            .contains("SCHNAPPEN ODER RAUS!")
+            .should("exist");
         // makes sure we have a header on the page
         cy.get(".header").should("be.visible");
         // makes sure the countdown exists
