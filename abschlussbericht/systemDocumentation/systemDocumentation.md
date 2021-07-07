@@ -7,7 +7,9 @@
 - Typescript, wodurch wir Fehlerquellen durch falsche Datentypen schon beim
   Entwickeln entdecken können.
 - Prettier und Eslint für Formatting und Linting.
-- Cypress zum automatisierten Testen.
+- Cypress zum Testen.
+- .gitlab-ci.yml zur Durchführung von automatisiertem Bauen, Testen und
+  Deployen der Anwendung.
 
 ## Git Workflow
 
