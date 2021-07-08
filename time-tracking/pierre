@@ -1,63 +1,65 @@
-Datum; Geplante Aufgabe; Zeit geschaetzt; Zeit gebraucht; Erledigte Aufgabe ; Probleme
-
-01.04.2021;Entry Meeting ip;1h;2h 30min;Vorstellung Alexander Samsz. Vorstellung Andreas. Vermittlung der Grundidee des ips.;;
-07.04.2021;Team Meeting, Vorbereitung für ip weekly;15min;40min;Klärung Repo Struktur,Spielezuordnung,Repo Struktur, siehe protokoll zum Datum;;
-08.04.2021;weekly ip meeting;1h30min;1h30min;weekly ip meeting;;
-08.04.2021;besprechung jakub pierre magic-tiles;1h 30min;1h 30min;Prioritisierung der ersten Spielidee (magic tiles oder subway surfer). Austausch über aktuellen Kenntnisstand und mögliche Vorgehensweise;;
-14.04.2021;Eva git erklären;1h;1h 45min;Eva git etwas erklärt. Kleinen git guide für Eva und Theresa erstellt. Readme.md im hauptrepo andgepasst und unsere spiele verlinkt.;ssh-key ging bei mir für git nicht. Hatte in meiner ssh-config fh-aachen.de, aber musste git.fh-aachen.de einfügen.
-14.04.2021;weekly team meeting, todos aus slack besprechen;15;30min;auf frontend framework geeinigt. Prototypendesign tool figma geeinigt. Backend Postgresql geeinigt;TODO
+Datum;Geplante Aufgabe;Zeit geschaetzt;Zeit gebraucht;Erledigte Aufgabe ;Probleme
+;;;;;
+01.04.2021;Entry Meeting ip;1h;2h30min;Vorstellung Alexander Samsz. Vorstellung Andreas. Vermittlung der Grundidee des ips.;
+07.04.2021;Team Meeting, Vorbereitung für ip weekly;15min;40min;Klärung Repo Struktur,Spielezuordnung,Repo Struktur, siehe protokoll zum Datum;
+08.04.2021;weekly ip meeting;1h30min;1h30min;weekly ip meeting;
+08.04.2021;besprechung jakub pierre magic-tiles;1h30min;1h30min;Prioritisierung der ersten Spielidee (magic tiles oder subway surfer). Austausch über aktuellen Kenntnisstand und mögliche Vorgehensweise;
+14.04.2021;Eva git erklären;1h;1h45min;Eva git etwas erklärt. Kleinen git guide für Eva und Theresa erstellt. Readme.md im hauptrepo andgepasst und unsere spiele verlinkt.;ssh-key ging bei mir für git nicht. Hatte in meiner ssh-config fh-aachen.de, aber musste git.fh-aachen.de einfügen.
+14.04.2021;weekly team meeting, todos aus slack besprechen;15min;30min;auf frontend framework geeinigt. Prototypendesign tool figma geeinigt. Backend Postgresql geeinigt;TODO
 14.04.2021;Prototypenerstellung für Magic Tiles;2h;1h30min;Prototypenerstellung mit Figma;Einlernen in Figma
-14.04.2021;Readme.md updaten, Figma exportieren und einbinden in readme;15min;20min;Readme updated, Figma exportiert und als png eingebunden;;
-15.04.2021;weekly review meeting.aktuelle probleme besprechen, absichern, dass unsere Spiele so okay sind durch Mockups.;1h;1h;probleme geklaert, Spiele wurden akzeptiert.;;
-15.04.2021;Vorschlag für api im main backend erstellt, weil bisher noch nichts gemacht wurde und jedes Spiel darauf aufbauen wird.;30min;45min;wie vorgenommen.;;
+14.04.2021;Readme.md updaten, Figma exportieren und einbinden in readme;15min;20min;Readme updated, Figma exportiert und als png eingebunden;
+15.04.2021;weekly review meeting.aktuelle probleme besprechen, absichern, dass unsere Spiele so okay sind durch Mockups.;1h;1h;probleme geklaert, Spiele wurden akzeptiert.;
+15.04.2021;Vorschlag für api im main backend erstellt, weil bisher noch nichts gemacht wurde und jedes Spiel darauf aufbauen wird.;30min;45min;wie vorgenommen.;
 16.04.2021;Aufsetzen des Projekts mit Jakub;2h;1h30min;Projekt aufgesetzt,technologien besprochen;npm installation gab error beim Setup
 16.04.2021;Einarbeiten in typescript class components;2h;2h;test page erstellt mit class based component;vue-decorater für props syntax bei props unklar.
-16.04.2021;Zusammen mit Jakub den Aufgaben in issues für diesen Sprint aufgeteilt. Pair Programming mit Jakub;3h;3h;aufgaben aufgeteilt, über entwicklungsideen gesprochen und angefangen;;
-23.04.2021;Meeting mit Jakub, Besprechung, Probleme, Aufgaben, aktueller Stand;1h;2h;über workflow diskutiert und für reviews und feature branch workflow entschieden. merge requests besprochen und ausgetestet
-28.04.2021;gitlab cicd einarbeiten;1h;1h;basics anhand von docu und yt video angeschaut;;
-28.04.2021;weekly meeting;30min;1h10min;probleme diskutiert. coupons anzahl,
-corporate design, benotung;;
-28.04.2021;gitlab ci-cid einrichten;3h;7h;falsche flag bei der installation des gitlab runners gesetzt, wodurch ich DooD(docker out of docker) anstatt DiD(docker in docker) hatte und im inneren compose nichts mehr mounten konnte. habe das natürlich erst nach einigen Stunden debugging bemerkt... Habe dann an einem Testprojekt eine erste Pipeline aufgesetzt, bei der es Funktioniert hat. Als nächstes muss man sich um das deployment des nuxt-clients kümmern im zusammenhang mit cicd.
-29.04.2021;gitlab ci-cd in stages (build, test, deploy) grob einrichten. pm2 für test repo aufsetzten genauso wie ein simplen nginx um die Idee zu testen. herausfinden wie man docker images auf die registry pusht und pullt. überlegen wie man das alles deployed (pm2, nginx);2h;5h;wie beschrieben;;
-30.04.2021;gitlab ci-cd zum laufen bringen. (docker images pushen und pullen) überlegen wie man nur auf master und development baut und deployed, jedoch jeden push einmal baut.. und falls CI_STAGING_1 im commit steht, das auch darauf deployed. pm2 und nginx docker container erstellen;4h;6h;bau logik funktioniert;;
-04.05.2021;letzte probleme beim cicd beseitigen (node_modules werden nicht kopiert??);1h;2h;wie beschrieben;;
-05.05.2021; auto deploy container pm2 und nginx aufsetzen, magic-tiles damit deployen. .htaccess einbauen mit einem passwort bei nginx.;4h;5h;wie beschrieben;;
-05.05.2021; weekly 18:00 bis 18:20;15min;20min;probleme besprochen, aufgaben für nächste woche geklärt;;
-05.05.2021; mit karbusch besprochen, wie wir die abrechung klären, ob wir den server aufrüsten sollten, und wie wir das deployment abschließen.;1h;1h20min;;
-05.05.2021; ergebnisse, cicd und server stand karbusch vorgestellt und darüber diskutiert;1h;2h;;;
-06.05.2021; auto build auto deploy für move-furniture-game, quiz-game und backtostreet main-page (hier nur nuxt client) eingerichtet;5h;5h;;;
-12.05.2021;weekly ip meeting;15min;30min;aktuelle Probleme innerhalb der Spiele besprochen;probleme beim Spiel move furniture mit dem verschieben von autos;;;
-13.05.2021;review meeting ip;1h;1h30min;aktuellen Stand vorstellen. Meinung von einem Kunden einholen bezüglich der Spiele. Probleme beim Spiel move-furniture diskutiert;;
+16.04.2021;Zusammen mit Jakub den Aufgaben in issues für diesen Sprint aufgeteilt. Pair Programming mit Jakub;3h;3h;aufgaben aufgeteilt, über entwicklungsideen gesprochen und angefangen;
+23.04.2021;Meeting mit Jakub, Besprechung, Probleme, Aufgaben, aktueller Stand;1h;2h;über workflow diskutiert und für reviews und feature branch workflow entschieden. merge requests besprochen und ausgetestet;
+28.04.2021;gitlab cicd einarbeiten;1h;1h;basics anhand von docu und yt video angeschaut;
+28.04.2021;weekly meeting;30min;1h10min;probleme diskutiert. coupons anzahl, corporate design, benotung;
+28.04.2021;gitlab ci-cid einrichten;3h;7h;falsche flag bei der installation des gitlab runners gesetzt, wodurch ich DooD(docker out of docker) anstatt DiD(docker in docker) hatte und im inneren compose nichts mehr mounten konnte. habe das natürlich erst nach einigen Stunden debugging bemerkt... Habe dann an einem Testprojekt eine erste Pipeline aufgesetzt, bei der es Funktioniert hat. Als nächstes muss man sich um das deployment des nuxt-clients kümmern im zusammenhang mit cicd.;
+29.04.2021;gitlab ci-cd in stages (build, test, deploy) grob einrichten. pm2 für test repo aufsetzten genauso wie ein simplen nginx um die Idee zu testen. herausfinden wie man docker images auf die registry pusht und pullt. überlegen wie man das alles deployed (pm2, nginx);2h;5h;wie beschrieben;
+30.04.2021;gitlab ci-cd zum laufen bringen. (docker images pushen und pullen) überlegen wie man nur auf master und development baut und deployed, jedoch jeden push einmal baut.. und falls CI_STAGING_1 im commit steht, das auch darauf deployed. pm2 und nginx docker container erstellen;4h;6h;bau logik funktioniert;
+04.05.2021;letzte probleme beim cicd beseitigen (node_modules werden nicht kopiert??);1h;2h;wie beschrieben;
+05.05.2021;auto deploy container pm2 und nginx aufsetzen, magic-tiles damit deployen. .htaccess einbauen mit einem passwort bei nginx.;4h;5h;wie beschrieben;
+05.05.2021;weekly 18:00 bis 18:20;15min;20min;probleme besprochen, aufgaben für nächste woche geklärt;
+05.05.2021;mit karbusch besprochen, wie wir die abrechung klären, ob wir den server aufrüsten sollten, und wie wir das deployment abschließen.;1h;1h20min;;
+05.05.2021;ergebnisse, cicd und server stand karbusch vorgestellt und darüber diskutiert;1h;2h;;
+06.05.2021;auto build auto deploy für move-furniture-game, quiz-game und backtostreet main-page (hier nur nuxt client) eingerichtet;5h;5h;;
+12.05.2021;weekly ip meeting;15min;30min;aktuelle Probleme innerhalb der Spiele besprochen;probleme beim Spiel move furniture mit dem verschieben von autos
+13.05.2021;review meeting ip;1h;1h30min;aktuellen Stand vorstellen. Meinung von einem Kunden einholen bezüglich der Spiele. Probleme beim Spiel move-furniture diskutiert;
 15.05.2021;create types for coupons. create fake json server to try querying data which will be used for coupons. implement store for for coupons.  implement store accessores. implement usage of axios to make api requests.;4h;5h;first we did not declare the axios initializor in our plugins.  second we did not prepend http:// for axios route which resulted in 404 error...;
-16.05.2021;implement explanation-coupons page which displays the data we get from our store. implements fetchstate.pending and fetchstate.error cases;2h;2h;as described;;
-26.05.2021;weekly meeting;15min;30min;;;
-26.05.2021;sprint planning jakub;1h;2h;;;
-26.05.2021;create navigation e2e tests with cypress;2h;2h;;;
-27.05.2021;enable e2e testing in our pipeline. fix errors in gitlab ci.;1h;2h;;;
-27.05.2021;sprint review meeting;1h;1h30min;;;
-27.05.2021;fix cicd pipeline;1h;4h;;had problems with caching and executing cypress. cypress by default installs to ~/.cache/Cypress but we can only cache stuff that is in our build directoy...;
-27.05.2021;understanding the current api, trying to create fake-redirect page because the main page frontend is not finished yet.;1h;3h;;had problems with understand the api. Some parts were misconfigured/not working at first. Was changed in timely matter. Problems with axios and CORS since no ALLOW-ORIGINS * header is set in server;;
-28.05.2021;continuing with trying to create fake-redirect page and validation page. fixed the axios problem by install proxy package. Server- server communication does not have CORS flags.;2h;4h30min;;had problems with the rewrite regex of the proxy module configuration. fixed the error by checking the nginx logs.;
-31.05.2021; finish validation implementation that will redirect to landing page;2h;4h;;Did have problems with the api response. Was quite uncommonly formatted with a json containinig { data: { data: }}. Also the game data was given as escaped json string rather than std json data which required JSON.parse(). Also the data structure was different than originally discussed.  Had to adapt the typescript types I created.;;
-01.06.2021; implement the coupons component that will display each coupons;1h;3h;fix what I just coded two days ago.. Because the api changed again.. At least all the unusual and weird stuff is gone now. e.g. : The data.data values are gone now. The escaped json string is now a standard json response. The response type is now as discussed. So i had to rechange the types I had to change two days before :/;;
-02.06.2021; fix cicd pipeline cypress tests. currently if they are failing the pipeline still passes. style explanation page and create coupons component that will contain the data for one coupon. adapt cypress tests to new styling;3h;2h;;;;
-02.06.2021; weekly meeting; 15min; 1h; discuss design that we got from alexander samsz. Help andre with his store and redirect problem;;
-02.06.2021; sprint planning and discussion with jakub; 1h; 1h30min;;;;;
-06.06.2021; adapt validation to query master backend and adapt to the final api response data. adapt the activity param that has changes from 1 to 7;1h;2h30min;;;
-06.06.2021; implement the required timer for our game that is based upon the expired_at value that we get from the main backend api. create generic countdownTimer component (possibly for other group members to use it as well).  create wrapper for the magic-tiles use case that accesses our store.;2h;3h15min;;;;
-08.06.2021; merge requests gereviewed;20min;20min;;;
-09.06.2021; weekly meeting;15min;40min;probleme/unklarheiten bezüglich der Abschlusspräsentation besprochen und Fragen notiert.;;;
-09.06.2021; reflexion und ausblick aus magic-tiles perspektive für den Abschlussbericht erstellt.;30min;1h30min;;;
-10.06.2021; sprint review meeting;1h;1h30min;;;
-12.06.2021; style timer to match suggestion by alexander, create result page and communication with main backend api logic, adapt our button styling to match suggestion of alexander;3h;3h;;;;
-16.06.2021; weekly meeting;1h;1h;problem mit authentifizierung besprochen und den Fehler gelöst;;;;
-17.06.2021; fix bugs with validation and the result screen, try deployment to master and development servers, adapt cipress tests;2h;3h; bug with validation could not be fixed yet, deployment failed sadly. result-screen bug was fixed.
-18.06.2021; fix validation bugs. drop cypress tests for faster deployment and manual testing. (include this later again..) create sponsor Lavalle on backend page, upload images to backend, adapt lavalle sponsor to display the correct images.;2h;2h30min; did not know the login data for the dashboard but luckily the backend team was online;;
-18.06.2021; styled landing page, explanation coupons page, validation page, result-screen to be production/assignment ready.  created couponCard component, refactored buttons, adapted background styling;3h;5h30min;;;
-22.06.2021; abschlussbericht konzept überlegen, beispiele ausarbeiten, struktur beginnen ausarbeiten;2h;2h30min;; Unklar wie genau wir erklären müssen. e.g. wie genau die verwendete Technik erklären, muss alles mit text erklärt werden?;
-23.06.2021; weekly meeting; 30min;1h; Probleme bei magic tiles mit Safari auf dem Handy besprochen, wiederverwertung von componenten von magic tiles in den anderen beiden Spielen besprochen.;;;
-23.06.2021; abschlussbericht magic-tiles anfangen mit jakub;1h45min;1h45min;;;;;
-27.06.2021; design and add new page with sponsor image, sponsor name and sponsor description. add description for our timer and for the case the game ends adapt the validUntil time. It will now default to be 6 minutes instead of 20 (or less if the user is validated for only 4 minutes etc..);3h;4h;;;
-27.06.2021; create header that does display timer and backtostreet logo and will be displayed on all pages. add the correct logo for the gaming-screen 'back2street' start implementing ending game when timer hits 0:00. is now buggy for the new header.;4h;3h;;;;
-27.06.2021; end implementation of end game when timer hits 0:00. implement localstorage inside middlewhere so we can refresh anywhere on the page and still have the correct game state.
-30.06.2021; implement cypress tests again, rewrite auth guard tests, create tests for the first four pages.;3h;3h30min;; Had problems with basic auth and using two different domains (main page and magic tiles page) solved it with beforeEach method that logs into the test account in the main page before every test;;
+16.05.2021;implement explanation-coupons page which displays the data we get from our store. implements fetchstate.pending and fetchstate.error cases;2h;2h;as described;
+26.05.2021;weekly meeting;15min;30min;;
+26.05.2021;sprint planning jakub;1h;2h;;
+26.05.2021;create navigation e2e tests with cypress;2h;2h;;
+27.05.2021;enable e2e testing in our pipeline. fix errors in gitlab ci.;1h;2h;;
+27.05.2021;sprint review meeting;1h;1h30min;;
+27.05.2021;fix cicd pipeline;1h;4h;;had problems with caching and executing cypress. cypress by default installs to ~/.cache/Cypress but we can only cache stuff that is in our build directoy...
+27.05.2021;understanding the current api, trying to create fake-redirect page because the main page frontend is not finished yet.;1h;3h;;had problems with understand the api. Some parts were misconfigured/not working at first. Was changed in timely matter. Problems with axios and CORS since no ALLOW-ORIGINS * header is set in server
+28.05.2021;continuing with trying to create fake-redirect page and validation page. fixed the axios problem by install proxy package. Server- server communication does not have CORS flags.;2h;4h30min;;had problems with the rewrite regex of the proxy module configuration. fixed the error by checking the nginx logs.
+31.05.2021;finish validation implementation that will redirect to landing page;2h;4h;;Did have problems with the api response. Was quite uncommonly formatted with a json containinig { data: { data: }}. Also the game data was given as escaped json string rather than std json data which required JSON.parse(). Also the data structure was different than originally discussed.  Had to adapt the typescript types I created.
+01.06.2021;implement the coupons component that will display each coupons;1h;3h;fix what I just coded two days ago.. Because the api changed again.. At least all the unusual and weird stuff is gone now. e.g. : The data.data values are gone now. The escaped json string is now a standard json response. The response type is now as discussed. So i had to rechange the types I had to change two days before :/;
+02.06.2021;fix cicd pipeline cypress tests. currently if they are failing the pipeline still passes. style explanation page and create coupons component that will contain the data for one coupon. adapt cypress tests to new styling;3h;2h;;
+02.06.2021;weekly meeting;15min;1h;discuss design that we got from alexander samsz. Help andre with his store and redirect problem;
+02.06.2021;sprint planning and discussion with jakub;1h;1h30min;;
+06.06.2021;adapt validation to query master backend and adapt to the final api response data. adapt the activity param that has changes from 1 to 7;1h;2h30min;;
+06.06.2021;implement the required timer for our game that is based upon the expired_at value that we get from the main backend api. create generic countdownTimer component (possibly for other group members to use it as well).  create wrapper for the magic-tiles use case that accesses our store.;2h;3h15min;;
+08.06.2021;merge requests gereviewed;20min;20min;;
+09.06.2021;weekly meeting;15min;40min;probleme/unklarheiten bezüglich der Abschlusspräsentation besprochen und Fragen notiert.;
+09.06.2021;reflexion und ausblick aus magic-tiles perspektive für den Abschlussbericht erstellt.;30min;1h30min;;
+10.06.2021;sprint review meeting;1h;1h30min;;
+12.06.2021;style timer to match suggestion by alexander, create result page and communication with main backend api logic, adapt our button styling to match suggestion of alexander;3h;3h;;
+16.06.2021;weekly meeting;1h;1h;problem mit authentifizierung besprochen und den Fehler gelöst;
+17.06.2021;fix bugs with validation and the result screen, try deployment to master and development servers, adapt cipress tests;2h;3h;bug with validation could not be fixed yet, deployment failed sadly. result-screen bug was fixed.;
+18.06.2021;fix validation bugs. drop cypress tests for faster deployment and manual testing. (include this later again..) create sponsor Lavalle on backend page, upload images to backend, adapt lavalle sponsor to display the correct images.;2h;2h30min;did not know the login data for the dashboard but luckily the backend team was online;
+18.06.2021;styled landing page, explanation coupons page, validation page, result-screen to be production/assignment ready.  created couponCard component, refactored buttons, adapted background styling;3h;5h30min;;
+22.06.2021;abschlussbericht konzept überlegen, beispiele ausarbeiten, struktur beginnen ausarbeiten;2h;2h30min;;Unklar wie genau wir erklären müssen. e.g. wie genau die verwendete Technik erklären, muss alles mit text erklärt werden?
+23.06.2021;weekly meeting;30min;1h;Probleme bei magic tiles mit Safari auf dem Handy besprochen, wiederverwertung von componenten von magic tiles in den anderen beiden Spielen besprochen.;
+23.06.2021;abschlussbericht magic-tiles anfangen mit jakub;1h45min;1h45min;;
+27.06.2021;design and add new page with sponsor image, sponsor name and sponsor description. add description for our timer and for the case the game ends adapt the validUntil time. It will now default to be 6 minutes instead of 20 (or less if the user is validated for only 4 minutes etc..);3h;4h;;
+27.06.2021;create header that does display timer and backtostreet logo and will be displayed on all pages. add the correct logo for the gaming-screen 'back2street' start implementing ending game when timer hits 0:00. is now buggy for the new header.;4h;3h;;
+27.06.2021;end implementation of end game when timer hits 0:00. implement localstorage inside middlewhere so we can refresh anywhere on the page and still have the correct game state.;1h;1h;;
+30.06.2021;implement cypress tests again, rewrite auth guard tests, create tests for the first four pages.;3h;3h30min;;Had problems with basic auth and using two different domains (main page and magic tiles page) solved it with beforeEach method that logs into the test account in the main page before every test
+07.07.2021;continue working on server presentation ;1h;1h;;
+07.07.2021;finish magic-tiles presentation with jakub;2h;2h30min;;
+07.07.2021;finish server presentation with karbush;2h30min;2h30min;;
