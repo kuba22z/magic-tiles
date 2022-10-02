@@ -12,3 +12,6 @@ In diesem Repository wird die Spielidee magic tiles umgesetzt.
 - [vue.js](https://vuejs.org/) Version 2 in Kombination mit [nuxt.js](https://nuxtjs.org/) als Frontend Frameworks.
 
 - TODO: Wie wollen wir das Backend gestalten? Welche Sprache?
+
+Developed By
+Jakub and Pierre 
